@@ -13,7 +13,7 @@ CREATE TABLE `Komputer`(
 );
 CREATE TABLE `Monitor`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `przekatna_(czal)` INT NOT NULL,
+    `przekatna_(cal)` INT NOT NULL,
     `odswiezanie_(Hz)` INT NOT NULL,
     `rozdzielczość` BIGINT NOT NULL,
     `typ_wyswietlacza` BIGINT NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `RAM`(
 );
 CREATE TABLE `Lista_produktow`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `kategoria` BIGINT NOT NULL,
+    `kategoria` VARCHAR(255) NOT NULL,
     `marka` VARCHAR(255) NOT NULL,
     `model` BIGINT NOT NULL
 );
@@ -73,7 +73,6 @@ ALTER TABLE
     `Komputer` ADD CONSTRAINT `komputer_pamiec_ram_foreign` FOREIGN KEY(`pamiec_RAM`) REFERENCES `RAM`(`id`);
 ALTER TABLE
     `Komputer` ADD CONSTRAINT `komputer_procesor_foreign` FOREIGN KEY(`procesor`) REFERENCES `Procesor`(`id`);
-
 ALTER TABLE
     `Historia_cen` ADD CONSTRAINT `historia_cen_id_sklepu_z_danym_produktem_foreign` FOREIGN KEY(`id_sklepu_z_danym_produktem`) REFERENCES `Lista_sklepow`(`id`);
 ALTER TABLE
