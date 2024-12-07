@@ -16,7 +16,7 @@ CREATE TABLE `Monitor`(
     `przekatna_(cal)` INT NOT NULL,
     `odswiezanie_(Hz)` INT NOT NULL,
     `rozdzielczość` BIGINT NOT NULL,
-    `typ_wyswietlacza` BIGINT NOT NULL,
+    `typ_wyswietlacza` VARCHAR(255) NOT NULL,
     `glosniki_` BOOLEAN NOT NULL,
     `proporcje_ekranu` VARCHAR(255) NOT NULL
 );
@@ -43,7 +43,7 @@ CREATE TABLE `Lista_produktow`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `kategoria` VARCHAR(255) NOT NULL,
     `marka` VARCHAR(255) NOT NULL,
-    `model` BIGINT NOT NULL
+    `model` VARCHAR(255) NOT NULL
 );
 CREATE TABLE `Lista_sklepow`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,

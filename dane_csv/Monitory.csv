@@ -1,3 +1,3 @@
 id,przekatna_(czal),odswiezanie_(Hz),rozdzielczosc,typ_wyswietlacza,glosniki_,proporcje_ekranu
-5,24,165,1920,IPS,FALSE,16:9
-6,27,75,2560,VA,TRUE,16:9
+5,24,165,1920,IPS,0,16:9
+6,27,75,2560,VA,1,16:9

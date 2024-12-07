@@ -1,0 +1,62 @@
+LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Lista_produktow.csv'
+INTO TABLE Lista_produktow
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/RAM.csv'
+INTO TABLE ram
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Procesory.csv'
+INTO TABLE procesor
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Monitory.csv'
+INTO TABLE monitor
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Telewizory.csv'
+INTO TABLE telewizor
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Lista_opinii.csv'
+INTO TABLE lista_opinii
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Lista_produktow.csv'
+INTO TABLE lista_produktow
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Lista_sklepow.csv'
+INTO TABLE lista_sklepow
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Historia_cen.csv'
+INTO TABLE historia_cen
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
