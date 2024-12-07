@@ -48,7 +48,7 @@ CREATE TABLE `Lista_produktow`(
 CREATE TABLE `Lista_sklepow`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `id_produktu` BIGINT UNSIGNED NOT NULL,
-    `nazwa` BIGINT NOT NULL
+    `nazwa` VARCHAR(255) NOT NULL
 );
 CREATE TABLE `Lista_opinii`(
     `id` BIGINT UNSIGNED NOT NULL,

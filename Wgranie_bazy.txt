@@ -33,15 +33,15 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Lista_opinii.csv'
-INTO TABLE lista_opinii
+LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Komputery.csv'
+INTO TABLE komputer
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Lista_produktow.csv'
-INTO TABLE lista_produktow
+LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Lista_opinii.csv'
+INTO TABLE lista_opinii
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
