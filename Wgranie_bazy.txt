@@ -1,5 +1,5 @@
 LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Lista_produktow.csv'
-INTO TABLE Lista_produktow
+INTO TABLE Listaproduktow
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
@@ -41,21 +41,21 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
 LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Lista_opinii.csv'
-INTO TABLE lista_opinii
+INTO TABLE listaopinii
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
 LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Lista_sklepow.csv'
-INTO TABLE lista_sklepow
+INTO TABLE listasklepow
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
 LOAD DATA INFILE 'C:/Users/maksy/Desktop/PWR/SEM_5/Bazy Danych/Baza_danych/BD/dane_csv/Historia_cen.csv'
-INTO TABLE historia_cen
+INTO TABLE historiacen
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'

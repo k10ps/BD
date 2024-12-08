@@ -20,7 +20,7 @@ CREATE TABLE `Monitor`(
     `glosniki_` BOOLEAN NOT NULL,
     `proporcje_ekranu` VARCHAR(255) NOT NULL
 );
-CREATE TABLE `Historia_cen`(
+CREATE TABLE `Historiacen`(
     `id` BIGINT UNSIGNED NOT NULL,
     `id_sklepu_z_danym_produktem` BIGINT UNSIGNED NOT NULL,
     `cena` DECIMAL(8, 2) NOT NULL,
@@ -39,18 +39,18 @@ CREATE TABLE `RAM`(
     `pojemnosc_(GB)` INT NOT NULL,
     `taktowanie_(MHz)` BIGINT NOT NULL
 );
-CREATE TABLE `Lista_produktow`(
+CREATE TABLE `Listaproduktow`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `kategoria` VARCHAR(255) NOT NULL,
     `marka` VARCHAR(255) NOT NULL,
     `model` VARCHAR(255) NOT NULL
 );
-CREATE TABLE `Lista_sklepow`(
+CREATE TABLE `Listasklepow`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `id_produktu` BIGINT UNSIGNED NOT NULL,
     `nazwa` VARCHAR(255) NOT NULL
 );
-CREATE TABLE `Lista_opinii`(
+CREATE TABLE `Listaopinii`(
     `id` BIGINT UNSIGNED NOT NULL,
     `id_produktu` BIGINT UNSIGNED UNSIGNED NOT NULL,
     `opinia` VARCHAR(255) NOT NULL,
@@ -58,15 +58,15 @@ CREATE TABLE `Lista_opinii`(
     PRIMARY KEY(`id`)
 );
 ALTER TABLE
-    `Komputer` ADD CONSTRAINT `komputer_id_foreign` FOREIGN KEY(`id`) REFERENCES `Lista_produktow`(`id`);
+    `Komputer` ADD CONSTRAINT `komputer_id_foreign` FOREIGN KEY(`id`) REFERENCES `Listaproduktow`(`id`);
 ALTER TABLE
-    `Monitor` ADD CONSTRAINT `monitor_id_foreign` FOREIGN KEY(`id`) REFERENCES `Lista_produktow`(`id`);
+    `Monitor` ADD CONSTRAINT `monitor_id_foreign` FOREIGN KEY(`id`) REFERENCES `Listaproduktow`(`id`);
 ALTER TABLE
-    `Telewizor` ADD CONSTRAINT `telewizor_id_foreign` FOREIGN KEY(`id`) REFERENCES `Lista_produktow`(`id`);
+    `Telewizor` ADD CONSTRAINT `telewizor_id_foreign` FOREIGN KEY(`id`) REFERENCES `Listaproduktow`(`id`);
 ALTER TABLE
-    `Procesor` ADD CONSTRAINT `procesor_id_foreign` FOREIGN KEY(`id`) REFERENCES `Lista_produktow`(`id`);
+    `Procesor` ADD CONSTRAINT `procesor_id_foreign` FOREIGN KEY(`id`) REFERENCES `Listaproduktow`(`id`);
 ALTER TABLE
-    `RAM` ADD CONSTRAINT `ram_id_foreign` FOREIGN KEY(`id`) REFERENCES `Lista_produktow`(`id`);
+    `RAM` ADD CONSTRAINT `ram_id_foreign` FOREIGN KEY(`id`) REFERENCES `Listaproduktow`(`id`);
 
 
 ALTER TABLE
@@ -74,8 +74,8 @@ ALTER TABLE
 ALTER TABLE
     `Komputer` ADD CONSTRAINT `komputer_procesor_foreign` FOREIGN KEY(`procesor`) REFERENCES `Procesor`(`id`);
 ALTER TABLE
-    `Historia_cen` ADD CONSTRAINT `historia_cen_id_sklepu_z_danym_produktem_foreign` FOREIGN KEY(`id_sklepu_z_danym_produktem`) REFERENCES `Lista_sklepow`(`id`);
+    `Historia_cen` ADD CONSTRAINT `historia_cen_id_sklepu_z_danym_produktem_foreign` FOREIGN KEY(`id_sklepu_z_danym_produktem`) REFERENCES `Listasklepow`(`id`);
 ALTER TABLE
-    `Lista_opinii` ADD CONSTRAINT `lista_opinii_id_produktu_foreign` FOREIGN KEY(`id_produktu`) REFERENCES `Lista_produktow`(`id`);
+    `Lista_opinii` ADD CONSTRAINT `lista_opinii_id_produktu_foreign` FOREIGN KEY(`id_produktu`) REFERENCES `Listaproduktow`(`id`);
 ALTER TABLE
-    `Lista_sklepow` ADD CONSTRAINT `lista_sklepow_id_produktu_foreign` FOREIGN KEY(`id_produktu`) REFERENCES `Lista_produktow`(`id`);
+    `Lista_sklepow` ADD CONSTRAINT `lista_sklepow_id_produktu_foreign` FOREIGN KEY(`id_produktu`) REFERENCES `Listaproduktow`(`id`);
