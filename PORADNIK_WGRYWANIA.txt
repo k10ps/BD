@@ -1,0 +1,112 @@
+1. Otwórz MYSQL Workbench i stwórz bazę danych.
+2. Wklej do workbench zawartość plików w odpowiedniej kolejnoci 
+	1) database_mysql.sql 
+	2) Wgranie_bazy.txt (w tym pliku pozmieniaj ścieżki bezpośrednie (w każdym zapytaniu) do folderu dane_csv)
+
+3. W projekcie (studio Code) Ale_Baza w pliku settings.py ustaw odpowiednie parametry DATABASES przykład:
+
+DATABASES = {  
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql', #wpisz takie jak działasz na mysql
+        'NAME': 'ale_baza_db',  #nazwa bazy danyc
+        'USER': 'root', 	#nazwa użytkownika bazy
+        'PASSWORD': 'root',	#haslo użytkownika bazy
+        'HOST': '127.0.0.1',	#domyslne zostaw
+        'PORT': '3306',		#domyslne zostaw
+    }  
+} 
+
+4. Postępuj zgodnie z poniższą odpowiedzią
+
+Jeśli masz już wgrane dane do bazy danych i chcesz korzystać z nich w Django, nie musisz ich ponownie "implementować" w sensie technicznym, ale musisz upewnić się, że Django wie, jak uzyskać dostęp do tych danych. Poniżej wyjaśniam, jak krok po kroku skonfigurować Django do pracy z istniejącymi danymi:
+
+1. Skonfiguruj Django do korzystania z istniejącej bazy danych
+W pliku projektu Django settings.py, skonfiguruj ustawienia bazy danych, wskazując na tę, w której znajdują się Twoje dane.
+
+Przykład: Dla MySQL ustawienia mogą wyglądać tak:
+
+python
+Skopiuj kod
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'nazwa_twojej_bazy',
+        'USER': 'twoj_uzytkownik',
+        'PASSWORD': 'twoje_haslo',
+        'HOST': 'localhost',  # lub adres serwera, jeśli jest zdalny
+        'PORT': '3306',  # domyślny port dla MySQL
+    }
+}
+Upewnij się, że zainstalowałeś bibliotekę MySQL dla Django:
+
+bash
+Skopiuj kod
+
+pip install mysqlclient
+
+2. Utwórz modele odzwierciedlające istniejące tabele
+Aby Django mogło korzystać z danych w tabelach, musisz utworzyć modele w pliku models.py w aplikacji Django, które będą odzwierciedlały strukturę istniejących tabel.
+
+Przykład modelu: Dla tabeli Lista_produktow możesz stworzyć model:
+
+KODY DOSTĘPNE W pliku Ale_Baza/Baza_Sklepow/models.py
+
+(nwm czy trzeba drugi raz wgrywać to wszystko, żeby django załapało bo niby u siebie wygenerowałem plik i jest na gicie)
+
+3. Powiąż modele z istniejącymi tabelami
+Aby Django wiedziało, że modele odnoszą się do istniejących tabel w bazie danych, użyj atrybutu db_table w metadanych modelu:
+
+python
+Skopiuj kod
+
+WZIĄZANIE ZAWARTE W PLIKU Z POPRZEDNIEGO PUNKTU
+
+4. Wykonaj migrację bez tworzenia tabel
+Ponieważ tabele już istnieją, musisz poinformować Django, aby nie tworzył ich na nowo, ale zintegrował je z istniejącą strukturą. Możesz to zrobić za pomocą polecenia inspectdb, które generuje modele na podstawie istniejących tabel.
+
+Kroki:
+
+Wykonaj polecenie w terminalu:
+bash
+Skopiuj kod
+
+python manage.py inspectdb > models.py
+
+To polecenie wygeneruje modele na podstawie istniejących tabel i zapisze je w pliku models.py.
+Przejrzyj wygenerowane modele, aby upewnić się, że ich typy danych i nazwy są zgodne z Twoimi wymaganiami. (chyba jest git nie trzeba sprawdzać, pare nazw pozmieniał bo niezgodne z jego konwencjami sam zrobił komentarze co pozmieniał)
+
+5. Pracuj z danymi w Django
+Teraz możesz korzystać z danych w Django, używając API ORM. Przykładowo, aby wyświetlić wszystkie produkty z tabeli Lista_produktow:
+(TO WIADOMO BĘDZIEMY SIĘ BAWIĆ DOPIERO)
+
+
+Przykład w widoku:
+
+python
+Skopiuj kod
+
+from django.shortcuts import render
+from .models import ListaProduktow
+
+def lista_produktow(request):
+    produkty = ListaProduktow.objects.all()
+    return render(request, 'lista_produktow.html', {'produkty': produkty})
+
+
+
+6. Dostosuj migracje Django (TO JESZCZE WARTO ZROBIĆ)
+
+Django zarządza migracjami tabel. Ponieważ Twoje tabele już istnieją, możesz poinformować Django, aby nie próbowało ich ponownie tworzyć:
+
+bash
+Skopiuj kod
+python manage.py makemigrations
+python manage.py migrate --fake
+Opcja --fake oznacza, że Django "udaje", iż migracje zostały wykonane, bez faktycznego tworzenia tabel.
+
+Podsumowanie
+Wgraj dane do bazy danych niezależnie.
+Skonfiguruj Django do pracy z tą bazą danych.
+Użyj inspectdb, aby utworzyć modele na podstawie istniejących tabel.
+Pracuj z danymi, używając ORM Django.
+W ten sposób możesz w pełni zintegrować Django z istniejącymi danymi w bazie MySQL.
