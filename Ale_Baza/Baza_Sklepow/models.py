@@ -70,7 +70,7 @@ class Lista_sklepow(models.Model):
         db_table = 'Lista_sklepow'
 
 class Historia_cen(models.Model):
-    id = models.BigIntegerField()
+    id = models.BigIntegerField(primary_key=True)
     id_sklepu_z_danym_produktem = models.ForeignKey(Lista_sklepow, on_delete=models.CASCADE)
     cena = models.DecimalField(max_digits=8, decimal_places=2)
     data = models.DateField()
@@ -82,7 +82,7 @@ class Historia_cen(models.Model):
         unique_together = ('id',)
 
 class Lista_opinii(models.Model):
-    id = models.BigIntegerField()
+    id = models.BigIntegerField(primary_key=True)
     id_produktu = models.ForeignKey(Lista_produktow, on_delete=models.CASCADE)
     opinia = models.CharField(max_length=255)
     data = models.DateTimeField()
