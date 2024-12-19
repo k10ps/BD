@@ -29,3 +29,64 @@ def showKategoria(request, kategoria):
                 print(f"Row: {row}")
 
     return HttpResponse("Zapytanie SQL showKategoria wykonane, sprawdź konsolę.")
+
+def showPodstawaProduktu(produkt, cursor):
+    cursor.execute("SELECT * FROM ListaProduktow WHERE id = %s", [produkt])
+    rows_prod = cursor.fetchall()
+
+    if not rows_prod:
+        # Jeśli brak produktu o takim id
+        return HttpResponse(f"Brak produktu o id '{produkt}'.")
+    else:
+        print(f"Produkt: {rows_prod}")  # Wypisz produkt
+    return()
+
+def showSpecyfikacje(produkt, kategoria, cursor):
+    query_spec = f"SELECT * FROM {kategoria} WHERE id = %s"
+
+    cursor.execute(query_spec, [produkt])  # Zabezpieczamy zapytanie wstawiając id produktu
+    rows_spec = cursor.fetchall()
+    
+    if not rows_spec:
+        return HttpResponse(f"Brak specyfikacji produktu o id '{produkt}' w kategorii {kategoria}.")
+    else:
+        print(f"Specyfikacje: {rows_spec}")  # Wypisz specyfikacje produktu
+    return()
+
+def showOpinie(produkt, cursor):
+    query_opi = f"SELECT * FROM listaopinii WHERE id_produktu = %s"
+
+    cursor.execute(query_opi, [produkt])  # Zabezpieczamy zapytanie wstawiając id produktu
+    rows_opi = cursor.fetchall()
+    
+    if not rows_opi:
+        return HttpResponse(f"Brak opinii o produkcie o id '{produkt}' w kategorii {kategoria}.")
+    else:
+        for opinia in rows_opi:
+            print(f"Opinia {opinia.index}: {opinia}")  # Wypisz specyfikacje produktu
+    return()
+
+def showProdukt(request, kategoria, produkt):
+    # Ustal dozwolone kategorie produktów, np. telewizory, komputery
+    dozwolone_kategorie = ['telewizor', 'komputer', 'monitor', "procesor", "ram"]
+    
+    # na male znaki
+    kategoria = kategoria.lower()
+
+    # Sprawdź, czy kategoria jest poprawna
+    if kategoria not in dozwolone_kategorie:
+        return HttpResponse("Nieprawidłowa kategoria produktu.")
+
+    # Wykonaj zapytanie, aby znaleźć produkt o danym id
+    with connection.cursor() as c:
+
+        # zapytanie o podstawy produktu
+        showPodstawaProduktu(produkt, c)
+
+        # Dynamiczne zapytanie dla specyfikacji produktu
+        showSpecyfikacje(produkt, kategoria, c)
+       
+        # zapytanie o opinie
+        showOpinie(produkt, c)
+ 
+    return HttpResponse("Zapytanie SQL showProdukt wykonane, sprawdź konsolę.")

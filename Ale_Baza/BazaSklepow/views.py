@@ -9,4 +9,4 @@ from .models import ListaSklepow
 
 def showListaSklepow(request):
 
-    return HttpResponse('homepage')
+    return HttpResponse('Witaj w bazie sklepow elektronicznych')
