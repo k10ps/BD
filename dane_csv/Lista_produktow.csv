@@ -1,11 +1,11 @@
 id,kategoria,marka,model
-1,1,Samsung,UE55TU8002
-2,1,LG,OLED55CX6LA
-3,2,Apple,MacBook Pro M2
-4,2,Dell,XPS 13
-5,3,ASUS,VG248QG
-6,3,HP,EliteDisplay E273
-7,4,Intel,i9-13900K
-8,4,AMD,Ryzen 7 7800X
-9,5,Kingston,HX432C16PB3K2/16
-10,5,Corsair,Vengeance LPX
+1,Telewizor,Samsung,UE55TU8002
+2,Telewizor,LG,OLED55CX6LA
+3,Komputer,Apple,MacBook Pro M2
+4,Komputer,Dell,XPS 13
+5,Monitor,ASUS,VG248QG
+6,Monitor,HP,EliteDisplay E273
+7,Procesor,Intel,i9-13900K
+8,Procesor,AMD,Ryzen 7 7800X
+9,RAM,Kingston,HX432C16PB3K2/16
+10,RAM,Corsair,Vengeance LPX
