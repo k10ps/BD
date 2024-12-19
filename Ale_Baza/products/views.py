@@ -1,8 +1,13 @@
 from django.shortcuts import render, HttpResponse
 from BazaSklepow.models import ListaProduktow
 from django.db import connection
+from reviews import views as rev
+from price_history import views as hist
 
 # Create your views here.
+# base oznacza glowna funkcje wywolujaca fukncje pod nia
+
+#base
 def showListaProduktow(request):
     with connection.cursor() as c:
         c.execute("SELECT * FROM ListaProduktow")
@@ -14,6 +19,7 @@ def showListaProduktow(request):
 
     return HttpResponse("Zapytanie SQL showListaProduktow wykonane, sprawdź konsolę.")
 
+#base
 def showKategoria(request, kategoria):
     with connection.cursor() as c:
         c.execute("SELECT * FROM ListaProduktow WHERE kategoria = %s", [kategoria])
@@ -29,6 +35,36 @@ def showKategoria(request, kategoria):
                 print(f"Row: {row}")
 
     return HttpResponse("Zapytanie SQL showKategoria wykonane, sprawdź konsolę.")
+
+#base
+def showProdukt(request, kategoria, produkt):
+    # Ustal dozwolone kategorie produktów, np. telewizory, komputery
+    dozwolone_kategorie = ['telewizor', 'komputer', 'monitor', "procesor", "ram"]
+    
+    # na male znaki
+    kategoria = kategoria.lower()
+
+    # Sprawdź, czy kategoria jest poprawna
+    if kategoria not in dozwolone_kategorie:
+        return HttpResponse("Nieprawidłowa kategoria produktu.")
+
+    # Wykonaj zapytanie, aby znaleźć produkt o danym id
+    with connection.cursor() as c:
+
+        # zapytanie o podstawy produktu
+        showPodstawaProduktu(produkt, c)
+
+        # Dynamiczne zapytanie dla specyfikacji produktu
+        showSpecyfikacje(produkt, kategoria, c)
+       
+        # zapytanie o opinie
+        rev.showOpinie(produkt, c)
+
+        # zapytanie o najnizsza cene
+        min_cena = hist.showLowestPrice(produkt, c)
+        print("Najnizsza cena: ", min_cena)
+ 
+    return HttpResponse("Zapytanie SQL showProdukt wykonane, sprawdź konsolę.")
 
 def showPodstawaProduktu(produkt, cursor):
     cursor.execute("SELECT * FROM ListaProduktow WHERE id = %s", [produkt])
@@ -52,41 +88,3 @@ def showSpecyfikacje(produkt, kategoria, cursor):
     else:
         print(f"Specyfikacje: {rows_spec}")  # Wypisz specyfikacje produktu
     return()
-
-def showOpinie(produkt, cursor):
-    query_opi = f"SELECT * FROM listaopinii WHERE id_produktu = %s"
-
-    cursor.execute(query_opi, [produkt])  # Zabezpieczamy zapytanie wstawiając id produktu
-    rows_opi = cursor.fetchall()
-    
-    if not rows_opi:
-        return HttpResponse(f"Brak opinii o produkcie o id '{produkt}' w kategorii {kategoria}.")
-    else:
-        for opinia in rows_opi:
-            print(f"Opinia {opinia.index}: {opinia}")  # Wypisz specyfikacje produktu
-    return()
-
-def showProdukt(request, kategoria, produkt):
-    # Ustal dozwolone kategorie produktów, np. telewizory, komputery
-    dozwolone_kategorie = ['telewizor', 'komputer', 'monitor', "procesor", "ram"]
-    
-    # na male znaki
-    kategoria = kategoria.lower()
-
-    # Sprawdź, czy kategoria jest poprawna
-    if kategoria not in dozwolone_kategorie:
-        return HttpResponse("Nieprawidłowa kategoria produktu.")
-
-    # Wykonaj zapytanie, aby znaleźć produkt o danym id
-    with connection.cursor() as c:
-
-        # zapytanie o podstawy produktu
-        showPodstawaProduktu(produkt, c)
-
-        # Dynamiczne zapytanie dla specyfikacji produktu
-        showSpecyfikacje(produkt, kategoria, c)
-       
-        # zapytanie o opinie
-        showOpinie(produkt, c)
- 
-    return HttpResponse("Zapytanie SQL showProdukt wykonane, sprawdź konsolę.")

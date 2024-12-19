@@ -1,21 +1,17 @@
 from django.shortcuts import render, HttpResponse
-from BazaSklepow.models import ListaSklepow
-from django.db import connection
+
 
 # Create your views here.
 
-# def showListaSklepow(request):
-#     data = ListaSklepow.objects.raw("SELECT * FROM Listasklepow")
-#     print(data)
-#     return render(request, 'output.html',{'data': data})
+def showLowestPrice(produkt, cursor):
+    query = """
+        SELECT MIN(cena)
+        FROM historiacen
+        WHERE id_sklepu_z_danym_produktem IN (
+            SELECT id FROM listasklepow WHERE id_produktu = %s
+        )
+    """
+    cursor.execute(query, [produkt])
+    min_cena = cursor.fetchone()
 
-# def showListaSklepow(request):
-#     with connection.cursor() as c:
-#         c.execute("SELECT * FROM Listasklepow")
-#         #tłumaczenie na liste krotek
-#         rows = c.fetchall()
-
-#         for row in rows:
-#             print(f"Row: {row}")
-
-#     return HttpResponse("Zapytanie SQL showListaSklepow wykonane, sprawdź konsolę.")
+    return(min_cena)
