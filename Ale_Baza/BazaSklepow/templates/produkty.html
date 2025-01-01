@@ -1,0 +1,23 @@
+<!-- wyswietla liste produktow po kliknieciu w kategorie na homePage 
+ mozna tu dopisać filtry
+
+-->
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Produkty w kategorii {{ kategoria }}</title>
+</head>
+<body>
+    <h1>Produkty w kategorii: {{ kategoria }}</h1>
+
+    <ul>
+        {% for produkt in produkty %}
+            <li>{{ produkt.nazwa }} - {{ produkt.marka }} - {{ produkt.model }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Wróć na stronę główną</a>
+</body>
+</html>
