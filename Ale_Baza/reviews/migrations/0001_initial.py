@@ -12,13 +12,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='ListaSklepow',
+            name='ListaOpinii',
             fields=[
-                ('id', models.BigAutoField(primary_key=True, serialize=False)),
-                ('nazwa', models.CharField(max_length=255)),
+                ('id', models.BigIntegerField(primary_key=True, serialize=False)),
+                ('opinia', models.CharField(max_length=255)),
+                ('data', models.DateTimeField()),
             ],
             options={
-                'db_table': 'listasklepow',
+                'db_table': 'listaopinii',
                 'managed': False,
             },
         ),

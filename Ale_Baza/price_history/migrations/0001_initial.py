@@ -12,13 +12,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='ListaSklepow',
+            name='HistoriaCen',
             fields=[
-                ('id', models.BigAutoField(primary_key=True, serialize=False)),
-                ('nazwa', models.CharField(max_length=255)),
+                ('id', models.BigIntegerField(primary_key=True, serialize=False)),
+                ('cena', models.DecimalField(decimal_places=2, max_digits=8)),
+                ('data', models.DateField()),
             ],
             options={
-                'db_table': 'listasklepow',
+                'db_table': 'Historiacen',
                 'managed': False,
             },
         ),
