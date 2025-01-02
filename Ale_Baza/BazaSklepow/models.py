@@ -10,6 +10,7 @@ class ListaProduktow(models.Model):
     model = models.CharField(max_length=255)
 
     class Meta:
+        managed = False
         db_table = 'Listaproduktow'
 
 class Telewizor(models.Model):
@@ -20,6 +21,7 @@ class Telewizor(models.Model):
     smart_TV = models.BooleanField()
 
     class Meta:
+        managed = False
         db_table = 'Telwizor'
 
 class Komputer(models.Model):
@@ -29,6 +31,7 @@ class Komputer(models.Model):
     pojemnosc_dysku = models.IntegerField()
 
     class Meta:
+        managed = False
         db_table = 'Komputer'
 
 class Monitor(models.Model):
@@ -41,6 +44,7 @@ class Monitor(models.Model):
     proporcje_ekranu = models.CharField(max_length=255)
 
     class Meta:
+        managed = False
         db_table = 'Monitor'
 
 class Procesor(models.Model):
@@ -50,6 +54,7 @@ class Procesor(models.Model):
     rodzaj_gniazda = models.CharField(max_length=255)
 
     class Meta:
+        managed = False
         db_table = 'Procesor'
 
 class RAM(models.Model):
@@ -59,6 +64,7 @@ class RAM(models.Model):
     taktowanie_MHz = models.BigIntegerField()
 
     class Meta:
+        managed = False
         db_table = 'RAM'
 
 class ListaSklepow(models.Model):
@@ -67,7 +73,8 @@ class ListaSklepow(models.Model):
     nazwa = models.CharField(max_length=255)
 
     class Meta:
-        db_table = 'Listasklepow'
+        managed = False
+        db_table = 'listasklepow'
 
 class HistoriaCen(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -76,9 +83,11 @@ class HistoriaCen(models.Model):
     data = models.DateField()
 
     class Meta:
+        managed = False
         db_table = 'Historiacen'
 
     class Meta:
+        managed = False
         unique_together = ('id',)
 
 class ListaOpinii(models.Model):
@@ -88,8 +97,9 @@ class ListaOpinii(models.Model):
     data = models.DateTimeField()
 
     class Meta:
+        managed = False
         db_table = 'Listaopinii'
 
     class Meta:
+        managed = False
         unique_together = ('id',)
-

@@ -74,7 +74,7 @@ ALTER TABLE
 ALTER TABLE
     `Komputer` ADD CONSTRAINT `komputer_procesor_foreign` FOREIGN KEY(`procesor`) REFERENCES `Procesor`(`id`);
 ALTER TABLE
-    `Historia_cen` ADD CONSTRAINT `historia_cen_id_sklepu_z_danym_produktem_foreign` FOREIGN KEY(`id_sklepu_z_danym_produktem`) REFERENCES `Listasklepow`(`id`);
+    `Historiacen` ADD CONSTRAINT `historia_cen_id_sklepu_z_danym_produktem_foreign` FOREIGN KEY(`id_sklepu_z_danym_produktem`) REFERENCES `Listasklepow`(`id`);
 ALTER TABLE
     `Lista_opinii` ADD CONSTRAINT `lista_opinii_id_produktu_foreign` FOREIGN KEY(`id_produktu`) REFERENCES `Listaproduktow`(`id`);
 ALTER TABLE
