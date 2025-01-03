@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
@@ -23,7 +24,16 @@ class ListaProduktow(models.Model):
     kategoria = models.CharField(max_length=255)
     marka = models.CharField(max_length=255)
     model = models.CharField(max_length=255)
+    
+    def clean(self):
+        dozwolone_kategorie = ['telewizor', 'komputer', 'monitor', 'procesor', 'ram']
+        #sprawdzanie czy kategoria dozwolona
+        if self.kategoria.lower() not in dozwolone_kategorie:
+            raise ValidationError(f"Kategoria '{self.kategoria}' jest nieprawidłowa, produkt może należeć tylko do kategorii telewizor/komputer/monitor/procesor/ram.")
 
+        #sprawdzanie czy wsyztskie pola uzupełnione
+        if not self.kategoria or not self.marka or not self.model:
+            raise ValidationError(f"Uzupełnij wszystkie pola.")
     class Meta:
         managed = False
         db_table = 'ListaProduktow'
@@ -33,11 +43,14 @@ class Monitor(models.Model):
     id = models.ForeignKey(ListaProduktow, models.DO_NOTHING, db_column='id', primary_key=True)
     przekatna_cal_field = models.IntegerField(db_column='przekatna_(cal)')  # Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
     odswiezanie_hz_field = models.IntegerField(db_column='odswiezanie_(Hz)')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
-    rozdzielczoťŠ = models.BigIntegerField()
+    rozdzielczosc = models.BigIntegerField()
     typ_wyswietlacza = models.CharField(max_length=255)
     glosniki_field = models.IntegerField(db_column='glosniki_')  # Field renamed because it ended with '_'.
     proporcje_ekranu = models.CharField(max_length=255)
 
+    def clean(self):
+        if not self.przekatna_cal_field or not self.odswiezanie_hz_field or not self.rozdzielczosc or not self.typ_wyswietlacza or not self.glosniki_field or not self.proporcje_ekranu:
+            raise ValidationError(f"Uzupełnij specyfikacje monitora.")
     class Meta:
         managed = False
         db_table = 'monitor'
@@ -49,6 +62,9 @@ class Procesor(models.Model):
     taktowanie = models.BigIntegerField()
     rodzaj_gniazda = models.CharField(max_length=255)
 
+    def clean(self):
+        if not self.liczba_rdzeni or not self.taktowanie or not self.rodzaj_gniazda:
+            raise ValidationError(f"Uzupełnij specyfikacje procesora.")
     class Meta:
         managed = False
         db_table = 'procesor'
@@ -60,6 +76,9 @@ class Ram(models.Model):
     pojemnosc_gb_field = models.IntegerField(db_column='pojemnosc_(GB)')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
     taktowanie_mhz_field = models.BigIntegerField(db_column='taktowanie_(MHz)')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
 
+    def clean(self):
+        if not self.typ_pamieci or not self.pojemnosc_gb_field or not self.taktowanie_mhz_field:
+            raise ValidationError(f"Uzupełnij specyfikacje RAMu.")
     class Meta:
         managed = False
         db_table = 'ram'
@@ -72,6 +91,9 @@ class Telewizor(models.Model):
     rozdzielczosc_xk_field = models.BigIntegerField(db_column='rozdzielczosc_(xK)')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
     smart_tv = models.IntegerField(db_column='smart_TV')  # Field name made lowercase.
 
+    def clean(self):
+        if not self.przekatna_cal_field or not self.typ_wyswietlacza or not self.rozdzielczosc_xk_field or not self.smart_tv:
+            raise ValidationError(f"Uzupełnij specyfikacje telewizora.")
     class Meta:
         managed = False
         db_table = 'telewizor'

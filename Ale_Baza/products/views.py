@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponse
-from BazaSklepow.models import ListaProduktow
+from .models import ListaProduktow
 from django.db import connection
 from reviews import views as rev
 from price_history import views as hist
+from django import forms
 
 # Create your views here.
 # base oznacza glowna funkcje wywolujaca fukncje pod nia
