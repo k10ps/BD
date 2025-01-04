@@ -15,9 +15,20 @@ class Komputer(models.Model):
     pamiec_ram = models.ForeignKey('Ram', models.DO_NOTHING, db_column='pamiec_RAM')  # Field name made lowercase.
     pojemnosc_dysku = models.IntegerField()
 
+    def clean(self):
+    #sprawdzanie czy wsyztskie pola uzupełnione
+        if not self.procesor or not self.pamiec_ram or not self.pojemnosc_dysku:
+            raise ValidationError(f"Uzupełnij specyfikacje komputera.")
+        
+        if (Telewizor.objects.filter(id=self.id).exists() or Ram.objects.filter(id=self.id).exists() or
+            Procesor.objects.filter(id=self.id).exists() or Komputer.objects.filter(id=self.id).exists() 
+        ):
+            raise ValidationError(f"Jeden produkt może mieć tylko 1 kategorię.")
+        
     class Meta:
         managed = False
         db_table = 'komputer'
+
 
 class ListaProduktow(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -51,6 +62,11 @@ class Monitor(models.Model):
     def clean(self):
         if not self.przekatna_cal_field or not self.odswiezanie_hz_field or not self.rozdzielczosc or not self.typ_wyswietlacza or not self.glosniki_field or not self.proporcje_ekranu:
             raise ValidationError(f"Uzupełnij specyfikacje monitora.")
+        if (
+            Telewizor.objects.filter(id=self.id).exists() or Ram.objects.filter(id=self.id).exists() or
+            Procesor.objects.filter(id=self.id).exists() or Komputer.objects.filter(id=self.id).exists() 
+        ):
+            raise ValidationError(f"Jeden produkt może mieć tylko 1 kategorię.")
     class Meta:
         managed = False
         db_table = 'monitor'
@@ -65,6 +81,12 @@ class Procesor(models.Model):
     def clean(self):
         if not self.liczba_rdzeni or not self.taktowanie or not self.rodzaj_gniazda:
             raise ValidationError(f"Uzupełnij specyfikacje procesora.")
+        if (
+            Telewizor.objects.filter(id=self.id).exists() or Ram.objects.filter(id=self.id).exists() or
+            Monitor.objects.filter(id=self.id).exists() or Komputer.objects.filter(id=self.id).exists() 
+        ):
+            raise ValidationError(f"Jeden produkt może mieć tylko 1 kategorię.")
+        
     class Meta:
         managed = False
         db_table = 'procesor'
@@ -79,6 +101,13 @@ class Ram(models.Model):
     def clean(self):
         if not self.typ_pamieci or not self.pojemnosc_gb_field or not self.taktowanie_mhz_field:
             raise ValidationError(f"Uzupełnij specyfikacje RAMu.")
+        
+        if (
+            Telewizor.objects.filter(id=self.id).exists() or Procesor.objects.filter(id=self.id).exists() or
+            Monitor.objects.filter(id=self.id).exists() or Komputer.objects.filter(id=self.id).exists() 
+        ):
+            raise ValidationError(f"Jeden produkt może mieć tylko 1 kategorię.")
+            
     class Meta:
         managed = False
         db_table = 'ram'
@@ -94,6 +123,11 @@ class Telewizor(models.Model):
     def clean(self):
         if not self.przekatna_cal_field or not self.typ_wyswietlacza or not self.rozdzielczosc_xk_field or not self.smart_tv:
             raise ValidationError(f"Uzupełnij specyfikacje telewizora.")
+        if (
+            Ram.objects.filter(id=self.id).exists() or Procesor.objects.filter(id=self.id).exists() or
+            Monitor.objects.filter(id=self.id).exists() or Komputer.objects.filter(id=self.id).exists() 
+        ):
+            raise ValidationError(f"Jeden produkt może mieć tylko 1 kategorię.")
     class Meta:
         managed = False
         db_table = 'telewizor'

@@ -6,7 +6,7 @@ class ListaOpinii(models.Model):
     id_produktu = models.ForeignKey(ListaProduktow, on_delete=models.CASCADE,db_column='id_produktu')
     opinia = models.CharField(max_length=255)
     data = models.DateTimeField()
-
+    
     class Meta:
         managed = False
         db_table = 'listaopinii'
