@@ -63,15 +63,15 @@ class ListaProduktowAdmin(admin.ModelAdmin):
                         cursor.execute(f"SELECT id FROM komputer WHERE pamiec_ram IN %s", [tuple(produkt_ids)])
                         kom_id=[row[0] for row in cursor.fetchall()]
                         if kom_id:
-                            for each_kom in kom_id:
-                                cursor.execute(f"UPDATE komputer SET pamiec_ram = 1 WHERE pamiec_ram IN %s", [tuple(produkt_ids)])
+                            messages.info(request, f"Istnieje komputer {len(kom_id)} z tym podzespołem. NIE MOŻNA USUNĄĆ")
+                            return
                         cursor.execute(f"DELETE FROM {each_kat} WHERE id IN %s", [tuple(produkt_ids)])
                     elif each_kat=='PROCESOR' or each_kat=='Procesor' or each_kat=='procesor':
                         cursor.execute(f"SELECT id FROM komputer WHERE procesor IN %s", [tuple(produkt_ids)])
                         kom_id=[row[0] for row in cursor.fetchall()]
                         if kom_id:
-                            for eahc_kom in kom_id:
-                                cursor.execute(f"UPDATE komputer SET procesor = 1 WHERE procesor IN %s", [tuple(produkt_ids)])
+                            messages.info(request, f"Istnieje komputer {len(kom_id)} z tym podzespołem. NIE MOŻNA USUNĄĆ")
+                            return
                         cursor.execute(f"DELETE FROM {each_kat} WHERE id IN %s", [tuple(produkt_ids)])
                     
                     else: #monitor, telewizor, komputer
