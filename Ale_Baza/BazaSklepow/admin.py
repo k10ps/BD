@@ -36,8 +36,6 @@ class ListaSklepowAdmin(admin.ModelAdmin):
     
     #usuwanie pojedynczego obiektu
     def usun_rekord(self, request, queryset):
-        messages.info(request, "Three credits remain in your account.")
-        
         obiekt_ids = [obiekty.id for obiekty in queryset]
         
         if not obiekt_ids:
