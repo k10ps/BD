@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h1>Szczegóły produktu</h1>
+
 <p><strong>Kategoria:</strong> {{ produkt.kategoria }}</p>
 <p><strong>Marka:</strong> {{ produkt.marka }}</p>
 <p><strong>Model:</strong> {{ produkt.model }}</p>
-<p><strong>Najlepsza oferta na:</strong> {{ najlepsza_cena.sklep }} za {{ najlepsza_cena.cena }} PLN </p>
+{%if najlepsza_cena.cena%}
+    <p><strong>Najlepsza oferta na:</strong> {{ najlepsza_cena.sklep }} za {{ najlepsza_cena.cena }} PLN </p>
+{%endif%}
 
 <h2>Specyfikacja</h2>
 {% if specyfikacja %}

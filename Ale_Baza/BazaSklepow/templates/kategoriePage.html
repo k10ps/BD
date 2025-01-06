@@ -8,7 +8,7 @@
             <a href="{% url 'produktPage' kategoria produkt.id %}">
                 {{ kategoria }} {{ produkt.marka }} - {{ produkt.model }}
                 {% if produkt.cena %}
-                    <span>Cena: {{ produkt.cena }}</span>
+                    <span>Cena: {{ produkt.cena }} PLN</span>
                 {% endif %}
             </a>
         </li>
