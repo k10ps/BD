@@ -5,6 +5,8 @@ from .forms import OpinionForm
 from reviews.models import ListaOpinii
 from django.db import connection
 from datetime import datetime
+import matplotlib
+matplotlib.use('Agg')  # Użyj bezpośredniego renderowania bez GUI
 import matplotlib.pyplot as plt
 import io
 import base64
@@ -28,13 +30,30 @@ def homePage(request):
         kategorie = [row[0] for row in cursor.fetchall()]
     return render(request, 'homePage.html', {'kategorie': kategorie})
 
+
+
+
 def showKategoria(request, kategoria):
     with connection.cursor() as cursor:
         cursor.execute("SELECT id, marka, model FROM listaProduktow WHERE kategoria=%s", [kategoria])
         produkty = cursor.fetchall()  #zbieranie wynikow
     #przekształcanie w lsite slownikow
-    produkty_list = [{'id': row[0], 'marka': row[1], 'model': row[2]} for row in produkty]
+    produkty_list = []
+    for row in produkty:
+        produkt_id = row[0]
+        najnizsza_cena = showLowestPrice(produkt_id)  #szukanie najlepszej cent
+        produkty_list.append({
+            'id': produkt_id,
+            'marka': row[1],
+            'model': row[2],
+            'cena': najnizsza_cena['cena'] if najnizsza_cena else None,
+        })
+    
+    
     return render(request, 'kategoriePage.html', {'produkty': produkty_list, 'kategoria': kategoria})
+
+
+
 
 def showProdukt(request, kategoria, produkt_id):
     
@@ -49,6 +68,7 @@ def showProdukt(request, kategoria, produkt_id):
         }
         
     #pobieranie danych specyfikacji, opinii
+    best_price=showLowestPrice(produkt_id)
     specyfikacja_list = showSpecyfikacja(kategoria, produkt_id)
     opinie_list=showOpinie(produkt_id)
     image_base64=showHistoriaCen(produkt_id)
@@ -63,7 +83,14 @@ def showProdukt(request, kategoria, produkt_id):
             return redirect('produktPage', kategoria=kategoria, produkt_id=produkt_id)
     
     
-    return render(request, 'produktPage.html', {'produkt': produkt_list, 'specyfikacja': specyfikacja_list, 'opinie': opinie_list, 'historia_cen_wykres': image_base64,})
+    return render(request, 'produktPage.html', {
+        'produkt': produkt_list, 
+        'specyfikacja': specyfikacja_list, 
+        'opinie': opinie_list, 
+        'historia_cen_wykres': image_base64,
+        'najlepsza_cena': best_price,
+        }
+        )
 
 def showSpecyfikacja(kategoria, produkt_id):
     # Pobierz specyfikację w zależności od kategorii
@@ -197,4 +224,34 @@ def showHistoriaCen(produkt_id):
     else:
         return None
 
+def showLowestPrice(produkt_id):
+    with connection.cursor() as cursor:
+        # Pobierz ID i nazwy sklepów dla danego produktu
+        cursor.execute("SELECT id, nazwa FROM listaSklepow WHERE id_produktu=%s", [produkt_id])
+        sklepy = cursor.fetchall()
+        sklepy_dict = {sklep[0]: sklep[1] for sklep in sklepy}  # Słownik {id_sklepu: nazwa_sklepu}
 
+        # Pobierz ceny i daty dla każdego sklepu
+        lowest_price = None
+        lowest_price_date = None
+        lowest_price_store = None
+
+        for sklep_id, sklep_name in sklepy_dict.items():
+            cursor.execute("SELECT cena, data FROM historiacen WHERE id_sklepu_z_danym_produktem=%s ORDER BY data DESC", [sklep_id])
+            ceny_daty = cursor.fetchall()
+            for cena, data in ceny_daty:
+                if lowest_price is None or cena < lowest_price or (cena == lowest_price and data > lowest_price_date):
+                    lowest_price = cena
+                    lowest_price_date = data
+                    lowest_price_store = sklep_name
+
+    if lowest_price is not None:
+        return {
+            'cena': lowest_price,
+            'data': lowest_price_date,
+            'sklep': lowest_price_store,
+        }
+    else:
+        return None
+
+        

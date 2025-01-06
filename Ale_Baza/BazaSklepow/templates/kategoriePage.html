@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Produkty w kategorii: {{ kategoria }}</h1>
+<h1>{{ kategoria }}</h1>
 <ul>
     {% for produkt in produkty %}
         <li>
             <a href="{% url 'produktPage' kategoria produkt.id %}">
                 {{ kategoria }} {{ produkt.marka }} - {{ produkt.model }}
+                {% if produkt.cena %}
+                    <span>Cena: {{ produkt.cena }}</span>
+                {% endif %}
             </a>
         </li>
     {% endfor %}
