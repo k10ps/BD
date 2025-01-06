@@ -5,6 +5,9 @@ from .forms import OpinionForm
 from reviews.models import ListaOpinii
 from django.db import connection
 from datetime import datetime
+import matplotlib.pyplot as plt
+import io
+import base64
 
 # Create your views here.
 # def showListaSklepow(request):
@@ -48,7 +51,7 @@ def showProdukt(request, kategoria, produkt_id):
     #pobieranie danych specyfikacji, opinii
     specyfikacja_list = showSpecyfikacja(kategoria, produkt_id)
     opinie_list=showOpinie(produkt_id)
-    
+    image_base64=showHistoriaCen(produkt_id)
     #dodawanie opinii
     if request.method == 'POST':
         opinia_text = request.POST.get('opinia')
@@ -59,18 +62,8 @@ def showProdukt(request, kategoria, produkt_id):
                 )
             return redirect('produktPage', kategoria=kategoria, produkt_id=produkt_id)
     
-    #wykres historii cen
-    with connection.cursor() as cursor:
-        #w jakich sklepach jest dostepny obiket, by moc sprawdzic cene
-        cursor.execute("SELECT id FROM listaSklepow WHERE id_produktu=%s", [produkt_id])
-        sklepy = cursor.fetchall()  #zbieranie wyniku
-        
-        cursor.execute("SELECT cena, data FROM historiacen WHERE id_sklepu_z_danym_produktem=%s", [sklepy])
-        historiacen = cursor.fetchall()  #zbieranie wyniku
-       
     
-    
-    return render(request, 'produktPage.html', {'produkt': produkt_list, 'specyfikacja': specyfikacja_list, 'opinie': opinie_list})
+    return render(request, 'produktPage.html', {'produkt': produkt_list, 'specyfikacja': specyfikacja_list, 'opinie': opinie_list, 'historia_cen_wykres': image_base64,})
 
 def showSpecyfikacja(kategoria, produkt_id):
     # Pobierz specyfikację w zależności od kategorii
@@ -91,7 +84,7 @@ def showSpecyfikacja(kategoria, produkt_id):
 
         elif kategoria.lower() == 'monitor':
             cursor.execute(
-                "SELECT `przekatna_(cal)`, `odswiezanie_(Hz)`, `rozdzielczosc`, `typ_wyswietlacza`, `glosniki_`, `proporcje_ekranu`FROM monitor WHERE id=%s",
+                "SELECT `przekatna_(cal)`, `odswiezanie_(Hz)`, `rozdzielczość`, `typ_wyswietlacza`, `glosniki_`, `proporcje_ekranu` FROM monitor WHERE id=%s",
                 [produkt_id]
             )
             specyfikacja = cursor.fetchone()
@@ -160,6 +153,48 @@ def showOpinie(produkt_id):
 
     return opinie_list
 
+def showHistoriaCen(produkt_id):
+    #wykres historii cen
+    with connection.cursor() as cursor:
+        # Pobierz ID i nazwy sklepów dla danego produktu
+        cursor.execute("SELECT id, nazwa FROM listaSklepow WHERE id_produktu=%s", [produkt_id])
+        sklepy = cursor.fetchall()
+        sklepy_dict = {sklep[0]: sklep[1] for sklep in sklepy}  # Słownik {id_sklepu: nazwa_sklepu}
 
+        # Pobierz ceny i daty dla każdego sklepu
+        historiacen = {}
+        for sklep_id in sklepy_dict.keys():
+            cursor.execute("SELECT cena, data FROM historiacen WHERE id_sklepu_z_danym_produktem=%s", [sklep_id])
+            ceny_daty = cursor.fetchall()
+            historiacen[sklep_id] = ceny_daty
+
+    # Sprawdź, czy są dane do wykresu
+    if any(historiacen.values()):
+        # Generowanie wykresu
+        plt.figure(figsize=(10, 6))
+
+        for sklep_id, ceny_daty in historiacen.items():
+            if ceny_daty:
+                ceny = [cena for cena, data in ceny_daty]
+                daty = [data for cena, data in ceny_daty]
+                plt.plot(daty, ceny, marker='o', label=sklepy_dict[sklep_id])
+
+        # Ustawienia wykresu
+        plt.title('Historia Cen Produktu')
+        plt.xlabel('Data')
+        plt.ylabel('Cena (zł)')
+        plt.legend()
+        plt.grid(True)
+
+        # Konwersja wykresu do formatu obrazu
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png')
+        buf.seek(0)
+        image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
+        buf.close()
+        plt.close()
+        return image_base64
+    else:
+        return None
 
 

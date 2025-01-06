@@ -17,6 +17,12 @@
     <p>Brak specyfikacji dla tego produktu.</p>
 {% endif %}
 
+<h2>Historia Cen</h2>
+{% if historia_cen_wykres %}
+    <img src="data:image/png;base64,{{ historia_cen_wykres }}" alt="Historia cen">
+{% else %}
+    <p>Brak danych o historii cen dla tego produktu.</p>
+{% endif %}
 
 <h2>Opinie</h2>
 <h3>Dodaj swoją opinię:</h3>

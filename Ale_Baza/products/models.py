@@ -49,7 +49,7 @@ class Monitor(models.Model):
     id = models.ForeignKey(ListaProduktow, models.DO_NOTHING, db_column='id', primary_key=True)
     przekatna_cal_field = models.IntegerField(db_column='przekatna_(cal)')  # Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
     odswiezanie_hz_field = models.IntegerField(db_column='odswiezanie_(Hz)')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
-    rozdzielczosc = models.BigIntegerField()
+    rozdzielczosc = models.BigIntegerField(db_column='rozdzielczość')
     typ_wyswietlacza = models.CharField(max_length=255)
     glosniki_field = models.IntegerField(db_column='glosniki_')  # Field renamed because it ended with '_'.
     proporcje_ekranu = models.CharField(max_length=255)
