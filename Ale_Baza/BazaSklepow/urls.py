@@ -5,6 +5,10 @@ from . import views
 
 urlpatterns = [
     path('', views.homePage, name='homePage'),  #stronaglowna
-    path('produkty/<str:kategoria>/<int:produkt_id>/', views.showProdukt, name='produktPage'),
-    path('produkt/<str:kategoria>/', views.showKategoria, name='produkty_by_kategoria'),
+    path('search/', views.search, name='search'), #wynika z paska wyszukiwania
+    #kolejnosc ma znaczenia nie podmieniac
+    #strona indywidualngo produktu
+    path('produkty/<str:kategoria>/<int:produkt_id>/', views.showProdukt, name='produktPage'),  
+    #strona produktow po kategorii
+    path('produkt/<str:kategoria>/', views.showKategoria, name='produkty_by_kategoria'),    
 ]

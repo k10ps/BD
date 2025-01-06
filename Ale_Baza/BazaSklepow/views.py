@@ -21,7 +21,6 @@ import base64
 
     #return HttpResponse('Witaj w bazie sklepow elektronicznych')
 
-
 #funckja wyswietlajaca na stronei glwonej kategoeir
 def homePage(request):
     #pobieranie unikalnych (dzieki DISTINCT) kategori z listy porduktow
@@ -31,17 +30,41 @@ def homePage(request):
     return render(request, 'homePage.html', {'kategorie': kategorie})
 
 
-
-
 def showKategoria(request, kategoria):
+    #rosnaco/malejaca
+    sort_by = request.GET.get('sort', None)
+    order = request.GET.get('order', 'asc')  # Pobierz kierunek sortowania (rosnąco/malejąco, domyślnie rosnąco)
+    
+    #miedzy wybranym zakresem cenowym
+    min_cena= request.GET.get('min_cena', None)
+    max_cena = request.GET.get('max_cena', None)
+    
+    #jakie filtry
+    filter_by = {}
+    if kategoria.lower() == 'telewizor':
+        przekatna = request.GET.get('przekatna', None)
+        if przekatna:
+            filter_by['przekatna'] = przekatna
+    
+    
+    
     with connection.cursor() as cursor:
         cursor.execute("SELECT id, marka, model FROM listaProduktow WHERE kategoria=%s", [kategoria])
         produkty = cursor.fetchall()  #zbieranie wynikow
+    
     #przekształcanie w lsite slownikow
     produkty_list = []
     for row in produkty:
         produkt_id = row[0]
         najnizsza_cena = showLowestPrice(produkt_id)  #szukanie najlepszej cent
+
+        if najnizsza_cena and (
+                (min_cena and najnizsza_cena['cena'] < float(min_cena)) 
+                or
+                (max_cena and najnizsza_cena['cena'] > float(max_cena))
+                ):
+                continue  #pomijamy pordukty ktorych cena nie jest w zakresie
+        
         produkty_list.append({
             'id': produkt_id,
             'marka': row[1],
@@ -49,10 +72,18 @@ def showKategoria(request, kategoria):
             'cena': najnizsza_cena['cena'] if najnizsza_cena else None,
         })
     
+    if sort_by == 'cena':
+        reverse_order = True if order == 'desc' else False
+        produkty_list.sort(key=lambda x: x['cena'] if x['cena'] is not None else float('inf'), reverse=reverse_order)
     
-    return render(request, 'kategoriePage.html', {'produkty': produkty_list, 'kategoria': kategoria})
-
-
+    return render(request, 'kategoriePage.html', {
+        'produkty': produkty_list, 
+        'kategoria': kategoria, 
+        'order': order,
+        'min_cena': min_cena,
+        'max_cena': max_cena,
+        'filter_by': filter_by
+        })
 
 
 def showProdukt(request, kategoria, produkt_id):
@@ -72,6 +103,7 @@ def showProdukt(request, kategoria, produkt_id):
     specyfikacja_list = showSpecyfikacja(kategoria, produkt_id)
     opinie_list=showOpinie(produkt_id)
     image_base64=showHistoriaCen(produkt_id)
+    
     #dodawanie opinii
     if request.method == 'POST':
         opinia_text = request.POST.get('opinia')
@@ -91,6 +123,17 @@ def showProdukt(request, kategoria, produkt_id):
         'najlepsza_cena': best_price,
         }
         )
+
+
+def search(request):
+    query = request.GET.get('q', '')  # Pobierz zapytanie z paska wyszukiwania
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT id, marka, model, kategoria FROM listaProduktow WHERE marka LIKE %s OR model LIKE %s", [f"%{query}%", f"%{query}%"])
+        produkty = [{'id': row[0], 'marka': row[1], 'model': row[2], 'kategoria': row[3]} for row in cursor.fetchall()]
+
+    return render(request, 'searchPage.html', {'query': query, 'produkty': produkty})
+
+
 
 def showSpecyfikacja(kategoria, produkt_id):
     # Pobierz specyfikację w zależności od kategorii
@@ -254,4 +297,4 @@ def showLowestPrice(produkt_id):
     else:
         return None
 
-        
+

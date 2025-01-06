@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Wyniki wyszukiwania dla: "{{ query }}"</h1>
+<ul>
+    {% for produkt in produkty %}
+        <li>
+            <a href="{% url 'produktPage' produkt.kategoria produkt.id %}">
+                {{ produkt.marka }} - {{ produkt.model }} ({{ produkt.kategoria }})
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% if not produkty %}
+    <p>Brak wyników dla zapytania "{{ query }}".</p>
+{% endif %}
+{% endblock %}

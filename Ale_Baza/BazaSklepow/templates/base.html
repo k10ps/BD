@@ -17,6 +17,17 @@
             width: 80%; /* Maksymalna szerokość treści */
             margin: 0vh; /* Odstęp od góry do zawartosci  ktora dziedziczy*/
         }
+        
+        .search-bar {
+            margin: 10px 0; /* Odstęp dla paska wyszukiwania */
+        }
+        .search-bar input[type="text"] {
+            width: 200px; /* Szerokość pola tekstowego */
+            padding: 5px;
+        }
+        .search-bar button {
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
@@ -27,6 +38,15 @@
             </a>
         </h1>
     </header>
+    
+    <!--pasek wyszukiwania -->
+    <div class="search-bar">
+        <form method="get" action="{% url 'search' %}">
+            <input type="text" name="q" placeholder="Szukaj produktów..." value="{{ request.GET.q|default:'' }}">
+            <button type="submit">Szukaj</button>
+        </form>
+    </div>
+
     <main>
         {% block content %}
         <!-- Strony beda dziedziczyc po niej dzieki czemu glowa zawsze zostanie taka sama i w tym miesjcu poawjaiwa sie własnei zawartosc strony -->
