@@ -47,8 +47,7 @@ class HistoriaCenAdmin(admin.ModelAdmin):
         return obj.id_sklepu_z_danym_produktem.id
     wys_id_sklepu_z_danym_produktem.short_description = "ID SKLEPU Z DANYM PRODUKTEM"
     
-    '''
-    #cos nie tak z baza na sql?????????????????/
+   
     def save_model(self, request, obj, form, change):
         try:
             with connection.cursor() as cursor:
@@ -60,7 +59,6 @@ class HistoriaCenAdmin(admin.ModelAdmin):
         except Exception as e:
             # Obsługa błędów
             messages.error(request, f"Błąd podczas dodawania.")
-    '''
     
     #usuwanie rekordu
     def usun_cene(self, request, queryset):

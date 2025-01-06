@@ -5,5 +5,6 @@ from . import views
 
 urlpatterns = [
     path('', views.homePage, name='homePage'),  #stronaglowna
-    path('produkty/<str:kategoria>/', views.showKategoria, name='produkty_by_kategoria'),
+    path('produkty/<str:kategoria>/<int:produkt_id>/', views.showProdukt, name='produktPage'),
+    path('produkt/<str:kategoria>/', views.showKategoria, name='produkty_by_kategoria'),
 ]

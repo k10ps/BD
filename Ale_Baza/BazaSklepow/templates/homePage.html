@@ -1,18 +1,25 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Strona Główna</title>
-</head>
-<body>
-    <h1>Wybierz kategorię</h1>
+{% extends "base.html" %}
 
-    <div>
-        {% for kategoria in kategorie %}
-            <a href="{% url 'produkty_by_kategoria' kategoria.kategoria %}" style="margin-right: 15px;">
-                {{ kategoria.kategoria }}
-            </a>
-        {% endfor %}
-    </div>
-</body>
-</html>
+{% block content %}
+<style>
+    .categories {
+        display: flex;
+        flex-direction: row;
+        gap: 20px; /* Odstępy między kategoriami */
+    }
+
+</style>
+
+<h1>Wybierz kategorię</h1>
+
+<div class="categories">
+    {% for kategoria in kategorie %}
+        <a href="{% url 'produkty_by_kategoria' kategoria %}">
+            {{ kategoria }}
+        </a>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

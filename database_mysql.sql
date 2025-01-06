@@ -21,7 +21,7 @@ CREATE TABLE `Monitor`(
     `proporcje_ekranu` VARCHAR(255) NOT NULL
 );
 CREATE TABLE `Historiacen`(
-    `id` BIGINT UNSIGNED NOT NULL,
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `id_sklepu_z_danym_produktem` BIGINT UNSIGNED NOT NULL,
     `cena` DECIMAL(8, 2) NOT NULL,
     `data` DATE NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE `Listasklepow`(
     `nazwa` VARCHAR(255) NOT NULL
 );
 CREATE TABLE `Listaopinii`(
-    `id` BIGINT UNSIGNED NOT NULL,
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `id_produktu` BIGINT UNSIGNED UNSIGNED NOT NULL,
     `opinia` VARCHAR(255) NOT NULL,
     `data` DATETIME NOT NULL,

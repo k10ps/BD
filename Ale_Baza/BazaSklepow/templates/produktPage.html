@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Szczegóły produktu</h1>
+<p><strong>Kategoria:</strong> {{ produkt.kategoria }}</p>
+<p><strong>Marka:</strong> {{ produkt.marka }}</p>
+<p><strong>Model:</strong> {{ produkt.model }}</p>
+
+<h2>Specyfikacja</h2>
+{% if specyfikacja %}
+    <ul>
+        {% for key, value in specyfikacja.items %}
+            <li><strong>{{ key }}:</strong> {{ value }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Brak specyfikacji dla tego produktu.</p>
+{% endif %}
+
+
+<h2>Opinie</h2>
+<h3>Dodaj swoją opinię:</h3>
+<form method="post">
+    {% csrf_token %}
+    <textarea name="opinia" placeholder="Wpisz swoją opinię..." required></textarea>
+    <br><button type="submit">Dodaj opinię</button>
+</form>
+
+{% if opinie %}
+    <ul>
+        {% for opinia in opinie %}
+            <li>
+                <strong>{{ opinia.data|date:"Y-m-d H:i" }}</strong>
+                <br>{{ opinia.opinia }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Brak opinii dla tego produktu.</p>
+{% endif %}
+
+
+
+{% endblock %}
