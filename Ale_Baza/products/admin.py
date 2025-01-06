@@ -13,6 +13,10 @@ class ListaProduktowAdmin(admin.ModelAdmin):
     
     actions=['usun_produkt']
     
+    #wylaczenie wbudowanego usuwania obiektu w django
+    def has_delete_permission(self, request, obj=None):
+        return False
+    
     fieldsets = [
         ("Podstawowe informacje o produkcie", {'fields': ['kategoria', 'marka', 'model'],}),
     ]
@@ -83,6 +87,11 @@ class ListaProduktowAdmin(admin.ModelAdmin):
                     )
                 messages.success(request, f"Usunięto {len(produkt_ids)} rekord(y) z listy sklepów.")
     usun_produkt.short_description = "Usun produkt"
+    
+            
+
+
+    
 
 admin.site.register(ListaProduktow, ListaProduktowAdmin)
 

@@ -47,6 +47,21 @@ class HistoriaCenAdmin(admin.ModelAdmin):
         return obj.id_sklepu_z_danym_produktem.id
     wys_id_sklepu_z_danym_produktem.short_description = "ID SKLEPU Z DANYM PRODUKTEM"
     
+    '''
+    #cos nie tak z baza na sql?????????????????/
+    def save_model(self, request, obj, form, change):
+        try:
+            with connection.cursor() as cursor:
+                    cursor.execute(
+                        "INSERT INTO historiacen (id_sklepu_z_danym_produktem, cena, data) VALUES (%s, %s, %s)",
+                        [obj.id_sklepu_z_danym_produktem.id, obj.cena, obj.data]
+                    )
+            messages.success(request, f"Historia cen produktu: '{obj.id_sklepu_z_danym_produktem}' została pomyślnie dodana.")
+        except Exception as e:
+            # Obsługa błędów
+            messages.error(request, f"Błąd podczas dodawania.")
+    '''
+    
     #usuwanie rekordu
     def usun_cene(self, request, queryset):
         historia_ids = [historia.id for historia in queryset]
@@ -57,6 +72,7 @@ class HistoriaCenAdmin(admin.ModelAdmin):
         else:
             messages.error(request, "Nie wybrano obiektu do usuniecia.", level='error')
     usun_cene.short_description = "Usun element"
+    
     
 admin.site.register(HistoriaCen, HistoriaCenAdmin)
     

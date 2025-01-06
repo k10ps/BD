@@ -19,9 +19,10 @@ class ListaSklepowAdmin(admin.ModelAdmin):
     def display_id_produktu(self, obj):
         return obj.id_produktu.id
     display_id_produktu.short_description = "ID Produktu"
+     #zablokowanie mozliwsoci dodawania opinii u admina
     
     #uzywa wbudowanego add, ale dodaje za pomoca bezposredniego zapytania do bazy
-    def zapisz(self, request, obj, form, change):
+    def save_model(self, request, obj, form, change):
         try:
             with connection.cursor() as cursor:
                     cursor.execute(
