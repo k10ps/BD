@@ -1,0 +1,251 @@
+id,id_produktu,nazwa
+1,1,Allegro
+2,1,Media Markt
+3,1,Media Expert
+4,1,RTV Euro AGD
+5,1,Neonet
+6,2,Allegro
+7,2,Media Markt
+8,2,Media Expert
+9,2,RTV Euro AGD
+10,2,Neonet
+11,3,Allegro
+12,3,Media Markt
+13,3,Media Expert
+14,3,RTV Euro AGD
+15,3,Neonet
+16,4,Allegro
+17,4,Media Markt
+18,4,Media Expert
+19,4,RTV Euro AGD
+20,4,Neonet
+21,5,Allegro
+22,5,Media Markt
+23,5,Media Expert
+24,5,RTV Euro AGD
+25,5,Neonet
+26,6,Allegro
+27,6,Media Markt
+28,6,Media Expert
+29,6,RTV Euro AGD
+30,6,Neonet
+31,7,Allegro
+32,7,Media Markt
+33,7,Media Expert
+34,7,RTV Euro AGD
+35,7,Neonet
+36,8,Allegro
+37,8,Media Markt
+38,8,Media Expert
+39,8,RTV Euro AGD
+40,8,Neonet
+41,9,Allegro
+42,9,Media Markt
+43,9,Media Expert
+44,9,RTV Euro AGD
+45,9,Neonet
+46,10,Allegro
+47,10,Media Markt
+48,10,Media Expert
+49,10,RTV Euro AGD
+50,10,Neonet
+51,11,Allegro
+52,11,Media Markt
+53,11,Media Expert
+54,11,RTV Euro AGD
+55,11,Neonet
+56,12,Allegro
+57,12,Media Markt
+58,12,Media Expert
+59,12,RTV Euro AGD
+60,12,Neonet
+61,13,Allegro
+62,13,Media Markt
+63,13,Media Expert
+64,13,RTV Euro AGD
+65,13,Neonet
+66,14,Allegro
+67,14,Media Markt
+68,14,Media Expert
+69,14,RTV Euro AGD
+70,14,Neonet
+71,15,Allegro
+72,15,Media Markt
+73,15,Media Expert
+74,15,RTV Euro AGD
+75,15,Neonet
+76,16,Allegro
+77,16,Media Markt
+78,16,Media Expert
+79,16,RTV Euro AGD
+80,16,Neonet
+81,17,Allegro
+82,17,Media Markt
+83,17,Media Expert
+84,17,RTV Euro AGD
+85,17,Neonet
+86,18,Allegro
+87,18,Media Markt
+88,18,Media Expert
+89,18,RTV Euro AGD
+90,18,Neonet
+91,19,Allegro
+92,19,Media Markt
+93,19,Media Expert
+94,19,RTV Euro AGD
+95,19,Neonet
+96,20,Allegro
+97,20,Media Markt
+98,20,Media Expert
+99,20,RTV Euro AGD
+100,20,Neonet
+101,21,Allegro
+102,21,Media Markt
+103,21,Media Expert
+104,21,RTV Euro AGD
+105,21,Neonet
+106,22,Allegro
+107,22,Media Markt
+108,22,Media Expert
+109,22,RTV Euro AGD
+110,22,Neonet
+111,23,Allegro
+112,23,Media Markt
+113,23,Media Expert
+114,23,RTV Euro AGD
+115,23,Neonet
+116,24,Allegro
+117,24,Media Markt
+118,24,Media Expert
+119,24,RTV Euro AGD
+120,24,Neonet
+121,25,Allegro
+122,25,Media Markt
+123,25,Media Expert
+124,25,RTV Euro AGD
+125,25,Neonet
+126,26,Allegro
+127,26,Media Markt
+128,26,Media Expert
+129,26,RTV Euro AGD
+130,26,Neonet
+131,27,Allegro
+132,27,Media Markt
+133,27,Media Expert
+134,27,RTV Euro AGD
+135,27,Neonet
+136,28,Allegro
+137,28,Media Markt
+138,28,Media Expert
+139,28,RTV Euro AGD
+140,28,Neonet
+141,29,Allegro
+142,29,Media Markt
+143,29,Media Expert
+144,29,RTV Euro AGD
+145,29,Neonet
+146,30,Allegro
+147,30,Media Markt
+148,30,Media Expert
+149,30,RTV Euro AGD
+150,30,Neonet
+151,31,Allegro
+152,31,Media Markt
+153,31,Media Expert
+154,31,RTV Euro AGD
+155,31,Neonet
+156,32,Allegro
+157,32,Media Markt
+158,32,Media Expert
+159,32,RTV Euro AGD
+160,32,Neonet
+161,33,Allegro
+162,33,Media Markt
+163,33,Media Expert
+164,33,RTV Euro AGD
+165,33,Neonet
+166,34,Allegro
+167,34,Media Markt
+168,34,Media Expert
+169,34,RTV Euro AGD
+170,34,Neonet
+171,35,Allegro
+172,35,Media Markt
+173,35,Media Expert
+174,35,RTV Euro AGD
+175,35,Neonet
+176,36,Allegro
+177,36,Media Markt
+178,36,Media Expert
+179,36,RTV Euro AGD
+180,36,Neonet
+181,37,Allegro
+182,37,Media Markt
+183,37,Media Expert
+184,37,RTV Euro AGD
+185,37,Neonet
+186,38,Allegro
+187,38,Media Markt
+188,38,Media Expert
+189,38,RTV Euro AGD
+190,38,Neonet
+191,39,Allegro
+192,39,Media Markt
+193,39,Media Expert
+194,39,RTV Euro AGD
+195,39,Neonet
+196,40,Allegro
+197,40,Media Markt
+198,40,Media Expert
+199,40,RTV Euro AGD
+200,40,Neonet
+201,41,Allegro
+202,41,Media Markt
+203,41,Media Expert
+204,41,RTV Euro AGD
+205,41,Neonet
+206,42,Allegro
+207,42,Media Markt
+208,42,Media Expert
+209,42,RTV Euro AGD
+210,42,Neonet
+211,43,Allegro
+212,43,Media Markt
+213,43,Media Expert
+214,43,RTV Euro AGD
+215,43,Neonet
+216,44,Allegro
+217,44,Media Markt
+218,44,Media Expert
+219,44,RTV Euro AGD
+220,44,Neonet
+221,45,Allegro
+222,45,Media Markt
+223,45,Media Expert
+224,45,RTV Euro AGD
+225,45,Neonet
+226,46,Allegro
+227,46,Media Markt
+228,46,Media Expert
+229,46,RTV Euro AGD
+230,46,Neonet
+231,47,Allegro
+232,47,Media Markt
+233,47,Media Expert
+234,47,RTV Euro AGD
+235,47,Neonet
+236,48,Allegro
+237,48,Media Markt
+238,48,Media Expert
+239,48,RTV Euro AGD
+240,48,Neonet
+241,49,Allegro
+242,49,Media Markt
+243,49,Media Expert
+244,49,RTV Euro AGD
+245,49,Neonet
+246,50,Allegro
+247,50,Media Markt
+248,50,Media Expert
+249,50,RTV Euro AGD
+250,50,Neonet

@@ -1,0 +1,13 @@
+id,przekatna_(cal),typ_wyswietlacza,rozdzielczosc_(xK),smart_TV
+8,32,OLED,8,1
+11,65,LED,4,1
+12,65,LCD,8,1
+14,75,LED,4,0
+16,75,LCD,2,0
+23,40,OLED,2,0
+29,32,LED,8,0
+32,32,LCD,2,0
+37,55,IPS,2,0
+39,32,LED,8,0
+45,65,LCD,8,1
+48,32,OLED,2,0

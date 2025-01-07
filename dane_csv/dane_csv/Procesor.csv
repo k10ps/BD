@@ -1,0 +1,8 @@
+id,liczba_rdzeni,taktowanie,rodzaj_gniazda
+4,6,2400,LGA1200
+5,6,3000,AM5
+15,12,4000,LGA1151
+24,16,3000,AM4
+38,6,2400,AM5
+42,12,2400,LGA1200
+47,6,3000,LGA1200

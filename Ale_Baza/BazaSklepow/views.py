@@ -134,7 +134,6 @@ def search(request):
     return render(request, 'searchPage.html', {'query': query, 'produkty': produkty})
 
 
-
 def showSpecyfikacja(kategoria, produkt_id):
     # Pobierz specyfikację w zależności od kategorii
     with connection.cursor() as cursor:
@@ -235,9 +234,11 @@ def showHistoriaCen(produkt_id):
         historiacen = {}
         for sklep_id in sklepy_dict.keys():
             cursor.execute("SELECT cena, data FROM historiacen WHERE id_sklepu_z_danym_produktem=%s", [sklep_id])
-            ceny_daty = cursor.fetchall()
+            ceny_daty = list(cursor.fetchall())
+            #sortowanie po dacie
+            ceny_daty.sort(key=lambda x: x[1])
             historiacen[sklep_id] = ceny_daty
-
+            
     # Sprawdź, czy są dane do wykresu
     if any(historiacen.values()):
         # Generowanie wykresu
@@ -283,7 +284,7 @@ def showLowestPrice(produkt_id):
             cursor.execute("SELECT cena, data FROM historiacen WHERE id_sklepu_z_danym_produktem=%s ORDER BY data DESC", [sklep_id])
             ceny_daty = cursor.fetchall()
             for cena, data in ceny_daty:
-                if lowest_price is None or cena < lowest_price or (cena == lowest_price and data > lowest_price_date):
+                if lowest_price is None or cena < lowest_price or (data > lowest_price_date):
                     lowest_price = cena
                     lowest_price_date = data
                     lowest_price_store = sklep_name

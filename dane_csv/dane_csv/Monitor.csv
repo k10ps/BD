@@ -1,0 +1,10 @@
+id,przekatna_(cal),odswiezanie_(Hz),rozdzielczość,typ_wyswietlacza,glosniki_,proporcje_ekranu
+1,24,120,1440,IPS,1,32:9
+7,32,240,2160,LED,1,16:9
+20,21,240,1440,OLED,1,32:9
+25,32,120,720,IPS,1,32:9
+34,21,240,2160,LCD,0,16:9
+41,27,75,1440,IPS,0,32:9
+44,27,75,2160,IPS,1,21:9
+46,32,144,2160,LED,0,32:9
+50,24,60,1440,LCD,1,21:9
