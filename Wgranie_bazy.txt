@@ -1,60 +1,60 @@
-LOAD DATA INFILE 'C:\\Users\\maria\\Desktop\\dane_csv\\Lista_produktow.csv'
+LOAD DATA INFILE 'C:\\Users\\maksy\\Desktop\\PWR\\SEM_5\\Bazy Danych\\Baza_danych\\BD\\dane_csv\\dane_csv\\Listaproduktow.csv'
 INTO TABLE ListaProduktow
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:\\Users\\maria\\Desktop\\dane_csv\\RAM.csv'
+LOAD DATA INFILE 'C:\\Users\\maksy\\Desktop\\PWR\\SEM_5\\Bazy Danych\\Baza_danych\\BD\\dane_csv\\dane_csv\\RAM.csv'
 INTO TABLE ram
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:\\Users\\maria\\Desktop\\dane_csv\\Procesory.csv'
+LOAD DATA INFILE 'C:\\Users\\maksy\\Desktop\\PWR\\SEM_5\\Bazy Danych\\Baza_danych\\BD\\dane_csv\\dane_csv\\Procesor.csv'
 INTO TABLE procesor
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:\\Users\\maria\\Desktop\\dane_csv\\Monitory.csv'
+LOAD DATA INFILE 'C:\\Users\\maksy\\Desktop\\PWR\\SEM_5\\Bazy Danych\\Baza_danych\\BD\\dane_csv\\dane_csv\\Monitor.csv'
 INTO TABLE monitor
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:\\Users\\maria\\Desktop\\dane_csv\\Telewizory.csv'
+LOAD DATA INFILE 'C:\\Users\\maksy\\Desktop\\PWR\\SEM_5\\Bazy Danych\\Baza_danych\\BD\\dane_csv\\dane_csv\\Telewizor.csv'
 INTO TABLE telewizor
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:\\Users\\maria\\Desktop\\dane_csv\\Komputery.csv'
+LOAD DATA INFILE 'C:\\Users\\maksy\\Desktop\\PWR\\SEM_5\\Bazy Danych\\Baza_danych\\BD\\dane_csv\\dane_csv\\Komputer.csv'
 INTO TABLE komputer
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:\\Users\\maria\\Desktop\\dane_csv\\Lista_opinii.csv'
+LOAD DATA INFILE 'C:\\Users\\maksy\\Desktop\\PWR\\SEM_5\\Bazy Danych\\Baza_danych\\BD\\dane_csv\\Lista_opinii.csv'
 INTO TABLE listaopinii
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:\\Users\\maria\\Desktop\\dane_csv\\Lista_sklepow.csv'
+LOAD DATA INFILE 'C:\\Users\\maksy\\Desktop\\PWR\\SEM_5\\Bazy Danych\\Baza_danych\\BD\\dane_csv\\dane_csv\\Listasklepow.csv'
 INTO TABLE listasklepow
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA INFILE 'C:\\Users\\maria\\Desktop\\dane_csv\\Historia_cen.csv'
+LOAD DATA INFILE 'C:\\Users\\maksy\\Desktop\\PWR\\SEM_5\\Bazy Danych\\Baza_danych\\BD\\dane_csv\\dane_csv\\Historiacen.csv'
 INTO TABLE historiacen
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'

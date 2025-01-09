@@ -20,13 +20,6 @@ CREATE TABLE `Monitor`(
     `glosniki_` BOOLEAN NOT NULL,
     `proporcje_ekranu` VARCHAR(255) NOT NULL
 );
-CREATE TABLE `Historiacen`(
-    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `id_sklepu_z_danym_produktem` BIGINT UNSIGNED NOT NULL,
-    `cena` DECIMAL(8, 2) NOT NULL,
-    `data` DATE NOT NULL,
-    PRIMARY KEY(`id`)
-);
 CREATE TABLE `Procesor`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `liczba_rdzeni` BIGINT NOT NULL,
@@ -54,8 +47,13 @@ CREATE TABLE `Listaopinii`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `id_produktu` BIGINT UNSIGNED UNSIGNED NOT NULL,
     `opinia` VARCHAR(255) NOT NULL,
-    `data` DATETIME NOT NULL,
-    PRIMARY KEY(`id`)
+    `data` DATETIME NOT NULL
+);
+CREATE TABLE `Historiacen`(
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id_sklepu_z_danym_produktem` BIGINT UNSIGNED NOT NULL,
+    `cena` DECIMAL(8, 2) NOT NULL,
+    `data` DATE NOT NULL
 );
 ALTER TABLE
     `Komputer` ADD CONSTRAINT `komputer_id_foreign` FOREIGN KEY(`id`) REFERENCES `Listaproduktow`(`id`);
@@ -76,6 +74,6 @@ ALTER TABLE
 ALTER TABLE
     `Historiacen` ADD CONSTRAINT `historia_cen_id_sklepu_z_danym_produktem_foreign` FOREIGN KEY(`id_sklepu_z_danym_produktem`) REFERENCES `Listasklepow`(`id`);
 ALTER TABLE
-    `Lista_opinii` ADD CONSTRAINT `lista_opinii_id_produktu_foreign` FOREIGN KEY(`id_produktu`) REFERENCES `Listaproduktow`(`id`);
+    `Listaopinii` ADD CONSTRAINT `lista_opinii_id_produktu_foreign` FOREIGN KEY(`id_produktu`) REFERENCES `Listaproduktow`(`id`);
 ALTER TABLE
-    `Lista_sklepow` ADD CONSTRAINT `lista_sklepow_id_produktu_foreign` FOREIGN KEY(`id_produktu`) REFERENCES `Listaproduktow`(`id`);
+    `Listasklepow` ADD CONSTRAINT `lista_sklepow_id_produktu_foreign` FOREIGN KEY(`id_produktu`) REFERENCES `Listaproduktow`(`id`);
