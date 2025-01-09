@@ -11,16 +11,6 @@ import matplotlib.pyplot as plt
 import io
 import base64
 
-# Create your views here.
-# def showListaSklepow(request):
-#     data = ListaSklepow.objects.raw("SELECT * FROM Listasklepow")
-
-#     return render(request, 'output.html',{'data': data})
-
-#def showListaSklepow(request):
-
-    #return HttpResponse('Witaj w bazie sklepow elektronicznych')
-
 #funckja wyswietlajaca na stronei glwonej kategoeir
 def homePage(request):
     #pobieranie unikalnych (dzieki DISTINCT) kategori z listy porduktow
@@ -237,12 +227,26 @@ def showProdukt(request, kategoria, produkt_id):
 
 
 def search(request):
-    query = request.GET.get('q', '')  # Pobierz zapytanie z paska wyszukiwania
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT id, marka, model, kategoria FROM listaProduktow WHERE marka LIKE %s OR model LIKE %s", [f"%{query}%", f"%{query}%"])
-        produkty = [{'id': row[0], 'marka': row[1], 'model': row[2], 'kategoria': row[3]} for row in cursor.fetchall()]
+    haslo = request.GET.get('q', '') 
+    podzial = haslo.split() 
+    produkty = []
 
-    return render(request, 'searchPage.html', {'query': query, 'produkty': produkty})
+    if podzial:
+        wysz_przez = []
+        parametry = []
+        for word in podzial:
+            wysz_przez.append("(marka LIKE %s OR model LIKE %s OR kategoria LIKE %s)")
+            parametry.extend([f"%{word}%", f"%{word}%", f"%{word}%"])
+        
+        calosc = " AND ".join(wysz_przez)
+        zapytanie = f"SELECT id, marka, model, kategoria FROM listaProduktow WHERE {calosc}"
+        #print(zapytanie)
+
+        with connection.cursor() as cursor:
+            cursor.execute(zapytanie, parametry)
+            produkty = [{'id': row[0], 'marka': row[1], 'model': row[2], 'kategoria': row[3]} for row in cursor.fetchall()]
+
+    return render(request, 'searchPage.html', {'query': haslo, 'produkty': produkty})
 
 
 def showSpecyfikacja(kategoria, produkt_id):
@@ -396,7 +400,7 @@ def showLowestPrice(produkt_id):
             cursor.execute("SELECT cena, data FROM historiacen WHERE id_sklepu_z_danym_produktem=%s ORDER BY data DESC", [sklep_id])
             ceny_daty = cursor.fetchall()
             for cena, data in ceny_daty:
-                if lowest_price is None or cena < lowest_price or (data > lowest_price_date):
+                if lowest_price is None or (cena<lowest_price and data>lowest_price_date):
                     lowest_price = cena
                     lowest_price_date = data
                     lowest_price_store = sklep_name
