@@ -267,7 +267,7 @@ def showSpecyfikacja(kategoria, produkt_id):
 
         elif kategoria.lower() == 'monitor':
             cursor.execute(
-                "SELECT `przekatna_cal`, `odswiezanie_Hz`, `rozdzielczość`, `typ_wyswietlacza`, `glosniki_`, `proporcje_ekranu` FROM monitor WHERE id=%s",
+                "SELECT `przekatna_cal`, `odswiezanie_Hz`, `rozdzielczosc`, `typ_wyswietlacza`, `glosniki_`, `proporcje_ekranu` FROM monitor WHERE id=%s",
                 [produkt_id]
             )
             specyfikacja = cursor.fetchone()
@@ -314,7 +314,7 @@ def showSpecyfikacja(kategoria, produkt_id):
 
         elif kategoria.lower() == 'ram':
             cursor.execute(
-                "SELECT `typ_pamieci`, `pojemnosc_(GB)`, `taktowanie_(MHz)` FROM ram WHERE id=%s",
+                "SELECT `typ_pamieci`, `pojemnosc_GB`, `taktowanie_MHz` FROM ram WHERE id=%s",
                 [produkt_id]
             )
             specyfikacja = cursor.fetchone()
