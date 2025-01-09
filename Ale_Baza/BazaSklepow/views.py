@@ -385,21 +385,23 @@ def showHistoriaCen(produkt_id):
 
 def showLowestPrice(produkt_id):
     with connection.cursor() as cursor:
-        # Pobierz ID i nazwy sklepów dla danego produktu
         cursor.execute("SELECT id, nazwa FROM listaSklepow WHERE id_produktu=%s", [produkt_id])
         sklepy = cursor.fetchall()
-        sklepy_dict = {sklep[0]: sklep[1] for sklep in sklepy}  # Słownik {id_sklepu: nazwa_sklepu}
+        sklepy_dict = {sklep[0]: sklep[1] for sklep in sklepy}
 
-        # Pobierz ceny i daty dla każdego sklepu
         lowest_price = None
         lowest_price_date = None
         lowest_price_store = None
 
         for sklep_id, sklep_name in sklepy_dict.items():
-            cursor.execute("SELECT cena, data FROM historiacen WHERE id_sklepu_z_danym_produktem=%s ORDER BY data DESC", [sklep_id])
-            ceny_daty = cursor.fetchall()
-            for cena, data in ceny_daty:
-                if lowest_price is None or (cena<lowest_price and data>lowest_price_date):
+            #najnowsza data dla kazdego sklpeu
+            cursor.execute("""SELECT cena, data FROM historiacen WHERE id_sklepu_z_danym_produktem=%s 
+                ORDER BY data DESC LIMIT 1""", [sklep_id])
+            record = cursor.fetchone()
+            if record:
+                cena, data = record
+                #i z nich wybiramy najnizsza
+                if lowest_price is None or cena < lowest_price:
                     lowest_price = cena
                     lowest_price_date = data
                     lowest_price_store = sklep_name
