@@ -39,17 +39,128 @@ def showKategoria(request, kategoria):
     min_cena= request.GET.get('min_cena', None)
     max_cena = request.GET.get('max_cena', None)
     
+    
+    # query = f"""SELECT id, marka, model FROM listaProduktow WHERE 
+    #         kategoria=%s AND id IN (SELECT * FROM {kategoria} WHERE id >= 1 """
+    if kategoria == 'Komputer':
+        query = f"""SELECT p.id, p.marka, p.model 
+            FROM Listaproduktow p
+            JOIN {kategoria} t ON p.id = t.id
+            JOIN procesor pr ON t.procesor = pr.id
+            JOIN RAM r ON t.pamiec_RAM = r.id
+            WHERE p.kategoria = %s"""
+    else:
+        query = f"""SELECT p.id, p.marka, p.model 
+                FROM Listaproduktow p
+                JOIN {kategoria} t ON p.id = t.id
+                WHERE p.kategoria = %s"""
+    filters = request.GET.dict()
+    query_params = [kategoria]
+
     #jakie filtry
-    filter_by = {}
-    if kategoria.lower() == 'telewizor':
-        przekatna = request.GET.get('przekatna', None)
-        if przekatna:
-            filter_by['przekatna'] = przekatna
-    
-    
-    
+    #TELEWIZOR
+    if kategoria == 'telewizor':
+        if 'przekatna' in filters and filters['przekatna']:
+            query += " AND t.przekatna_cal = %s"
+            query_params.append(filters['przekatna'])
+
+        if 'typ_wyswietlacza' in filters and filters['typ_wyswietlacza']:
+            query += " AND t.typ_wyswietlacza = %s"
+            query_params.append(filters['typ_wyswietlacza'])
+
+        if 'rozdzielczosc' in filters and filters['rozdzielczosc']:
+            query += " AND t.rozdzielczosc = %s"
+            query_params.append(filters['rozdzielczosc'])
+
+        if 'smart_TV' in filters and filters['smart_TV']:
+            query += " AND t.smart_TV = %s"
+            query_params.append(filters['smart_TV'])
+
+    #MONITOR
+    if kategoria == 'monitor':
+        if 'odswiezanie_Hz' in filters and filters['odswiezanie_Hz']:
+            query += " AND t.odswiezanie_Hz = %s"
+            query_params.append(filters['odswiezanie_Hz'])
+
+        if 'rozdzielczosc' in filters and filters['rozdzielczosc']:
+            query += " AND t.rozdzielczosc = %s"
+            query_params.append(filters['rozdzielczosc'])
+
+        if 'typ_wyswietlacza' in filters and filters['typ_wyswietlacza']:
+            query += " AND t.typ_wyswietlacza = %s"
+            query_params.append(filters['typ_wyswietlacza'])
+
+        if 'glosniki_' in filters and filters['glosniki_']:
+            query += " AND t.glosniki_ = %s"
+            query_params.append(filters['glosniki_'])
+        
+        if 'proporcje_ekranu' in filters and filters['proporcje_ekranu']:
+            query += " AND t.proporcje_ekranu = %s"
+            query_params.append(filters['proporcje_ekranu'])
+
+    #KOMPUTER
+    if kategoria == 'Komputer':
+        if 'liczba_rdzeni' in filters and filters['liczba_rdzeni']:
+            query += " AND pr.liczba_rdzeni = %s"
+            query_params.append(filters['liczba_rdzeni'])
+
+        if 'taktowanie' in filters and filters['taktowanie']:
+            query += " AND pr.taktowanie = %s"
+            query_params.append(filters['taktowanie'])
+
+        if 'rodzaj_gniazda' in filters and filters['rodzaj_gniazda']:
+            query += " AND pr.rodzaj_gniazda = %s"
+            query_params.append(filters['rodzaj_gniazda'])
+
+        if 'typ_pamieci' in filters and filters['typ_pamieci']:
+            query += " AND r.typ_pamieci = %s"
+            query_params.append(filters['typ_pamieci'])
+
+        if 'pojemnosc_GB' in filters and filters['pojemnosc_GB']:
+            query += " AND r.pojemnosc_GB = %s"
+            query_params.append(filters['pojemnosc_GB'])
+
+        if 'taktowanie_MHz' in filters and filters['taktowanie_MHz']:
+            query += " AND r.taktowanie_MHz = %s"
+            query_params.append(filters['taktowanie_MHz'])
+
+        if 'pojemnosc_dysku' in filters and filters['pojemnosc_dysku']:
+            query += " AND t.pojemnosc_dysku = %s"
+            query_params.append(filters['pojemnosc_dysku'])
+
+    #PROCESOR
+    if kategoria == 'procesor':
+        if 'liczba_rdzeni' in filters and filters['liczba_rdzeni']:
+            query += " AND t.liczba_rdzeni = %s"
+            query_params.append(filters['liczba_rdzeni'])
+
+        if 'taktowanie' in filters and filters['taktowanie']:
+            query += " AND t.taktowanie = %s"
+            query_params.append(filters['taktowanie'])
+
+        if 'rodzaj_gniazda' in filters and filters['rodzaj_gniazda']:
+            query += " AND t.rodzaj_gniazda = %s"
+            query_params.append(filters['rodzaj_gniazda'])
+
+    #RAM
+    if kategoria == 'ram':
+        if 'typ_pamieci' in filters and filters['typ_pamieci']:
+            query += " AND t.typ_pamieci = %s"
+            query_params.append(filters['typ_pamieci'])
+
+        if 'pojemnosc_GB' in filters and filters['pojemnosc_GB']:
+            query += " AND t.pojemnosc_GB = %s"
+            query_params.append(filters['pojemnosc_GB'])
+
+        if 'taktowanie_MHz' in filters and filters['taktowanie_MHz']:
+            query += " AND t.taktowanie_MHz = %s"
+            query_params.append(filters['taktowanie_MHz'])
+
+    print("zapyt---------------")
+    print(query)
+    print(query_params)
     with connection.cursor() as cursor:
-        cursor.execute("SELECT id, marka, model FROM listaProduktow WHERE kategoria=%s", [kategoria])
+        cursor.execute(query, query_params)
         produkty = cursor.fetchall()  #zbieranie wynikow
     
     #przekształcanie w lsite slownikow
@@ -82,7 +193,7 @@ def showKategoria(request, kategoria):
         'order': order,
         'min_cena': min_cena,
         'max_cena': max_cena,
-        'filter_by': filter_by
+        'filters': filters
         })
 
 
@@ -139,7 +250,7 @@ def showSpecyfikacja(kategoria, produkt_id):
     with connection.cursor() as cursor:
         if kategoria.lower() == 'telewizor':
             cursor.execute(
-                "SELECT `przekatna_(cal)`, `typ_wyswietlacza`, `rozdzielczosc_(xK)`, `smart_TV` FROM telewizor WHERE id=%s",
+                "SELECT `przekatna_cal`, `typ_wyswietlacza`, `rozdzielczosc`, `smart_TV` FROM telewizor WHERE id=%s",
                 [produkt_id]
             )
             specyfikacja = cursor.fetchone()
@@ -147,19 +258,19 @@ def showSpecyfikacja(kategoria, produkt_id):
                 specyfikacja_dict = {
                     'Przekątna (cal)': specyfikacja[0],
                     'Typ wyświetlacza': specyfikacja[1],
-                    'Rozdzielczość (xK)': specyfikacja[2],
+                    'Rozdzielczość': specyfikacja[2],
                     'Smart TV': specyfikacja[3],    
                 }
 
         elif kategoria.lower() == 'monitor':
             cursor.execute(
-                "SELECT `przekatna_(cal)`, `odswiezanie_(Hz)`, `rozdzielczość`, `typ_wyswietlacza`, `glosniki_`, `proporcje_ekranu` FROM monitor WHERE id=%s",
+                "SELECT `przekatna_cal`, `odswiezanie_Hz`, `rozdzielczość`, `typ_wyswietlacza`, `glosniki_`, `proporcje_ekranu` FROM monitor WHERE id=%s",
                 [produkt_id]
             )
             specyfikacja = cursor.fetchone()
             if specyfikacja:
                 specyfikacja_dict = {
-                    'Przekątna (cal)': specyfikacja[0],
+                    'Przekątna cal': specyfikacja[0],
                     'Odświeżanie (Hz)': specyfikacja[1],
                     'Rozdzielczość': specyfikacja[2],
                     'Typ wyświetlacza': specyfikacja[3],
@@ -181,7 +292,8 @@ def showSpecyfikacja(kategoria, produkt_id):
                 specyfikacja_dict = {
                     'Procesor': f"{procesor[0]} {procesor[1]}" ,
                     'Pamięć RAM': f"{ram[0]} {ram[1]}",
-                    'Pojemność dysku': specyfikacja[0],
+                    'Pojemność dysku': specyfikacja[2],
+
                 }
 
         elif kategoria.lower() == 'procesor':
