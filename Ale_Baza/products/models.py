@@ -47,9 +47,9 @@ class ListaProduktow(models.Model):
 
 class Monitor(models.Model):
     id = models.ForeignKey(ListaProduktow, models.DO_NOTHING, db_column='id', primary_key=True)
-    przekatna_cal_field = models.IntegerField(db_column='przekatna_(cal)')  # Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
-    odswiezanie_hz_field = models.IntegerField(db_column='odswiezanie_(Hz)')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
-    rozdzielczosc = models.BigIntegerField(db_column='rozdzielczość')
+    przekatna_cal_field = models.IntegerField(db_column='przekatna_cal')  # Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
+    odswiezanie_hz_field = models.IntegerField(db_column='odswiezanie_Hz')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
+    rozdzielczosc = models.BigIntegerField(db_column='rozdzielczosc')
     typ_wyswietlacza = models.CharField(max_length=255)
     glosniki_field = models.IntegerField(db_column='glosniki_')  # Field renamed because it ended with '_'.
     proporcje_ekranu = models.CharField(max_length=255)
@@ -79,8 +79,8 @@ class Procesor(models.Model):
 class Ram(models.Model):
     id = models.ForeignKey(ListaProduktow, models.DO_NOTHING, db_column='id', primary_key=True)
     typ_pamieci = models.CharField(max_length=255)
-    pojemnosc_gb_field = models.IntegerField(db_column='pojemnosc_(GB)')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
-    taktowanie_mhz_field = models.BigIntegerField(db_column='taktowanie_(MHz)')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
+    pojemnosc_gb_field = models.IntegerField(db_column='pojemnosc_GB')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
+    taktowanie_mhz_field = models.BigIntegerField(db_column='taktowanie_MHz')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
 
     def clean(self):
         if not self.typ_pamieci or not self.pojemnosc_gb_field or not self.taktowanie_mhz_field:
@@ -92,9 +92,9 @@ class Ram(models.Model):
 
 class Telewizor(models.Model):
     id = models.ForeignKey(ListaProduktow, models.DO_NOTHING, db_column='id', primary_key=True)
-    przekatna_cal_field = models.IntegerField(db_column='przekatna_(cal)')  # Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
+    przekatna_cal_field = models.IntegerField(db_column='przekatna_cal')  # Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
     typ_wyswietlacza = models.CharField(max_length=255)
-    rozdzielczosc_xk_field = models.BigIntegerField(db_column='rozdzielczosc_(xK)')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
+    rozdzielczosc_xk_field = models.BigIntegerField(db_column='rozdzielczosc')  # Field name made lowercase. Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
     smart_tv = models.IntegerField(db_column='smart_TV')  # Field name made lowercase.
 
     def clean(self):
