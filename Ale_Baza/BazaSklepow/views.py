@@ -159,8 +159,7 @@ def showKategoria(request, kategoria):
         produkt_id = row[0]
         najnizsza_cena = showLowestPrice(produkt_id)  #szukanie najlepszej cent
 
-        if najnizsza_cena and (
-                (min_cena and najnizsza_cena['cena'] < float(min_cena)) 
+        if najnizsza_cena and ((min_cena and najnizsza_cena['cena'] < float(min_cena)) 
                 or
                 (max_cena and najnizsza_cena['cena'] > float(max_cena))
                 ):
