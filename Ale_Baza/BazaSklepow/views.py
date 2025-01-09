@@ -49,7 +49,7 @@ def showKategoria(request, kategoria):
 
     #jakie filtry
     #TELEWIZOR
-    if kategoria == 'telewizor':
+    if kategoria.lower() == 'telewizor':
         if 'przekatna' in filters and filters['przekatna']:
             query += " AND t.przekatna_cal = %s"
             query_params.append(filters['przekatna'])
@@ -67,7 +67,7 @@ def showKategoria(request, kategoria):
             query_params.append(filters['smart_TV'])
 
     #MONITOR
-    if kategoria == 'monitor':
+    if kategoria.lower() == 'monitor':
         if 'odswiezanie_Hz' in filters and filters['odswiezanie_Hz']:
             query += " AND t.odswiezanie_Hz = %s"
             query_params.append(filters['odswiezanie_Hz'])
@@ -89,7 +89,7 @@ def showKategoria(request, kategoria):
             query_params.append(filters['proporcje_ekranu'])
 
     #KOMPUTER
-    if kategoria == 'Komputer':
+    if kategoria.lower() == 'komputer':
         if 'liczba_rdzeni' in filters and filters['liczba_rdzeni']:
             query += " AND pr.liczba_rdzeni = %s"
             query_params.append(filters['liczba_rdzeni'])
@@ -119,7 +119,7 @@ def showKategoria(request, kategoria):
             query_params.append(filters['pojemnosc_dysku'])
 
     #PROCESOR
-    if kategoria == 'procesor':
+    if kategoria.lower() == 'procesor':
         if 'liczba_rdzeni' in filters and filters['liczba_rdzeni']:
             query += " AND t.liczba_rdzeni = %s"
             query_params.append(filters['liczba_rdzeni'])
@@ -133,7 +133,7 @@ def showKategoria(request, kategoria):
             query_params.append(filters['rodzaj_gniazda'])
 
     #RAM
-    if kategoria == 'ram':
+    if kategoria.lower() == 'ram':
         if 'typ_pamieci' in filters and filters['typ_pamieci']:
             query += " AND t.typ_pamieci = %s"
             query_params.append(filters['typ_pamieci'])
