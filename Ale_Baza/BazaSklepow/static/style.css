@@ -1,0 +1,193 @@
+*{
+    box-sizing: border-box;
+}
+
+/* zmienne z kolorkami PS niby zrobiłem ale nie popodmieniałem jeszcze */
+:root {
+    --tlo: #3e2225;
+    --tekst_ciemny: #000000;
+    --tekst_jasny: #8a8a8a;
+    --tlo_okna_wpisywania_i_przyciskow: #524949;
+}
+
+.filtry input[type="text"],
+.filtry input[type="number"]{
+    background-color: #2f2323;
+    color: #8a8a8a;
+    border: 1px solid #8a8a8a;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.filtry input button{
+    background-color: #2f2323;
+    color: #8a8a8a;
+    border: 1px solid #8a8a8a;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+html{
+    font-size:14px;
+    font-family: Impact, fantasy;
+    background-color: #3e2225;
+    color:#2f2323
+}
+
+a{
+    color:#3e2225
+}
+
+h1 {
+    color: #000000;
+    letter-spacing: 1px;
+}
+h3 {
+    color: #000000;
+    letter-spacing: 1px;
+}
+
+.header_logo {
+    font-size: 20px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 50vh;
+    margin: 0;
+}
+
+main {
+    width: 80%;
+    margin: 0vh;
+}
+
+.search-bar {
+    margin: 10px 0;
+}
+
+.search-bar input[type="text"] {
+    background-color: #2f2323; /* Tło okienka */
+    color: #8a8a8a; /* Kolor tekstu */
+    border-radius: 4px; /* Zaokrąglenie rogów */
+    transition: background-color 0.3s, border-color 0.3s;
+    width: 200px;
+    padding: 5px;
+}
+
+.search-bar button {
+    background-color: #2f2323; /* Tło okienka */
+    color: #524949; /* Kolor tekstu */
+    border-radius: 4px; /* Zaokrąglenie rogów */
+    transition: background-color 0.3s, border-color 0.3s;
+    padding: 5px;
+}
+
+.boxing_title_container {
+    padding: 5px; /* Odstęp wewnętrzny od ramki */
+    background-color: #301616; /* Tło dla całej sekcji (możesz zmienić na inny kolor) */
+    margin: 0; /* Odstęp zewnętrzny od innych sekcji */
+    width: 100%;
+}
+
+.boxing_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;     /* łądniejsze wyśrodkowanie pionowe */
+    height: 50px;
+    text-align: center;
+}
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between; /* elementy na całą szerokość */
+    margin: 20px;
+}
+
+/* box dla każdej kategorii */
+.category-item {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    width: calc(33.33% - 20px); /* trzy elementy w jednym wierszu, z odstępami */
+    height: 200px;
+    padding: 70px;
+    background-color: #733737;
+    border: 2px solid #2f2323; /* ramka */
+    text-align: center;
+    text-decoration: none; /* usuń podkreślenie z linków */
+    transition: background-color 0.3s, transform 0.3s;
+    letter-spacing: 1px;
+}
+
+/* zmiana koloru przy najechaniu */
+.category-item:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05); /* powiększenie przy najechaniu */
+}
+
+.filtry {
+    color: #000000;
+    letter-spacing: 1px;
+}
+
+
+.lista_produktow ul {
+    display: grid; /* Włączenie siatki CSS */
+    grid-template-columns: repeat(4, 1fr); /* Dokładnie 4 kolumny */
+    gap: 20px; /* Odstępy między kafelkami */
+    padding: 0;
+    list-style-type: none;
+    margin: 20px 0;
+}
+
+.produkt-item {
+    background-color: #8a8a8a; /* Tło kafelka */
+    border: 1px solid #ccc; /* Obramowanie */
+    border-radius: 8px; /* Zaokrąglenie rogów */
+    padding: 15px; /* Odstęp wewnętrzny */
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.produkt-item:hover {
+    transform: translateY(-5px); /* Delikatne uniesienie kafelka przy najechaniu */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Większy cień przy najechaniu */
+}
+
+.produkt-info {
+    margin-top: 10px;
+}
+
+.produkt-kategoria {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #3e2225;
+    margin-bottom: 5px;
+}
+
+.produkt-marka {
+    font-size: 1rem;
+    color: #2f2323;
+    margin-bottom: 5px;
+}
+
+.produkt-model {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #524949;
+    margin-bottom: 10px;
+}
+
+.produkt-cena {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #982121;
+}

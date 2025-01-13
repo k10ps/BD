@@ -1,25 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<style>
+<!-- <style>
     .categories {
         display: flex;
         flex-direction: row;
         gap: 20px; /* Odstępy między kategoriami */
     }
 
-</style>
+</style> -->
+<div class="boxing_title_container">
+    <div class="boxing_title">
+        <h1>Wybierz kategorię</h1>
+    </div>
 
-<h1>Wybierz kategorię</h1>
-
-<div class="categories">
-    {% for kategoria in kategorie %}
-        <a href="{% url 'produkty_by_kategoria' kategoria %}">
-            {{ kategoria }}
-        </a>
-    {% endfor %}
+    <div class="categories">
+        {% for kategoria in kategorie %}
+            <a href="{% url 'produkty_by_kategoria' kategoria %}" class="category-item">
+                {{ kategoria }}
+            </a>
+        {% endfor %}
+    </div>
 </div>
-
 
 
 {% endblock %}

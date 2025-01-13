@@ -1,8 +1,8 @@
 CREATE TABLE `Telewizor`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `przekatna_(cal)` INT NOT NULL,
+    `przekatna_cal` INT NOT NULL,
     `typ_wyswietlacza` VARCHAR(255) NOT NULL,
-    `rozdzielczosc_(xK)` BIGINT NOT NULL,
+    `rozdzielczosc` BIGINT NOT NULL,
     `smart_TV` BOOLEAN NOT NULL
 );
 CREATE TABLE `Komputer`(
@@ -13,8 +13,8 @@ CREATE TABLE `Komputer`(
 );
 CREATE TABLE `Monitor`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `przekatna_(cal)` INT NOT NULL,
-    `odswiezanie_(Hz)` INT NOT NULL,
+    `przekatna_cal` INT NOT NULL,
+    `odswiezanie_Hz` INT NOT NULL,
     `rozdzielczość` BIGINT NOT NULL,
     `typ_wyswietlacza` VARCHAR(255) NOT NULL,
     `glosniki_` BOOLEAN NOT NULL,
@@ -29,8 +29,8 @@ CREATE TABLE `Procesor`(
 CREATE TABLE `RAM`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `typ_pamieci` VARCHAR(255) NOT NULL,
-    `pojemnosc_(GB)` INT NOT NULL,
-    `taktowanie_(MHz)` BIGINT NOT NULL
+    `pojemnosc_GB` INT NOT NULL,
+    `taktowanie_MHz` BIGINT NOT NULL
 );
 CREATE TABLE `Listaproduktow`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,

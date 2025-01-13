@@ -1,43 +1,25 @@
 <!-- Tytul/nazwa w ktory po kliknienciu jestesmy przkierowywyani do strony glwoenje -->
 <!-- Kazda strona bedziepo nim dziedziczyc -->
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baza Sklepów</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Wyśrodkowanie poziome */
-            min-height: 50vh; /*wysokosc od czubka storny */
-            margin: 0;
-        }
-        main {
-            width: 80%; /* Maksymalna szerokość treści */
-            margin: 0vh; /* Odstęp od góry do zawartosci  ktora dziedziczy*/
-        }
-        
-        .search-bar {
-            margin: 10px 0; /* Odstęp dla paska wyszukiwania */
-        }
-        .search-bar input[type="text"] {
-            width: 200px; /* Szerokość pola tekstowego */
-            padding: 5px;
-        }
-        .search-bar button {
-            padding: 5px;
-        }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <header>
-        <h1>    
-            <a href="{% url 'homePage' %}" style="text-decoration: none; color: inherit;">
-                Baza Sklepów
-            </a>
-        </h1>
-    </header>
+    <div class="header_logo">
+        <header>
+            <h1>    
+                <a href="{% url 'homePage' %}" style="text-decoration: none; color: inherit;">
+                    Baza Sklepów
+                </a>
+            </h1>
+        </header>   
+    </div>
     
     <!--pasek wyszukiwania -->
     <div class="search-bar">
@@ -52,5 +34,6 @@
         <!-- Strony beda dziedziczyc po niej dzieki czemu glowa zawsze zostanie taka sama i w tym miesjcu poawjaiwa sie własnei zawartosc strony -->
         {% endblock %}
     </main>
+    <script src="main.js"></script>
 </body>
 </html>

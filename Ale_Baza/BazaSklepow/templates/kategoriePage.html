@@ -6,122 +6,133 @@
 <div style="display: flex;">
     <div style="width: 30%; padding-right: 20px;"> <!--zajmuje 20% mijsca na stronie -->
         <h3>Filtry</h3>
-        <form method="get">
-            <!--do podawani walsne zakresu cenowego -->
-            <label for="min_cena">Cena minimalna:</label><br>
-            <input type="number" name="min_cena" id="min_cena" value="{{ min_cena }}"><br>
-            <br>
-            <label for="max_cena">Cena maksymalna:</label><br>
-            <input type="number" name="max_cena" id="max_cena" value="{{ max_cena }}"><br>
-            <br>
-            
-            <!--filtry w zaleznosci od kategori (DODAJ WIECEJ)-->
-            {% if kategoria|lower == 'telewizor' %}
+        <div class="filtry">
+            <form method="get">
+                <!--do podawani walsne zakresu cenowego -->
+                <label for="min_cena">Cena minimalna:</label><br>
+                <input type="number" name="min_cena" id="min_cena" value="{{ min_cena }}"><br>
+                <br>
+                <label for="max_cena">Cena maksymalna:</label><br>
+                <input type="number" name="max_cena" id="max_cena" value="{{ max_cena }}"><br>
+                <br>
+                
+                <!--filtry w zaleznosci od kategori (DODAJ WIECEJ)-->
+                {% if kategoria|lower == 'telewizor' %}
+                    <label for="przekatna">Przekątna (cal):</label><br>
+                    <input type="number" name="przekatna" id="przekatna" value="{{ filters.przekatna }}"><br>
+                    
+                    <label for="typ_wyswietlacza">Typ wyswietlacza:</label><br>
+                    <input type="text" name="typ_wyswietlacza" id="typ_wyswietlacza" value="{{ filters.typ_wyswietlacza }}"><br>
+                    
+                    <label for="rozdzielczosc">Rozdzielczosc:</label><br>
+                    <input type="number" name="rozdzielczosc" id="rozdzielczosc" value="{{ filters.rozdzielczosc }}"><br>
+
+                    <label for="smart_TV">Smart TV (0/1):</label><br>
+                    <input type="number" name="smart_TV" id="smart_TV" value="{{ filters.smart_TV }}">   <br>             
+                {% endif %}
+                {% if kategoria|lower == 'monitor' %}
                 <label for="przekatna">Przekątna (cal):</label><br>
                 <input type="number" name="przekatna" id="przekatna" value="{{ filters.przekatna }}"><br>
                 
+                <label for="odswiezanie_Hz">Odswiezanie GHz:</label><br>
+                <input type="number" name="odswiezanie_Hz" id="odswiezanie_Hz" value="{{ filters.odswiezanie_Hz }}"><br>
+                
+                <label for="rozdzielczosc">Rozdzielczość:</label><br>
+                <input type="number" name="rozdzielczosc" id="rozdzielczosc" value="{{ filters.rozdzielczosc }}"><br>
+
                 <label for="typ_wyswietlacza">Typ wyswietlacza:</label><br>
                 <input type="text" name="typ_wyswietlacza" id="typ_wyswietlacza" value="{{ filters.typ_wyswietlacza }}"><br>
                 
-                <label for="rozdzielczosc">Rozdzielczosc:</label><br>
-                <input type="number" name="rozdzielczosc" id="rozdzielczosc" value="{{ filters.rozdzielczosc }}"><br>
+                <label for="glosniki_">Glosniki (0/1):</label><br>
+                <input type="number" name="glosniki_" id="glosniki_" value="{{ filters.glosniki_ }}"><br>
 
-                <label for="smart_TV">Smart TV (0/1):</label><br>
-                <input type="number" name="smart_TV" id="smart_TV" value="{{ filters.smart_TV }}">   <br>             
-            {% endif %}
-            {% if kategoria|lower == 'monitor' %}
-            <label for="przekatna">Przekątna (cal):</label><br>
-            <input type="number" name="przekatna" id="przekatna" value="{{ filters.przekatna }}"><br>
-            
-            <label for="odswiezanie_Hz">Odswiezanie GHz:</label><br>
-            <input type="number" name="odswiezanie_Hz" id="odswiezanie_Hz" value="{{ filters.odswiezanie_Hz }}"><br>
-            
-            <label for="rozdzielczosc">Rozdzielczość:</label><br>
-            <input type="number" name="rozdzielczosc" id="rozdzielczosc" value="{{ filters.rozdzielczosc }}"><br>
+                <label for="proporcje_ekranu">Proporcje ekranu:</label><br>
+                <input type="number" name="proporcje_ekranu" id="proporcje_ekranu" value="{{ filters.proporcje_ekranu }}"><br>
+                {% endif %}
+                {% if kategoria|lower == 'komputer' %}
+                <label for="liczba_rdzeni">Liczba rdzeni procesora:</label><br>
+                <input type="number" name="liczba_rdzeni" id="liczba_rdzeni" value="{{ filters.liczba_rdzeni }}"><br>
+                
+                <label for="taktowanie">Taktowanie procesora:</label><br>
+                <input type="text" name="taktowanie" id="taktowanie" value="{{ filters.taktowanie }}"><br>
+                
+                <label for="rodzaj_gniazda">Rodzaj gniazda procesora:</label><br>
+                <input type="text" name="rodzaj_gniazda" id="rodzaj_gniazda" value="{{ filters.rodzaj_gniazda }}">    <br>
+                
+                <label for="typ_pamieci">Typ pamieci RAM:</label><br>
+                <input type="text" name="typ_pamieci" id="typ_pamieci" value="{{ filters.typ_pamieci }}">  <br>
 
-            <label for="typ_wyswietlacza">Typ wyswietlacza:</label><br>
-            <input type="text" name="typ_wyswietlacza" id="typ_wyswietlacza" value="{{ filters.typ_wyswietlacza }}"><br>
-            
-            <label for="glosniki_">Glosniki (0/1):</label><br>
-            <input type="number" name="glosniki_" id="glosniki_" value="{{ filters.glosniki_ }}"><br>
+                <label for="pojemnosc_GB">Pojemnosc RAM (GB):</label><br>
+                <input type="number" name="pojemnosc_GB" id="pojemnosc_GB" value="{{ filters.pojemnosc_GB }}">  <br>
 
-            <label for="proporcje_ekranu">Proporcje ekranu:</label><br>
-            <input type="number" name="proporcje_ekranu" id="proporcje_ekranu" value="{{ filters.proporcje_ekranu }}"><br>
-            {% endif %}
-            {% if kategoria|lower == 'komputer' %}
-            <label for="liczba_rdzeni">Liczba rdzeni procesora:</label><br>
-            <input type="number" name="liczba_rdzeni" id="liczba_rdzeni" value="{{ filters.liczba_rdzeni }}"><br>
-            
-            <label for="taktowanie">Taktowanie procesora:</label><br>
-            <input type="text" name="taktowanie" id="taktowanie" value="{{ filters.taktowanie }}"><br>
-            
-            <label for="rodzaj_gniazda">Rodzaj gniazda procesora:</label><br>
-            <input type="text" name="rodzaj_gniazda" id="rodzaj_gniazda" value="{{ filters.rodzaj_gniazda }}">    <br>
-            
-            <label for="typ_pamieci">Typ pamieci RAM:</label><br>
-            <input type="text" name="typ_pamieci" id="typ_pamieci" value="{{ filters.typ_pamieci }}">  <br>
+                <label for="taktowanie_MHz">taktowanie (MHz):</label><br>
+                <input type="number" name="taktowanie_MHz" id="taktowanie_MHz" value="{{ filters.taktowanie_MHz }}">  <br>
 
-            <label for="pojemnosc_GB">Pojemnosc RAM (GB):</label><br>
-            <input type="number" name="pojemnosc_GB" id="pojemnosc_GB" value="{{ filters.pojemnosc_GB }}">  <br>
+                <label for="pojemnosc_dysku">pojemnosc dysku (GB):</label><br>
+                <input type="number" name="pojemnosc_dysku" id="pojemnosc_dysku" value="{{ filters.pojemnosc_dysku }}"> <br>
+                {% endif %}
+                {% if kategoria|lower == 'procesor' %}
+                <label for="liczba_rdzeni">liczba rdzeni procesora:</label><br>
+                <input type="number" name="liczba_rdzeni" id="liczba_rdzeni" value="{{ filters.liczba_rdzeni }}"><br>
+                
+                <label for="taktowanie">taktowanie procesora (MHz):</label><br>
+                <input type="bumber" name="taktowanie" id="taktowanie" value="{{ filters.taktowanie }}"><br>
+                
+                <label for="rodzaj_gniazda">rodzaj gniazda procesora:</label><br>
+                <input type="text" name="rodzaj_gniazda" id="rodzaj_gniazda" value="{{ filters.rodzaj_gniazda }}"><br>
+                {% endif %}
+                {% if kategoria|lower == 'ram' %}   
+                <label for="typ_pamieci">typ pamieci RAM:</label><br>
+                <input type="text" name="typ_pamieci" id="typ_pamieci" value="{{ filters.typ_pamieci }}">  <br>
 
-            <label for="taktowanie_MHz">taktowanie (MHz):</label><br>
-            <input type="number" name="taktowanie_MHz" id="taktowanie_MHz" value="{{ filters.taktowanie_MHz }}">  <br>
+                <label for="pojemnosc_GB">pojemnosc RAM (GB):</label><br>
+                <input type="number" name="pojemnosc_GB" id="pojemnosc_GB" value="{{ filters.pojemnosc_GB }}">  <br>
 
-            <label for="pojemnosc_dysku">pojemnosc dysku (GB):</label><br>
-            <input type="number" name="pojemnosc_dysku" id="pojemnosc_dysku" value="{{ filters.pojemnosc_dysku }}"> <br>
-            {% endif %}
-            {% if kategoria|lower == 'procesor' %}
-            <label for="liczba_rdzeni">liczba rdzeni procesora:</label><br>
-            <input type="number" name="liczba_rdzeni" id="liczba_rdzeni" value="{{ filters.liczba_rdzeni }}"><br>
-            
-            <label for="taktowanie">taktowanie procesora (MHz):</label><br>
-            <input type="bumber" name="taktowanie" id="taktowanie" value="{{ filters.taktowanie }}"><br>
-            
-            <label for="rodzaj_gniazda">rodzaj gniazda procesora:</label><br>
-            <input type="text" name="rodzaj_gniazda" id="rodzaj_gniazda" value="{{ filters.rodzaj_gniazda }}"><br>
-            {% endif %}
-            {% if kategoria|lower == 'ram' %}   
-            <label for="typ_pamieci">typ pamieci RAM:</label><br>
-            <input type="text" name="typ_pamieci" id="typ_pamieci" value="{{ filters.typ_pamieci }}">  <br>
-
-            <label for="pojemnosc_GB">pojemnosc RAM (GB):</label><br>
-            <input type="number" name="pojemnosc_GB" id="pojemnosc_GB" value="{{ filters.pojemnosc_GB }}">  <br>
-
-            <label for="taktowanie_MHz">taktowanie (MHz):</label><br>
-            <input type="number" name="taktowanie_MHz" id="taktowanie_MHz" value="{{ filters.taktowanie_MHz }}"> <br>
-            {% endif %}
-            <br>
-            <button type="submit">Zastosuj filtry</button>
-        </form>
+                <label for="taktowanie_MHz">taktowanie (MHz):</label><br>
+                <input type="number" name="taktowanie_MHz" id="taktowanie_MHz" value="{{ filters.taktowanie_MHz }}"> <br>
+                {% endif %}
+                <br>
+                <button type="submit">Zastosuj filtry</button>
+            </form>
+        </div>
     </div>
 
 
  <!-- prawa czesc storyn-->
-<div style="width: 80%;">
-<h1>{{ kategoria }}</h1>
-<div>
-    <!-- przycisk sortowania -->
-    <a href="?sort=cena&order=asc" 
-    {% if order == 'asc' %} style="font-weight: bold;" {% endif %}>Sortuj rosnąco</a>
-    |
-    <a href="?sort=cena&order=desc" 
-    {% if order == 'desc' %}style="font-weight: bold;"{% endif %}>Sortuj malejąco</a>
+<div class="prawa_czesc_strony">
+    <div style="width: 80%;">
+    <h1>{{ kategoria }}</h1>
+    <div>
+        <!-- przycisk sortowania -->
+        <a href="?sort=cena&order=asc" 
+        {% if order == 'asc' %} style="font-weight: bold;" {% endif %}>Sortuj rosnąco</a>
+        |
+        <a href="?sort=cena&order=desc" 
+        {% if order == 'desc' %}style="font-weight: bold;"{% endif %}>Sortuj malejąco</a>
+    </div>
 </div>
  
 <!-- wyswietla produkty powiazane z kategoria -->
 
-<ul>
-    {% for produkt in produkty %}
-        <li>
-            <a href="{% url 'produktPage' kategoria produkt.id %}">
-                {{ kategoria }} {{ produkt.marka }} - {{ produkt.model }}
-                {% if produkt.cena %}
-                    <span>Cena: {{ produkt.cena }} PLN</span>
-                {% endif %}
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+<div class="lista_produktow">
+    <ul>
+        {% for produkt in produkty %}
+            <li class="produkt-item">
+                <a href="{% url 'produktPage' kategoria produkt.id %}">
+                    <div class="produkt-info">
+                        <h2 class="produkt-kategoria">{{ kategoria }}</h2>
+                        <p class="produkt-marka">{{ produkt.marka }}</p>
+                        <p class="produkt-model">{{ produkt.model }}</p>
+                        {% if produkt.cena %}
+                            <span class="produkt-cena">Cena: {{ produkt.cena }} PLN</span>
+                        {% endif %}
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
 
 
 {% endblock %}
