@@ -23,7 +23,7 @@ def homePage(request):
 def showKategoria(request, kategoria):
     #rosnaco/malejaca
     sort_by = request.GET.get('sort', None)
-    order = request.GET.get('order', 'asc')  # Pobierz kierunek sortowania (rosnąco/malejąco, domyślnie rosnąco)
+    order = request.GET.get('order', 'asc')  #kierunek sortowania (rosnąco/malejąco, domyślnie rosnąco)
     
     #miedzy wybranym zakresem cenowym
     min_cena= request.GET.get('min_cena', None)
@@ -146,14 +146,14 @@ def showKategoria(request, kategoria):
             query += " AND t.taktowanie_MHz = %s"
             query_params.append(filters['taktowanie_MHz'])
 
-    print("zapyt---------------")
-    print(query)
-    print(query_params)
+    #print("zapyt---------------")
+    #print(query)
+    #print(query_params)
     with connection.cursor() as cursor:
         cursor.execute(query, query_params)
         produkty = cursor.fetchall()  #zbieranie wynikow
     
-    #przekształcanie w lsite slownikow
+    
     produkty_list = []
     for row in produkty:
         produkt_id = row[0]
@@ -184,7 +184,6 @@ def showKategoria(request, kategoria):
         'max_cena': max_cena,
         'filters': filters
         })
-
 
 def showProdukt(request, kategoria, produkt_id):
     
@@ -225,6 +224,7 @@ def showProdukt(request, kategoria, produkt_id):
         )
 
 
+
 def search(request):
     haslo = request.GET.get('q', '') 
     podzial = haslo.split() 
@@ -247,9 +247,8 @@ def search(request):
 
     return render(request, 'searchPage.html', {'query': haslo, 'produkty': produkty})
 
-
 def showSpecyfikacja(kategoria, produkt_id):
-    # Pobierz specyfikację w zależności od kategorii
+    #specyfikacja w zaleznosci od kategorii
     with connection.cursor() as cursor:
         if kategoria.lower() == 'telewizor':
             cursor.execute(
@@ -340,12 +339,11 @@ def showOpinie(produkt_id):
 def showHistoriaCen(produkt_id):
     #wykres historii cen
     with connection.cursor() as cursor:
-        # Pobierz ID i nazwy sklepów dla danego produktu
+        
         cursor.execute("SELECT id, nazwa FROM listaSklepow WHERE id_produktu=%s", [produkt_id])
         sklepy = cursor.fetchall()
-        sklepy_dict = {sklep[0]: sklep[1] for sklep in sklepy}  # Słownik {id_sklepu: nazwa_sklepu}
-
-        # Pobierz ceny i daty dla każdego sklepu
+        sklepy_dict = {sklep[0]: sklep[1] for sklep in sklepy}
+        
         historiacen = {}
         for sklep_id in sklepy_dict.keys():
             cursor.execute("SELECT cena, data FROM historiacen WHERE id_sklepu_z_danym_produktem=%s", [sklep_id])
@@ -354,9 +352,9 @@ def showHistoriaCen(produkt_id):
             ceny_daty.sort(key=lambda x: x[1])
             historiacen[sklep_id] = ceny_daty
             
-    # Sprawdź, czy są dane do wykresu
+   
     if any(historiacen.values()):
-        # Generowanie wykresu
+        
         plt.figure(figsize=(10, 6))
 
         for sklep_id, ceny_daty in historiacen.items():
@@ -365,14 +363,14 @@ def showHistoriaCen(produkt_id):
                 daty = [data for cena, data in ceny_daty]
                 plt.plot(daty, ceny, marker='o', label=sklepy_dict[sklep_id])
 
-        # Ustawienia wykresu
+        
         plt.title('Historia Cen Produktu')
         plt.xlabel('Data')
         plt.ylabel('Cena (zł)')
         plt.legend()
         plt.grid(True)
 
-        # Konwersja wykresu do formatu obrazu
+        #wykres na obraz
         buf = io.BytesIO()
         plt.savefig(buf, format='png')
         buf.seek(0)
