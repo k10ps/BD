@@ -2,54 +2,79 @@
 
 {% block content %}
 
-<h1>Szczegóły produktu</h1>
+<!-- Top Section: Produkt Details and Lowest Price -->
+<div class="product-header">
+    <!-- Left: Produkt Details -->
+    <div class="product-title-container">
+        <h1>{{ produkt.kategoria }} {{ produkt.marka }} {{ produkt.model }}</h1>
+    </div>
 
-<p><strong>Kategoria:</strong> {{ produkt.kategoria }}</p>
-<p><strong>Marka:</strong> {{ produkt.marka }}</p>
-<p><strong>Model:</strong> {{ produkt.model }}</p>
-{%if najlepsza_cena.cena%}
-    <p><strong>Najlepsza oferta na:</strong> {{ najlepsza_cena.sklep }} za {{ najlepsza_cena.cena }} PLN </p>
-{%endif%}
+    <!-- Right: Lowest Price -->
+    <div class="lowest-price-container">
+        <h2>Najlepsza cena</h2>
+        {% if najlepsza_cena.cena %}
+            <div class="price-details">
+                <p>{{ najlepsza_cena.cena }} PLN</p>
+                <hr class="kreska">
+                <p>Oferte znajdziesz na <a href="{{ najlepsza_cena.sklep_url }}" target="_blank">{{ najlepsza_cena.sklep }}</a></p>
+            </div>
+        {% else %}
+            <p>Brak danych o najniższej cenie.</p>
+        {% endif %}
+    </div>
+</div>
 
-<h2>Specyfikacja</h2>
-{% if specyfikacja %}
-    <ul>
-        {% for key, value in specyfikacja.items %}
-            <li><strong>{{ key }}:</strong> {{ value }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Brak specyfikacji dla tego produktu.</p>
-{% endif %}
+<!-- Specyfikacja and Historia Cen Section -->
+<div class="product-container">
+    <!-- Left Side: Specyfikacja -->
+    <div class="specifications">
+        <h2>Specyfikacja</h2>
+        {% if specyfikacja %}
+            <div class="specyfikacja-list">
+                {% for key, value in specyfikacja.items %}
+                    <div class="specyfikacja-item">
+                        <strong>{{ key }}:</strong> {{ value }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Brak specyfikacji dla tego produktu.</p>
+        {% endif %}
+    </div>
 
-<h2>Historia Cen</h2>
-{% if historia_cen_wykres %}
-    <img src="data:image/png;base64,{{ historia_cen_wykres }}" alt="Historia cen">
-{% else %}
-    <p>Brak danych o historii cen dla tego produktu.</p>
-{% endif %}
+    <!-- Right Side: Historia Cen -->
+    <div class="price-history">
+        <h2>Historia Cen w zależności od sklepu</h2>
+        {% if historia_cen_wykres %}
+            <img src="data:image/png;base64,{{ historia_cen_wykres }}" alt="Historia cen">
+        {% else %}
+            <p>Brak danych o historii cen dla tego produktu.</p>
+        {% endif %}
+    </div>
+</div>
 
-<h2>Opinie</h2>
-<h3>Dodaj swoją opinię:</h3>
-<form method="post">
-    {% csrf_token %}
-    <textarea name="opinia" placeholder="Wpisz swoją opinię..." required></textarea>
-    <br><button type="submit">Dodaj opinię</button>
-</form>
+<!-- Opinie Section -->
+<div class="opinions">
+    <h2>Opinie</h2>
+    <h3>Dodaj swoją opinię:</h3>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="opinia" placeholder="Wpisz swoją opinię..." required></textarea>
+        <br><button type="submit">Dodaj opinię</button>
+    </form>
 
-{% if opinie %}
-    <ul>
-        {% for opinia in opinie %}
-            <li>
-                <strong>{{ opinia.data|date:"Y-m-d H:i" }}</strong>
-                <br>{{ opinia.opinia }}<br>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Brak opinii dla tego produktu.</p>
-{% endif %}
-
-
+    {% if opinie %}
+        <ul>
+            {% for opinia in opinie %}
+                <li>
+                    <strong>{{ opinia.data|date:"Y-m-d H:i" }}</strong>
+                    <br>{{ opinia.opinia }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Brak opinii dla tego produktu.</p>
+    {% endif %}
+</div>
 
 {% endblock %}

@@ -1,0 +1,83 @@
+main {
+    width: 90%; 
+    margin: 20px 0;
+}
+
+body {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    min-height: 50vh; 
+    margin: 0;
+}
+
+.header_logo {
+    font-size: 24px; 
+    font-weight: bold;
+}
+
+/* Brighter color palette */
+:root {
+    --tlo: #ffffff;
+    --tekst_ciemny: #2a2a2a; /* Dark gray */
+    --tekst_jasny: #5c5c5c; /* Light gray */
+    --tlo_okna_wpisywania_i_przyciskow: #6c63ff; /* Vibrant blue */
+    --hover_highlight: #ffd700; /* Golden yellow */
+    --category_bg: #ff6f61; /* Coral */
+    --category_hover: #ffcccb; /* Lighter coral */
+    --box_shadow: rgba(0, 0, 0, 0.2);
+}
+
+html {
+    font-size: 16px; 
+    font-family: 'Cambria Math', sans-serif; 
+    background-color: var(--tlo); 
+    color: var(--tekst_ciemny);
+}
+
+/* Search bar container */
+
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; /* Spacing around the search bar */
+}
+
+/* Input field styling */
+.search-bar input[type="text"] {
+    width: 600px; /* Make input wider */
+    height: 50px; /* Increase height */
+    padding: 10px 15px; /* Add padding inside the input */
+    font-size: 18px; /* Larger text size */
+    border: 2px solid #ccc; /* Border styling */
+    border-radius: 8px; /* Rounded corners */
+    transition: border-color 0.3s ease-in-out; /* Smooth transition for hover */
+}
+
+/* Input hover and focus effects */
+.search-bar input[type="text"]:hover,
+.search-bar input[type="text"]:focus {
+    border-color: #6c63ff; /* Change border color on hover/focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Button styling */
+.search-bar button {
+    height: 50px; /* Match input height */
+    padding: 0 20px; /* Horizontal padding for larger button */
+    margin-left: 10px; /* Space between input and button */
+    font-size: 18px; /* Larger text size */
+    background-color: #6c63ff; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition for hover */
+}
+
+/* Button hover effect */
+.search-bar button:hover {
+    background-color: #5245c1; /* Darker shade on hover */
+}

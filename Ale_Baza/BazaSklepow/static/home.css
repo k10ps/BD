@@ -1,0 +1,74 @@
+/* General Styling */
+
+
+
+body {
+    background-color: #ffffff; /* White background */
+    font-family: 'Arial', sans-serif; /* Clean sans-serif font */
+    margin: 0;
+    padding: 0;
+    color: #333; /* Dark gray for text */
+}
+
+/* Container for the Title */
+.boxing_title_container {
+    margin: 30px auto; /* Centered on the page */
+    max-width: 1200px; /* Limit width for large screens */
+    padding: 20px;
+    text-align: center;
+}
+
+.boxing_title h1 {
+    font-size: 2rem; /* Large title */
+    font-weight: bold;
+    color: #333; /* Dark gray */
+    margin-bottom: 20px;
+}
+
+/* Categories Container */
+.categories {
+    display: flex;
+    flex-wrap: wrap; /* Allow categories to wrap if they overflow */
+    gap: 20px; /* Spacing between categories */
+    justify-content: center; /* Center the items */
+    margin: 20px 0;
+}
+
+/* Individual Category Item */
+.category-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* Remove underline from links */
+    font-size: 1.2rem; /* Slightly larger text */
+    font-weight: bold;
+    color: #ffffff; /* White text for better contrast */
+    background-color: #6c63ff; /* Vibrant blue background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px 30px; /* Spacing inside the button */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
+}
+
+/* Hover Effect for Categories */
+.category-item:hover {
+    transform: scale(1.05); /* Slight zoom-in */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    background-color: #5245c1; /* Darker blue on hover */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .categories {
+        gap: 15px; /* Smaller spacing on mobile */
+    }
+
+    .category-item {
+        padding: 10px 20px; /* Reduce padding for smaller screens */
+        font-size: 1rem; /* Adjust font size */
+    }
+
+    .boxing_title h1 {
+        font-size: 1.5rem; /* Smaller title on mobile */
+    }
+}

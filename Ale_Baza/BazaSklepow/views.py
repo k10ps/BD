@@ -5,6 +5,7 @@ from .forms import OpinionForm
 from reviews.models import ListaOpinii
 from django.db import connection
 from datetime import datetime
+from matplotlib.dates import DateFormatter
 import matplotlib
 matplotlib.use('Agg')  # Użyj bezpośredniego renderowania bez GUI
 import matplotlib.pyplot as plt
@@ -355,29 +356,43 @@ def showHistoriaCen(produkt_id):
    
     if any(historiacen.values()):
         
-        plt.figure(figsize=(10, 6))
+        plt.style.use('Solarize_Light2')
+        fig, ax = plt.subplots(figsize=(8, 5))
+
 
         for sklep_id, ceny_daty in historiacen.items():
             if ceny_daty:
                 ceny = [cena for cena, data in ceny_daty]
                 daty = [data for cena, data in ceny_daty]
-                plt.plot(daty, ceny, marker='o', label=sklepy_dict[sklep_id])
+                plt.plot(daty, ceny, 
+                         marker='o', 
+                         label=sklepy_dict[sklep_id],
+                         linewidth=1, 
+                         markersize=5
+                         )
 
         
-        plt.title('Historia Cen Produktu')
-        plt.xlabel('Data')
-        plt.ylabel('Cena (zł)')
-        plt.legend()
-        plt.grid(True)
+        #plt.xlabel('Data', fontsize=12, color='black', fontweight='ultralight', family='monospace')
+        #ax.set_ylabel('Cena (zł)', fontsize=12, rotation=0 ,color='black', fontweight='ultralight', family='serif')
+        #ax.yaxis.set_label_coords(+0, 1.05)
+        
+        plt.xticks(fontsize=10, color='black', rotation=15, family='serif')
+        plt.yticks(fontsize=10, color='black', family='serif')
+        
+        plt.legend(fontsize=10, frameon=True, framealpha=0.9, fancybox=True, shadow=True, facecolor='white', edgecolor='black')
+
+
 
         #wykres na obraz
         buf = io.BytesIO()
-        plt.savefig(buf, format='png')
+        plt.tight_layout()  # Adjust layout to prevent clipping
+        plt.savefig(buf, format='png', dpi=100)  # Higher resolution
         buf.seek(0)
         image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
         buf.close()
         plt.close()
         return image_base64
+
     else:
         return None
 
