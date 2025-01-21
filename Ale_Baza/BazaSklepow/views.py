@@ -47,35 +47,42 @@ def showKategoria(request, kategoria):
                 WHERE p.kategoria = %s"""
     filters = request.GET.dict()
     query_params = [kategoria]
+    
 
     #jakie filtry
     #TELEWIZOR
     if kategoria.lower() == 'telewizor':
-        if 'przekatna' in filters and filters['przekatna']:
-            query += " AND t.przekatna_cal = %s"
-            query_params.append(filters['przekatna'])
+
+        if 'przekatna_min' in filters or 'przekatna_max' in filters:
+            query += " AND t.przekatna_cal BETWEEN %s AND %s"
+            query_params.append(filters.get('przekatna_min', 0))
+            query_params.append(filters.get('przekatna_max', 99))
 
         if 'typ_wyswietlacza' in filters and filters['typ_wyswietlacza']:
             query += " AND t.typ_wyswietlacza = %s"
             query_params.append(filters['typ_wyswietlacza'])
 
-        if 'rozdzielczosc' in filters and filters['rozdzielczosc']:
-            query += " AND t.rozdzielczosc = %s"
-            query_params.append(filters['rozdzielczosc'])
+        if 'rozdzielczosc_min' in filters or 'rozdzielczosc_max' in filters:
+            query += " AND t.rozdzielczosc BETWEEN %s AND %s"
+            query_params.append(filters.get('rozdzielczosc_min', 0))
+            query_params.append(filters.get('rozdzielczosc_max', 9999))
 
         if 'smart_TV' in filters and filters['smart_TV']:
             query += " AND t.smart_TV = %s"
-            query_params.append(filters['smart_TV'])
+            query_params.append(filters.get('smart_TV'))
 
     #MONITOR
     if kategoria.lower() == 'monitor':
-        if 'odswiezanie_Hz' in filters and filters['odswiezanie_Hz']:
-            query += " AND t.odswiezanie_Hz = %s"
-            query_params.append(filters['odswiezanie_Hz'])
 
-        if 'rozdzielczosc' in filters and filters['rozdzielczosc']:
-            query += " AND t.rozdzielczosc = %s"
-            query_params.append(filters['rozdzielczosc'])
+        if 'odswiezanie_Hz_min' in filters or 'odswiezanie_Hz_max' in filters:
+            query += " AND t.odswiezanie_Hz BETWEEN %s AND %s"
+            query_params.append(filters.get('odswiezanie_Hz_min', 0))
+            query_params.append(filters.get('odswiezanie_Hz_max', 500))
+
+        if 'rozdzielczosc_min' in filters or 'rozdzielczosc_max' in filters:
+            query += " AND t.rozdzielczosc BETWEEN %s AND %s"
+            query_params.append(filters.get('rozdzielczosc_min', 0))
+            query_params.append(filters.get('rozdzielczosc_max', 9999))
 
         if 'typ_wyswietlacza' in filters and filters['typ_wyswietlacza']:
             query += " AND t.typ_wyswietlacza = %s"
@@ -91,43 +98,51 @@ def showKategoria(request, kategoria):
 
     #KOMPUTER
     if kategoria.lower() == 'komputer':
-        if 'liczba_rdzeni' in filters and filters['liczba_rdzeni']:
-            query += " AND pr.liczba_rdzeni = %s"
-            query_params.append(filters['liczba_rdzeni'])
+        if 'liczba_rdzeni_min' in filters or 'liczba_rdzeni_max' in filters:
+            query += " AND pr.liczba_rdzeni BETWEEN %s AND %s"
+            query_params.append(filters.get('liczba_rdzeni_min', 0))
+            query_params.append(filters.get('liczba_rdzeni_max', 50))
 
-        if 'taktowanie' in filters and filters['taktowanie']:
-            query += " AND pr.taktowanie = %s"
-            query_params.append(filters['taktowanie'])
+        if 'taktowanie_min' in filters or 'taktowanie_max' in filters:
+            query += " AND pr.taktowanie BETWEEN %s AND %s"
+            query_params.append(filters.get('taktowanie_min', 0))
+            query_params.append(filters.get('taktowanie_max', 5000))
 
         if 'rodzaj_gniazda' in filters and filters['rodzaj_gniazda']:
             query += " AND pr.rodzaj_gniazda = %s"
             query_params.append(filters['rodzaj_gniazda'])
 
-        if 'typ_pamieci' in filters and filters['typ_pamieci']:
-            query += " AND r.typ_pamieci = %s"
-            query_params.append(filters['typ_pamieci'])
+        if 'typ_pamieci_min' in filters or 'typ_pamieci_max' in filters:
+            query += " AND r.typ_pamieci BETWEEN %s AND %s"
+            query_params.append(filters.get('typ_pamieci_min', 0))
+            query_params.append(filters.get('typ_pamieci_max', 6))
 
-        if 'pojemnosc_GB' in filters and filters['pojemnosc_GB']:
-            query += " AND r.pojemnosc_GB = %s"
-            query_params.append(filters['pojemnosc_GB'])
+        if 'pojemnosc_GB_min' in filters or 'pojemnosc_GB_max' in filters:
+            query += " AND r.pojemnosc_GB BETWEEN %s AND %s"
+            query_params.append(filters.get('pojemnosc_GB_min', 0))
+            query_params.append(filters.get('pojemnosc_GB_max', 1024))
 
-        if 'taktowanie_MHz' in filters and filters['taktowanie_MHz']:
-            query += " AND r.taktowanie_MHz = %s"
-            query_params.append(filters['taktowanie_MHz'])
+        if 'taktowanie_MHz_min' in filters or 'taktowanie_MHz_max' in filters:
+            query += " AND r.taktowanie_MHz BETWEEN %s AND %s"
+            query_params.append(filters.get('taktowanie_MHz_min', 0))
+            query_params.append(filters.get('taktowanie_MHz_max', 5000))
 
-        if 'pojemnosc_dysku' in filters and filters['pojemnosc_dysku']:
-            query += " AND t.pojemnosc_dysku = %s"
-            query_params.append(filters['pojemnosc_dysku'])
+        if 'pojemnosc_dysku_min' in filters or 'pojemnosc_dysku_max' in filters:
+            query += " AND t.pojemnosc_dysku BETWEEN %s AND %s"
+            query_params.append(filters.get('pojemnosc_dysku_min', 0))
+            query_params.append(filters.get('pojemnosc_dysku_max', 5000))
 
     #PROCESOR
     if kategoria.lower() == 'procesor':
-        if 'liczba_rdzeni' in filters and filters['liczba_rdzeni']:
-            query += " AND t.liczba_rdzeni = %s"
-            query_params.append(filters['liczba_rdzeni'])
+        if 'liczba_rdzeni_min' in filters or 'liczba_rdzeni_max' in filters:
+            query += " AND t.liczba_rdzeni BETWEEN %s AND %s"
+            query_params.append(filters.get('liczba_rdzeni_min', 0))
+            query_params.append(filters.get('liczba_rdzeni_max', 50))
 
-        if 'taktowanie' in filters and filters['taktowanie']:
-            query += " AND t.taktowanie = %s"
-            query_params.append(filters['taktowanie'])
+        if 'taktowanie_min' in filters or 'taktowanie_max' in filters:
+            query += " AND t.taktowanie BETWEEN %s AND %s"
+            query_params.append(filters.get('taktowanie_min', 0))
+            query_params.append(filters.get('taktowanie_max', 5000))
 
         if 'rodzaj_gniazda' in filters and filters['rodzaj_gniazda']:
             query += " AND t.rodzaj_gniazda = %s"
@@ -135,17 +150,20 @@ def showKategoria(request, kategoria):
 
     #RAM
     if kategoria.lower() == 'ram':
-        if 'typ_pamieci' in filters and filters['typ_pamieci']:
-            query += " AND t.typ_pamieci = %s"
-            query_params.append(filters['typ_pamieci'])
+        if 'typ_pamieci_min' in filters or 'typ_pamieci_max' in filters:
+            query += " AND t.typ_pamieci BETWEEN %s AND %s"
+            query_params.append(filters.get('typ_pamieci_min', 0))
+            query_params.append(filters.get('typ_pamieci_max', 6))
 
-        if 'pojemnosc_GB' in filters and filters['pojemnosc_GB']:
-            query += " AND t.pojemnosc_GB = %s"
-            query_params.append(filters['pojemnosc_GB'])
+        if 'pojemnosc_GB_min' in filters or 'pojemnosc_GB_max' in filters:
+            query += " AND t.pojemnosc_GB BETWEEN %s AND %s"
+            query_params.append(filters.get('pojemnosc_GB_min', 0))
+            query_params.append(filters.get('pojemnosc_GB_max', 1024))
 
-        if 'taktowanie_MHz' in filters and filters['taktowanie_MHz']:
-            query += " AND t.taktowanie_MHz = %s"
-            query_params.append(filters['taktowanie_MHz'])
+        if 'taktowanie_MHz_min' in filters or 'taktowanie_MHz_max' in filters:
+            query += " AND t.taktowanie_MHz BETWEEN %s AND %s"
+            query_params.append(filters.get('taktowanie_MHz_min', 0))
+            query_params.append(filters.get('taktowanie_MHz_max', 5000))
 
     #print("zapyt---------------")
     #print(query)

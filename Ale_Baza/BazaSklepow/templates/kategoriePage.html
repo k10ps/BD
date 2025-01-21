@@ -18,78 +18,243 @@
                 
                 <!--filtry w zaleznosci od kategori (DODAJ WIECEJ)-->
                 {% if kategoria|lower == 'telewizor' %}
-                    <label for="przekatna">Przekątna (cal):</label><br>
-                    <input type="number" name="przekatna" id="przekatna" value="{{ filters.przekatna }}"><br>
-                    
-                    <label for="typ_wyswietlacza">Typ wyswietlacza:</label><br>
-                    <input type="text" name="typ_wyswietlacza" id="typ_wyswietlacza" value="{{ filters.typ_wyswietlacza }}"><br>
-                    
-                    <label for="rozdzielczosc">Rozdzielczosc:</label><br>
-                    <input type="number" name="rozdzielczosc" id="rozdzielczosc" value="{{ filters.rozdzielczosc }}"><br>
 
-                    <label for="smart_TV">Smart TV (0/1):</label><br>
-                    <input type="number" name="smart_TV" id="smart_TV" value="{{ filters.smart_TV }}">   <br>             
+                    <!-- typ wyswietlacza -->
+                    <label for="typ_wyswietlacza">Typ wyswietlacza:</label><br>
+                    <input type="text" name="typ_wyswietlacza" id="typ_wyswietlacza" value="{{ filters.typ_wyswietlacza }}"><br><br>
+
+                    <!-- przekątna -->
+                    <label for="przekatna_min">Przekątna:</label><br>
+                    Od: <span id="przekatna_min_value">{{ filters.przekatna_min|default:0 }}</span>'<br>
+                    <input type="range" name="przekatna_min" id="przekatna_min" min="0" max="100" step="1" 
+                           value="{{ filters.przekatna_min|default:0 }}" 
+                           oninput="updateRangeValue('przekatna_min', this.value)"><br>
+                    
+                    Do: <span id="przekatna_max_value">{{ filters.przekatna_max|default:99 }}</span>'<br>
+                    <input type="range" name="przekatna_max" id="przekatna_max" min="0" max="99" step="1" 
+                           value="{{ filters.przekatna_max|default:99 }}" 
+                           oninput="updateRangeValue('przekatna_max', this.value)"><br><br>
+                    
+                    <!-- rozdzielczosc -->
+                    <label for="rozdzielczosc_min">Rozdzielczość:</label><br>
+                    Od: <span id="rozdzielczosc_min_value">{{ filters.rozdzielczosc_min|default:0 }}</span> <br>
+                    <input type="range" name="rozdzielczosc_min" id="rozdzielczosc_min" min="0" max="9999" step="1" 
+                           value="{{ filters.rozdzielczosc_min|default:0 }}" 
+                           oninput="updateRangeValue('rozdzielczosc_min', this.value)"><br>
+                    
+                    Do: <span id="rozdzielczosc_max_value">{{ filters.rozdzielczosc_max|default:9999 }}</span> <br>
+                    <input type="range" name="rozdzielczosc_max" id="rozdzielczosc_max" min="0" max="9999" step="1" 
+                           value="{{ filters.rozdzielczosc_max|default:9999 }}" 
+                           oninput="updateRangeValue('rozdzielczosc_max', this.value)"><br><br>
+
+                    <!-- smart tv -->
+                    <label for="smart_TV">Smart TV:</label><br>
+                    <div class="switch-container">
+                        <input type="radio" id="smart_TV_0" name="smart_TV" value="0" 
+                        {% if filters.smart_TV == 0 %}checked{% endif %}>
+                        <label for="smart_TV_0">Nie</label>
+
+                        <input type="radio" id="smart_TV_1" name="smart_TV" value="1" 
+                        {% if filters.smart_TV == 1 %}checked{% endif %}>
+                        <label for="smart_TV_1">Tak</label><br>
+                    </div><br>
+                      
                 {% endif %}
                 {% if kategoria|lower == 'monitor' %}
-                <label for="przekatna">Przekątna (cal):</label><br>
-                <input type="number" name="przekatna" id="przekatna" value="{{ filters.przekatna }}"><br>
                 
-                <label for="odswiezanie_Hz">Odswiezanie GHz:</label><br>
-                <input type="number" name="odswiezanie_Hz" id="odswiezanie_Hz" value="{{ filters.odswiezanie_Hz }}"><br>
-                
-                <label for="rozdzielczosc">Rozdzielczość:</label><br>
-                <input type="number" name="rozdzielczosc" id="rozdzielczosc" value="{{ filters.rozdzielczosc }}"><br>
-
-                <label for="typ_wyswietlacza">Typ wyswietlacza:</label><br>
-                <input type="text" name="typ_wyswietlacza" id="typ_wyswietlacza" value="{{ filters.typ_wyswietlacza }}"><br>
-                
-                <label for="glosniki_">Glosniki (0/1):</label><br>
-                <input type="number" name="glosniki_" id="glosniki_" value="{{ filters.glosniki_ }}"><br>
-
+                <!-- proporcje ekranu -->
                 <label for="proporcje_ekranu">Proporcje ekranu:</label><br>
-                <input type="number" name="proporcje_ekranu" id="proporcje_ekranu" value="{{ filters.proporcje_ekranu }}"><br>
+                <input type="number" name="proporcje_ekranu" id="proporcje_ekranu" value="{{ filters.proporcje_ekranu }}"><br><br>
+
+                <!-- typ wyswietlacza -->
+                <label for="typ_wyswietlacza">Typ wyswietlacza:</label><br>
+                <input type="text" name="typ_wyswietlacza" id="typ_wyswietlacza" value="{{ filters.typ_wyswietlacza }}"><br><br>
+
+                <!-- przekątna -->
+                <label for="przekatna_min">Przekątna:</label><br>
+                Od: <span id="przekatna_min_value">{{ filters.przekatna_min|default:0 }}</span>'<br>
+                <input type="range" name="przekatna_min" id="przekatna_min" min="0" max="100" step="1" 
+                        value="{{ filters.przekatna_min|default:0 }}" 
+                        oninput="updateRangeValue('przekatna_min', this.value)"><br>
+                
+                Do: <span id="przekatna_max_value">{{ filters.przekatna_max|default:99 }}</span>'<br>
+                <input type="range" name="przekatna_max" id="przekatna_max" min="0" max="99" step="1" 
+                        value="{{ filters.przekatna_max|default:99 }}" 
+                        oninput="updateRangeValue('przekatna_max', this.value)"><br><br>
+                
+                <!-- odswiezanie -->
+                <label for="odswiezanie_Hz_min">Odświeżanie:</label><br>
+                Od: <span id="odswiezanie_Hz_min_value">{{ filters.odswiezanie_Hz_min|default:0 }}</span> Hz<br>
+                <input type="range" name="odswiezanie_Hz_min" id="odswiezanie_Hz_min" min="0" max="500" step="1" 
+                        value="{{ filters.odswiezanie_Hz_min|default:0 }}" 
+                        oninput="updateRangeValue('odswiezanie_Hz_min', this.value)"><br>
+                
+                Do: <span id="odswiezanie_Hz_max_value">{{ filters.odswiezanie_Hz_max|default:500 }}</span> Hz<br>
+                <input type="range" name="odswiezanie_Hz_max" id="odswiezanie_Hz_max" min="0" max="500" step="1" 
+                        value="{{ filters.odswiezanie_Hz_max|default:500 }}" 
+                        oninput="updateRangeValue('odswiezanie_Hz_max', this.value)"><br><br>
+                
+                <!-- rozdzielczosc -->
+                <label for="rozdzielczosc_min">Rozdzielczość:</label><br>
+                Od: <span id="rozdzielczosc_min_value">{{ filters.rozdzielczosc_min|default:0 }}</span> <br>
+                <input type="range" name="rozdzielczosc_min" id="rozdzielczosc_min" min="0" max="9999" step="1" 
+                        value="{{ filters.rozdzielczosc_min|default:0 }}" 
+                        oninput="updateRangeValue('rozdzielczosc_min', this.value)"><br>
+                
+                Do: <span id="rozdzielczosc_max_value">{{ filters.rozdzielczosc_max|default:9999 }}</span> <br>
+                <input type="range" name="rozdzielczosc_max" id="rozdzielczosc_max" min="0" max="9999" step="1" 
+                        value="{{ filters.rozdzielczosc_max|default:9999 }}" 
+                        oninput="updateRangeValue('rozdzielczosc_max', this.value)"><br><br>
+
+                <!-- glosniki -->
+                <label for="glosniki_">Głośniki:</label><br>
+                <div class="switch-container">
+                    <input type="radio" id="glosniki__0" name="glosniki_" value="0" 
+                    {% if filters.glosniki_ == 0 %}checked{% endif %}>
+                    <label for="glosniki__0">Nie</label>
+
+                    <input type="radio" id="glosniki__1" name="glosniki_" value="1" 
+                    {% if filters.glosniki_ == 1 %}checked{% endif %}>
+                    <label for="glosniki__1">Tak</label><br>
+                </div><br>
+
                 {% endif %}
                 {% if kategoria|lower == 'komputer' %}
-                <label for="liczba_rdzeni">Liczba rdzeni procesora:</label><br>
-                <input type="number" name="liczba_rdzeni" id="liczba_rdzeni" value="{{ filters.liczba_rdzeni }}"><br>
-                
-                <label for="taktowanie">Taktowanie procesora:</label><br>
-                <input type="text" name="taktowanie" id="taktowanie" value="{{ filters.taktowanie }}"><br>
-                
+
                 <label for="rodzaj_gniazda">Rodzaj gniazda procesora:</label><br>
-                <input type="text" name="rodzaj_gniazda" id="rodzaj_gniazda" value="{{ filters.rodzaj_gniazda }}">    <br>
+                <input type="text" name="rodzaj_gniazda" id="rodzaj_gniazda" value="{{ filters.rodzaj_gniazda }}">    <br><br>
+
+                <!-- liczba_rdzeni -->
+                <label for="liczba_rdzeni_min">liczba rdzeni procesora:</label><br>
+                Od: <span id="liczba_rdzeni_min_value">{{ filters.liczba_rdzeni_min|default:0 }}</span> <br>
+                <input type="range" name="liczba_rdzeni_min" id="liczba_rdzeni_min" min="0" max="50" step="1" 
+                        value="{{ filters.liczba_rdzeni_min|default:0 }}" 
+                        oninput="updateRangeValue('liczba_rdzeni_min', this.value)"><br>
                 
-                <label for="typ_pamieci">Typ pamieci RAM:</label><br>
-                <input type="text" name="typ_pamieci" id="typ_pamieci" value="{{ filters.typ_pamieci }}">  <br>
+                Do: <span id="liczba_rdzeni_max_value">{{ filters.liczba_rdzeni_max|default:50 }}</span> <br>
+                <input type="range" name="liczba_rdzeni_max" id="liczba_rdzeni_max" min="0" max="50" step="1" 
+                        value="{{ filters.liczba_rdzeni_max|default:50 }}" 
+                        oninput="updateRangeValue('liczba_rdzeni_max', this.value)"><br><br>
+                
+                <!-- taktowanie -->
+                <label for="taktowanie_min">taktowanie procesora:</label><br>
+                Od: <span id="taktowanie_min_value">{{ filters.taktowanie_min|default:0 }}</span> GHz <br>
+                <input type="range" name="taktowanie_min" id="taktowanie_min" min="0" max="5000" step="1" 
+                        value="{{ filters.taktowanie_min|default:0 }}" 
+                        oninput="updateRangeValue('taktowanie_min', this.value)"><br>
+                
+                Do: <span id="taktowanie_max_value">{{ filters.taktowanie_max|default:5000 }}</span> GHz <br>
+                <input type="range" name="taktowanie_max" id="taktowanie_max" min="0" max="5000" step="1" 
+                        value="{{ filters.taktowanie_max|default:5000 }}" 
+                        oninput="updateRangeValue('taktowanie_max', this.value)"><br><br>
+                
+                <!-- typ pamięci -->
+                <label for="typ_pamieci_min">typ pamięci:</label><br>
+                Od: <span id="typ_pamieci_min_value">{{ filters.typ_pamieci_min|default:0 }}</span> DDR <br>
+                <input type="range" name="typ_pamieci_min" id="typ_pamieci_min" min="0" max="6" step="1" 
+                        value="{{ filters.typ_pamieci_min|default:0 }}" 
+                        oninput="updateRangeValue('typ_pamieci_min', this.value)"><br>
+                
+                Do: <span id="typ_pamieci_max_value">{{ filters.typ_pamieci_max|default:6 }}</span> DDR <br>
+                <input type="range" name="typ_pamieci_max" id="typ_pamieci_max" min="0" max="6" step="1" 
+                        value="{{ filters.typ_pamieci_max|default:6 }}" 
+                        oninput="updateRangeValue('typ_pamieci_max', this.value)"><br><br>
 
-                <label for="pojemnosc_GB">Pojemnosc RAM (GB):</label><br>
-                <input type="number" name="pojemnosc_GB" id="pojemnosc_GB" value="{{ filters.pojemnosc_GB }}">  <br>
+                <!-- pojemnosc -->
+                <label for="pojemnosc_GB_min">pojemność pamięci RAM:</label><br>
+                Od: <span id="pojemnosc_GB_min_value">{{ filters.pojemnosc_GB_min|default:0 }}</span> GB <br>
+                <input type="range" name="pojemnosc_GB_min" id="pojemnosc_GB_min" min="0" max="1024" step="1" 
+                        value="{{ filters.pojemnosc_GB_min|default:0 }}" 
+                        oninput="updateRangeValue('pojemnosc_GB_min', this.value)"><br>
+                
+                Do: <span id="pojemnosc_GB_max_value">{{ filters.pojemnosc_GB_max|default:1024 }}</span> GB <br>
+                <input type="range" name="pojemnosc_GB_max" id="pojemnosc_GB_max" min="0" max="1024" step="1" 
+                        value="{{ filters.pojemnosc_GB_max|default:1024 }}" 
+                        oninput="updateRangeValue('pojemnosc_GB_max', this.value)"><br><br>
 
-                <label for="taktowanie_MHz">taktowanie (MHz):</label><br>
-                <input type="number" name="taktowanie_MHz" id="taktowanie_MHz" value="{{ filters.taktowanie_MHz }}">  <br>
+                <!-- taktowanie_MHz -->
+                <label for="taktowanie_MHz_min">taktowanie pamięci RAM:</label><br>
+                Od: <span id="taktowanie_MHz_min_value">{{ filters.taktowanie_MHz_min|default:0 }}</span> MHz <br>
+                <input type="range" name="taktowanie_MHz_min" id="taktowanie_MHz_min" min="0" max="5000" step="1" 
+                        value="{{ filters.taktowanie_MHz_min|default:0 }}" 
+                        oninput="updateRangeValue('taktowanie_MHz_min', this.value)"><br>
+                
+                Do: <span id="taktowanie_MHz_max_value">{{ filters.taktowanie_MHz_max|default:5000 }}</span> MHz <br>
+                <input type="range" name="taktowanie_MHz_max" id="taktowanie_MHz_max" min="0" max="5000" step="1" 
+                        value="{{ filters.taktowanie_MHz_max|default:5000 }}" 
+                        oninput="updateRangeValue('taktowanie_MHz_max', this.value)"><br><br>
 
-                <label for="pojemnosc_dysku">pojemnosc dysku (GB):</label><br>
-                <input type="number" name="pojemnosc_dysku" id="pojemnosc_dysku" value="{{ filters.pojemnosc_dysku }}"> <br>
+                <!-- pojemnosc_dysku -->
+                <label for="pojemnosc_dysku_min">pojemnosc dysku:</label><br>
+                Od: <span id="pojemnosc_dysku_min_value">{{ filters.pojemnosc_dysku_min|default:0 }}</span> GB <br>
+                <input type="range" name="pojemnosc_dysku_min" id="pojemnosc_dysku_min" min="0" max="10000" step="1" 
+                        value="{{ filters.pojemnosc_dysku_min|default:0 }}" 
+                        oninput="updateRangeValue('pojemnosc_dysku_min', this.value)"><br>
+                
+                Do: <span id="pojemnosc_dysku_max_value">{{ filters.pojemnosc_dysku_max|default:10000 }}</span> GB <br>
+                <input type="range" name="pojemnosc_dysku_max" id="pojemnosc_dysku_max" min="0" max="10000" step="1" 
+                        value="{{ filters.pojemnosc_dysku_max|default:10000 }}" 
+                        oninput="updateRangeValue('pojemnosc_dysku_max', this.value)"><br><br>
+
                 {% endif %}
                 {% if kategoria|lower == 'procesor' %}
-                <label for="liczba_rdzeni">liczba rdzeni procesora:</label><br>
-                <input type="number" name="liczba_rdzeni" id="liczba_rdzeni" value="{{ filters.liczba_rdzeni }}"><br>
+                <!-- liczba_rdzeni -->
+                <label for="liczba_rdzeni_min">liczba rdzeni procesora:</label><br>
+                Od: <span id="liczba_rdzeni_min_value">{{ filters.liczba_rdzeni_min|default:0 }}</span> <br>
+                <input type="range" name="liczba_rdzeni_min" id="liczba_rdzeni_min" min="0" max="50" step="1" 
+                        value="{{ filters.liczba_rdzeni_min|default:0 }}" 
+                        oninput="updateRangeValue('liczba_rdzeni_min', this.value)"><br>
                 
-                <label for="taktowanie">taktowanie procesora (MHz):</label><br>
-                <input type="bumber" name="taktowanie" id="taktowanie" value="{{ filters.taktowanie }}"><br>
+                Do: <span id="liczba_rdzeni_max_value">{{ filters.liczba_rdzeni_max|default:50 }}</span> <br>
+                <input type="range" name="liczba_rdzeni_max" id="liczba_rdzeni_max" min="0" max="50" step="1" 
+                        value="{{ filters.liczba_rdzeni_max|default:50 }}" 
+                        oninput="updateRangeValue('liczba_rdzeni_max', this.value)"><br><br>
+                
+                <!-- taktowanie -->
+                <label for="taktowanie_min">taktowanie procesora:</label><br>
+                Od: <span id="taktowanie_min_value">{{ filters.taktowanie_min|default:0 }}</span> GHz <br>
+                <input type="range" name="taktowanie_min" id="taktowanie_min" min="0" max="5000" step="1" 
+                        value="{{ filters.taktowanie_min|default:0 }}" 
+                        oninput="updateRangeValue('taktowanie_min', this.value)"><br>
                 
                 <label for="rodzaj_gniazda">rodzaj gniazda procesora:</label><br>
                 <input type="text" name="rodzaj_gniazda" id="rodzaj_gniazda" value="{{ filters.rodzaj_gniazda }}"><br>
                 {% endif %}
                 {% if kategoria|lower == 'ram' %}   
-                <label for="typ_pamieci">typ pamieci RAM:</label><br>
-                <input type="text" name="typ_pamieci" id="typ_pamieci" value="{{ filters.typ_pamieci }}">  <br>
+                <!-- typ pamięci -->
+                <label for="typ_pamieci_min">typ pamięci:</label><br>
+                Od: <span id="typ_pamieci_min_value">{{ filters.typ_pamieci_min|default:0 }}</span> DDR <br>
+                <input type="range" name="typ_pamieci_min" id="typ_pamieci_min" min="0" max="6" step="1" 
+                        value="{{ filters.typ_pamieci_min|default:0 }}" 
+                        oninput="updateRangeValue('typ_pamieci_min', this.value)"><br>
+                
+                Do: <span id="typ_pamieci_max_value">{{ filters.typ_pamieci_max|default:6 }}</span> DDR <br>
+                <input type="range" name="typ_pamieci_max" id="typ_pamieci_max" min="0" max="6" step="1" 
+                        value="{{ filters.typ_pamieci_max|default:6 }}" 
+                        oninput="updateRangeValue('typ_pamieci_max', this.value)"><br><br>
 
-                <label for="pojemnosc_GB">pojemnosc RAM (GB):</label><br>
-                <input type="number" name="pojemnosc_GB" id="pojemnosc_GB" value="{{ filters.pojemnosc_GB }}">  <br>
-
-                <label for="taktowanie_MHz">taktowanie (MHz):</label><br>
-                <input type="number" name="taktowanie_MHz" id="taktowanie_MHz" value="{{ filters.taktowanie_MHz }}"> <br>
+                <!-- pojemnosc -->
+                <label for="pojemnosc_GB_min">pojemność pamięci RAM:</label><br>
+                Od: <span id="pojemnosc_GB_min_value">{{ filters.pojemnosc_GB_min|default:0 }}</span> GB <br>
+                <input type="range" name="pojemnosc_GB_min" id="pojemnosc_GB_min" min="0" max="1024" step="1" 
+                        value="{{ filters.pojemnosc_GB_min|default:0 }}" 
+                        oninput="updateRangeValue('pojemnosc_GB_min', this.value)"><br>
+                
+                Do: <span id="pojemnosc_GB_max_value">{{ filters.pojemnosc_GB_max|default:1024 }}</span> GB <br>
+                <input type="range" name="pojemnosc_GB_max" id="pojemnosc_GB_max" min="0" max="1024" step="1" 
+                        value="{{ filters.pojemnosc_GB_max|default:1024 }}" 
+                        oninput="updateRangeValue('pojemnosc_GB_max', this.value)"><br><br>
+                <!-- taktowanie_MHz -->
+                <label for="taktowanie_MHz_min">taktowanie pamięci RAM:</label><br>
+                Od: <span id="taktowanie_MHz_min_value">{{ filters.taktowanie_MHz_min|default:0 }}</span> MHz <br>
+                <input type="range" name="taktowanie_MHz_min" id="taktowanie_MHz_min" min="0" max="5000" step="1" 
+                        value="{{ filters.taktowanie_MHz_min|default:0 }}" 
+                        oninput="updateRangeValue('taktowanie_MHz_min', this.value)"><br>
+                
+                Do: <span id="taktowanie_MHz_max_value">{{ filters.taktowanie_MHz_max|default:5000 }}</span> MHz <br>
+                <input type="range" name="taktowanie_MHz_max" id="taktowanie_MHz_max" min="0" max="5000" step="1" 
+                        value="{{ filters.taktowanie_MHz_max|default:5000 }}" 
+                        oninput="updateRangeValue('taktowanie_MHz_max', this.value)"><br><br>
                 {% endif %}
                 <br>
                 <button type="submit">Zastosuj filtry</button>
