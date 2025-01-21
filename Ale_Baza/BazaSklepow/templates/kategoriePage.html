@@ -20,8 +20,19 @@
                 {% if kategoria|lower == 'telewizor' %}
 
                     <!-- typ wyswietlacza -->
-                    <label for="typ_wyswietlacza">Typ wyswietlacza:</label><br>
-                    <input type="text" name="typ_wyswietlacza" id="typ_wyswietlacza" value="{{ filters.typ_wyswietlacza }}"><br><br>
+                    <!-- <label for="typ_wyswietlacza">Typ wyswietlacza:</label><br>
+                    <input type="text" name="typ_wyswietlacza" id="typ_wyswietlacza" value="{{ filters.typ_wyswietlacza }}"><br><br> -->
+
+                    <label for="typ_wyswietlacza">typ wyświetlacza:</label><br>
+                    <select name="typ_wyswietlacza" id="typ_wyswietlacza">
+                        <option value="">-- Wybierz --</option>
+                        {% for typ in typy_wyswietlacza %}
+                            <option value="{{ typ }}" {% if filters.typ_wyswietlacza == typ %}selected{% endif %}>
+                                {{ typ }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <br><br>
 
                     <!-- przekątna -->
                     <label for="przekatna_min">Przekątna:</label><br>
@@ -63,12 +74,34 @@
                 {% if kategoria|lower == 'monitor' %}
                 
                 <!-- proporcje ekranu -->
+                <!-- <label for="proporcje_ekranu">Proporcje ekranu:</label><br>
+                <input type="text" name="proporcje_ekranu" id="proporcje_ekranu" value="{{ filters.proporcje_ekranu }}"><br><br> -->
+
                 <label for="proporcje_ekranu">Proporcje ekranu:</label><br>
-                <input type="number" name="proporcje_ekranu" id="proporcje_ekranu" value="{{ filters.proporcje_ekranu }}"><br><br>
+                <select name="proporcje_ekranu" id="proporcje_ekranu">
+                    <option value="">-- Wybierz --</option>
+                    {% for typ in proporcje_ekranu %}
+                        <option value="{{ typ }}" {% if filters.proporcje_ekranu == typ %}selected{% endif %}>
+                            {{ typ }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <br><br>                
 
                 <!-- typ wyswietlacza -->
-                <label for="typ_wyswietlacza">Typ wyswietlacza:</label><br>
-                <input type="text" name="typ_wyswietlacza" id="typ_wyswietlacza" value="{{ filters.typ_wyswietlacza }}"><br><br>
+                <!-- <label for="typ_wyswietlacza">Typ wyswietlacza:</label><br>
+                <input type="text" name="typ_wyswietlacza" id="typ_wyswietlacza" value="{{ filters.typ_wyswietlacza }}"><br><br> -->
+
+                <label for="typ_wyswietlacza">typ_wyswietlacza:</label><br>
+                <select name="typ_wyswietlacza" id="typ_wyswietlacza">
+                    <option value="">-- Wybierz --</option>
+                    {% for typ in typy_wyswietlacza %}
+                        <option value="{{ typ }}" {% if filters.typ_wyswietlacza == typ %}selected{% endif %}>
+                            {{ typ }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <br><br>                   
 
                 <!-- przekątna -->
                 <label for="przekatna_min">Przekątna:</label><br>
@@ -121,8 +154,19 @@
                 {% endif %}
                 {% if kategoria|lower == 'komputer' %}
 
-                <label for="rodzaj_gniazda">Rodzaj gniazda procesora:</label><br>
-                <input type="text" name="rodzaj_gniazda" id="rodzaj_gniazda" value="{{ filters.rodzaj_gniazda }}">    <br><br>
+                <!-- <label for="rodzaj_gniazda">Rodzaj gniazda procesora:</label><br>
+                <input type="text" name="rodzaj_gniazda" id="rodzaj_gniazda" value="{{ filters.rodzaj_gniazda }}">    <br><br> -->
+
+                <label for="rodzaj_gniazda">rodzaj_gniazda:</label><br>
+                <select name="rodzaj_gniazda" id="rodzaj_gniazda">
+                    <option value="">-- Wybierz --</option>
+                    {% for typ in rodzaj_gniazda %}
+                        <option value="{{ typ }}" {% if filters.rodzaj_gniazda == typ %}selected{% endif %}>
+                            {{ typ }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <br><br>  
 
                 <!-- liczba_rdzeni -->
                 <label for="liczba_rdzeni_min">liczba rdzeni procesora:</label><br>
@@ -198,6 +242,18 @@
 
                 {% endif %}
                 {% if kategoria|lower == 'procesor' %}
+                <!-- rodzaj gniazda -->
+                <label for="rodzaj_gniazda">rodzaj_gniazda:</label><br>
+                <select name="rodzaj_gniazda" id="rodzaj_gniazda">
+                    <option value="">-- Wybierz --</option>
+                    {% for typ in rodzaj_gniazda %}
+                        <option value="{{ typ }}" {% if filters.rodzaj_gniazda == typ %}selected{% endif %}>
+                            {{ typ }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <br><br>
+
                 <!-- liczba_rdzeni -->
                 <label for="liczba_rdzeni_min">liczba rdzeni procesora:</label><br>
                 Od: <span id="liczba_rdzeni_min_value">{{ filters.liczba_rdzeni_min|default:0 }}</span> <br>
@@ -216,9 +272,11 @@
                 <input type="range" name="taktowanie_min" id="taktowanie_min" min="0" max="5000" step="1" 
                         value="{{ filters.taktowanie_min|default:0 }}" 
                         oninput="updateRangeValue('taktowanie_min', this.value)"><br>
-                
-                <label for="rodzaj_gniazda">rodzaj gniazda procesora:</label><br>
-                <input type="text" name="rodzaj_gniazda" id="rodzaj_gniazda" value="{{ filters.rodzaj_gniazda }}"><br>
+
+                Do: <span id="taktowanie_max_value">{{ filters.taktowanie_max|default:5000 }}</span> <br>
+                <input type="range" name="taktowanie_max" id="taktowanie_max" min="0" max="5000" step="1" 
+                        value="{{ filters.taktowanie_max|default:5000 }}" 
+                        oninput="updateRangeValue('taktowanie_max', this.value)"><br><br>
                 {% endif %}
                 {% if kategoria|lower == 'ram' %}   
                 <!-- typ pamięci -->

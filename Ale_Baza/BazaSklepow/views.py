@@ -47,6 +47,12 @@ def showKategoria(request, kategoria):
                 WHERE p.kategoria = %s"""
     filters = request.GET.dict()
     query_params = [kategoria]
+
+    # inicjalizacja zmiennych
+    typy_wyswietlacza = None
+    proporcje_ekranu = None
+    rodzaj_gniazda = None
+    typy_wyswietlacza = None
     
 
     #jakie filtry
@@ -58,6 +64,7 @@ def showKategoria(request, kategoria):
             query_params.append(filters.get('przekatna_min', 0))
             query_params.append(filters.get('przekatna_max', 99))
 
+        typy_wyswietlacza = pobierz_pozycje_droplisty(kategoria, 'typ_wyswietlacza')
         if 'typ_wyswietlacza' in filters and filters['typ_wyswietlacza']:
             query += " AND t.typ_wyswietlacza = %s"
             query_params.append(filters['typ_wyswietlacza'])
@@ -84,6 +91,7 @@ def showKategoria(request, kategoria):
             query_params.append(filters.get('rozdzielczosc_min', 0))
             query_params.append(filters.get('rozdzielczosc_max', 9999))
 
+        typy_wyswietlacza = pobierz_pozycje_droplisty(kategoria, 'typ_wyswietlacza')
         if 'typ_wyswietlacza' in filters and filters['typ_wyswietlacza']:
             query += " AND t.typ_wyswietlacza = %s"
             query_params.append(filters['typ_wyswietlacza'])
@@ -92,9 +100,11 @@ def showKategoria(request, kategoria):
             query += " AND t.glosniki_ = %s"
             query_params.append(filters['glosniki_'])
         
+        proporcje_ekranu = pobierz_pozycje_droplisty(kategoria, 'proporcje_ekranu')
         if 'proporcje_ekranu' in filters and filters['proporcje_ekranu']:
             query += " AND t.proporcje_ekranu = %s"
             query_params.append(filters['proporcje_ekranu'])
+
 
     #KOMPUTER
     if kategoria.lower() == 'komputer':
@@ -108,6 +118,7 @@ def showKategoria(request, kategoria):
             query_params.append(filters.get('taktowanie_min', 0))
             query_params.append(filters.get('taktowanie_max', 5000))
 
+        rodzaj_gniazda = pobierz_pozycje_droplisty('procesor', 'rodzaj_gniazda')
         if 'rodzaj_gniazda' in filters and filters['rodzaj_gniazda']:
             query += " AND pr.rodzaj_gniazda = %s"
             query_params.append(filters['rodzaj_gniazda'])
@@ -144,6 +155,7 @@ def showKategoria(request, kategoria):
             query_params.append(filters.get('taktowanie_min', 0))
             query_params.append(filters.get('taktowanie_max', 5000))
 
+        rodzaj_gniazda = pobierz_pozycje_droplisty(kategoria, 'rodzaj_gniazda')
         if 'rodzaj_gniazda' in filters and filters['rodzaj_gniazda']:
             query += " AND t.rodzaj_gniazda = %s"
             query_params.append(filters['rodzaj_gniazda'])
@@ -201,7 +213,10 @@ def showKategoria(request, kategoria):
         'order': order,
         'min_cena': min_cena,
         'max_cena': max_cena,
-        'filters': filters
+        'filters': filters,
+        'typy_wyswietlacza': typy_wyswietlacza,
+        'proporcje_ekranu': proporcje_ekranu,
+        'rodzaj_gniazda' : rodzaj_gniazda,
         })
 
 def showProdukt(request, kategoria, produkt_id):
@@ -446,4 +461,17 @@ def showLowestPrice(produkt_id):
     else:
         return None
 
+def pobierz_pozycje_droplisty(kategoria, kolumna):
+    # Walidacja nazwy kolumny
+    dozwolone_kolumny = ['typ_wyswietlacza', 'proporcje_ekranu', 'rodzaj_gniazda']
+    dozwolone_kategorie = ['telewizor', 'monitor', 'komputer', 'procesor', 'ram']
+    if kolumna not in dozwolone_kolumny:
+        raise ValueError("Nieprawidłowa nazwa kolumny")
+    if kategoria.lower() not in dozwolone_kategorie:
+        raise ValueError("Nieprawidłowa nazwa kategorii")
 
+    with connection.cursor() as cursor:
+        query = f"SELECT DISTINCT {kolumna} FROM {kategoria} WHERE {kolumna} IS NOT NULL"
+        cursor.execute(query)
+        rows = cursor.fetchall()
+    return [row[0] for row in rows]
