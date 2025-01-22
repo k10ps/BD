@@ -422,7 +422,7 @@ def showHistoriaCen(produkt_id):
         #wykres na obraz
         buf = io.BytesIO()
         plt.tight_layout()  # Adjust layout to prevent clipping
-        plt.savefig(buf, format='png', dpi=100)  # Higher resolution
+        plt.savefig(buf, format='png', dpi=120)  # Higher resolution
         buf.seek(0)
         image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
         buf.close()
