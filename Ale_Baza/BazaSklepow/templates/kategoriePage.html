@@ -4,9 +4,10 @@
 
 <!-- lewa strona - filtry -->
 <div style="display: flex;">
-    <div style="width: 30%; padding-right: 20px;"> <!--zajmuje 20% mijsca na stronie -->
-        <h3>Filtry</h3>
+    <div style="width: 30%; padding-right: 50px;"> <!--zajmuje 20% mijsca na stronie -->
         <div class="filtry">
+            <h3>Filtry</h3>
+            
             <form method="get">
                 <!--do podawani walsne zakresu cenowego -->
                 <label for="min_cena">Cena minimalna:</label><br>
@@ -315,47 +316,50 @@
                         oninput="updateRangeValue('taktowanie_MHz_max', this.value)"><br><br>
                 {% endif %}
                 <br>
-                <button type="submit">Zastosuj filtry</button>
+                <button type="submit">Zastosuj filtry</button> 
             </form>
         </div>
     </div>
 
 
  <!-- prawa czesc storyn-->
-<div class="prawa_czesc_strony">
-    <div style="width: 80%;">
-    <h1>{{ kategoria }}</h1>
-    <div>
-        <!-- przycisk sortowania -->
-        <a href="?sort=cena&order=asc" 
-        {% if order == 'asc' %} style="font-weight: bold;" {% endif %}>Sortuj rosnąco</a>
-        |
-        <a href="?sort=cena&order=desc" 
-        {% if order == 'desc' %}style="font-weight: bold;"{% endif %}>Sortuj malejąco</a>
+
+
+ <div class="prawa_czesc_strony">
+    <div class="content-container">
+        <div style="width: 80%;">
+            <h1>{{ kategoria }}</h1>
+            <div>
+                <!-- przycisk sortowania -->
+                <a href="?sort=cena&order=asc" 
+                {% if order == 'asc' %} style="font-weight: bold;" {% endif %}>Sortuj rosnąco</a>
+                |
+                <a href="?sort=cena&order=desc" 
+                {% if order == 'desc' %}style="font-weight: bold;"{% endif %}>Sortuj malejąco</a>
+            </div>
+        </div>
+        
+        <!-- wyswietla produkty powiazane z kategoria -->
+        <div class="lista_produktow">
+            <ul>
+                {% for produkt in produkty %}
+                    <li class="produkt-item">
+                        <a href="{% url 'produktPage' kategoria produkt.id %}">
+                            <div class="produkt-info">
+                                <h2 class="produkt-kategoria">{{ kategoria }}</h2>
+                                <p class="produkt-marka">{{ produkt.marka }}</p>
+                                <p class="produkt-model">{{ produkt.model }}</p>
+                                {% if produkt.cena %}
+                                    <span class="produkt-cena">Cena: {{ produkt.cena }} PLN</span>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
- 
-<!-- wyswietla produkty powiazane z kategoria -->
-
-<div class="lista_produktow">
-    <ul>
-        {% for produkt in produkty %}
-            <li class="produkt-item">
-                <a href="{% url 'produktPage' kategoria produkt.id %}">
-                    <div class="produkt-info">
-                        <h2 class="produkt-kategoria">{{ kategoria }}</h2>
-                        <p class="produkt-marka">{{ produkt.marka }}</p>
-                        <p class="produkt-model">{{ produkt.model }}</p>
-                        {% if produkt.cena %}
-                            <span class="produkt-cena">Cena: {{ produkt.cena }} PLN</span>
-                        {% endif %}
-                    </div>
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-</div>
-
 
 
 {% endblock %}

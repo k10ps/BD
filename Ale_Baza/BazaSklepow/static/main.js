@@ -7,3 +7,4 @@ function updateRangeValue(id, value) {
   document.addEventListener('DOMContentLoaded', function() {
     updateRangeValue(id, document.getElementById(id).value);
   });
+

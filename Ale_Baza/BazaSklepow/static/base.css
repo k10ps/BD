@@ -3,6 +3,36 @@ main {
     margin: 20px 0;
 }
 
+.black-bar {
+    background-color: #1c1b1b; /* Black background */
+    color: #ffffff; /* White text for contrast */
+    width: 100%; /* Full width of the page */
+    padding: 10px 20px; /* Padding for spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+    position: sticky; /* Stick to the top while scrolling */
+    top: 0;
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+.bar-content {
+    display: flex; /* Flexbox for alignment */
+    justify-content: space-between; /* Spread out title and search bar */
+    align-items: center; /* Center vertically */
+    max-width: 1200px; /* Optional: Limit content width */
+    margin: 0 auto; /* Center the content horizontally */
+}
+
+.bar-content h1 {
+    font-size: 3rem; /* Adjust font size for the title */
+    margin: 0; /* Remove default margin */
+    color: #ffffff; /* Ensure white text */
+}
+
+.bar-content a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use inherited text color */
+}
+
 body {
     display: flex; 
     flex-direction: column; 
@@ -11,33 +41,20 @@ body {
     margin: 0;
 }
 
-.header_logo {
-    font-size: 24px; 
-    font-weight: bold;
-}
 
-/* Brighter color palette */
 :root {
     --tlo: #ffffff;
-    --tekst_ciemny: #2a2a2a; /* Dark gray */
-    --tekst_jasny: #5c5c5c; /* Light gray */
+    --tekst_ciemny: #000000; /* Dark gray */
+    --tekst_jasny: #252121; /* Light gray */
     --tlo_okna_wpisywania_i_przyciskow: #6c63ff; /* Vibrant blue */
-    --hover_highlight: #ffd700; /* Golden yellow */
-    --category_bg: #ff6f61; /* Coral */
-    --category_hover: #ffcccb; /* Lighter coral */
+    --hover_highlight: #cdae00; /* Golden yellow */
+    --category_bg: #ffffff; /* Coral */
+    --category_hover: #000000; /* Lighter coral */
     --box_shadow: rgba(0, 0, 0, 0.2);
 }
 
-html {
-    font-size: 16px; 
-    font-family: 'Cambria Math', sans-serif; 
-    background-color: var(--tlo); 
-    color: var(--tekst_ciemny);
-}
 
 /* Search bar container */
-
-
 .search-bar {
     display: flex;
     justify-content: center;

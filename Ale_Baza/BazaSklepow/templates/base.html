@@ -8,36 +8,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baza Sklepów</title>
     {% load static %}
+    <link rel="stylesheet" href="{% static 'produkty.css' %}">
+    <link rel="stylesheet" href="{% static 'onion.css' %}">
     <script src="{% static 'main.js' %}"></script>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'style2.css' %}">
     <link rel="stylesheet" href="{% static 'base.css' %}">
-    <link rel="stylesheet" href="{% static 'produkty.css' %}">
+    <link rel="stylesheet" href="{% static 'search.css' %}">
     <link rel="stylesheet" href="{% static 'home.css' %}">
     
 </head>
 <body>
-    <div class="header_logo">
-        <header>
-            <h1>    
+    <header class="black-bar">
+        <div class="bar-content">
+            <h1>
                 <a href="{% url 'homePage' %}" style="text-decoration: none; color: inherit;">
                     Baza Sklepów
                 </a>
             </h1>
-        </header>   
-    </div>
-    
-    <!--pasek wyszukiwania -->
-    <div class="search-bar">
-        <form method="get" action="{% url 'search' %}">
-            <input type="text" name="q" placeholder="Szukaj produktów..." value="{{ request.GET.q|default:'' }}">
-            <button type="submit">Szukaj</button>
-        </form>
-    </div>
+            <form method="get" action="{% url 'search' %}" class="search-bar">
+                <input type="text" name="q" placeholder="Szukaj produktów..." value="{{ request.GET.q|default:'' }}">
+                <button type="submit">Szukaj</button>
+            </form>
+        </div>
+    </header>
 
     <main>
         {% block content %}
-        <!-- Strony beda dziedziczyc po niej dzieki czemu glowa zawsze zostanie taka sama i w tym miesjcu poawjaiwa sie własnei zawartosc strony -->
         {% endblock %}
     </main>
     <script src="main.js"></script>

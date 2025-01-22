@@ -1,6 +1,3 @@
-/* General Styling */
-
-
 
 body {
     background-color: #ffffff; /* White background */
@@ -34,23 +31,27 @@ body {
     margin: 20px 0;
 }
 
-/* Individual Category Item */
 .category-item {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none; /* Remove underline from links */
-    font-size: 1.2rem; /* Slightly larger text */
-    font-weight: bold;
-    color: #ffffff; /* White text for better contrast */
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    width: calc(33.33% - 20px); 
+    height: 200px; 
+    background-color: var(--category_bg); 
+    border-radius: 10px;
+    text-align: center; 
+    text-decoration: none; 
+    color: #ffffff;
     background-color: #6c63ff; /* Vibrant blue background */
     border-radius: 8px; /* Rounded corners */
     padding: 15px 30px; /* Spacing inside the button */
+    transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
 }
 
-/* Hover Effect for Categories */
 .category-item:hover {
     transform: scale(1.05); /* Slight zoom-in */
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
@@ -65,10 +66,10 @@ body {
 
     .category-item {
         padding: 10px 20px; /* Reduce padding for smaller screens */
-        font-size: 1rem; /* Adjust font size */
+        font-size: 2rem; /* Adjust font size */
     }
 
     .boxing_title h1 {
-        font-size: 1.5rem; /* Smaller title on mobile */
+        font-size: 2rem; /* Smaller title on mobile */
     }
 }

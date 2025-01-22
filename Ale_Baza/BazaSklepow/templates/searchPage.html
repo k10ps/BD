@@ -2,16 +2,30 @@
 
 {% block content %}
 <h1>Wyniki wyszukiwania dla: "{{ query }}"</h1>
-<ul>
+
+<p class="search-count">
+    {% if produkty %}
+        Znaleziono {{ produkty|length }} elementów
+    {% else %}
+        Brak wyników dla zapytania "{{ query }}".
+    {% endif %}
+</p>
+
+<div class="search-results">
     {% for produkt in produkty %}
-        <li>
+        <div class="product-card">
             <a href="{% url 'produktPage' produkt.kategoria produkt.id %}">
-                {{ produkt.marka }} - {{ produkt.model }} ({{ produkt.kategoria }})
+                <div class="product-info">
+                    <h2 class="product-name">{{ produkt.marka }} - {{ produkt.model }}</h2>
+                    <p class="product-category">Kategoria: {{ produkt.kategoria }}</p>
+                    {% if produkt.najlepsza_cena.cena %}
+                        <p class="product-price">Cena: {{ produkt.najlepsza_cena.cena }} PLN</p>
+                    {% else %}
+                        <p class="product-price">Cena: Niedostępna</p>
+                    {% endif %}
+                </div>
             </a>
-        </li>
+        </div>
     {% endfor %}
-</ul>
-{% if not produkty %}
-    <p>Brak wyników dla zapytania "{{ query }}".</p>
-{% endif %}
+</div>
 {% endblock %}

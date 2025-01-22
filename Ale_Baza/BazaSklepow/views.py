@@ -281,6 +281,12 @@ def search(request):
         with connection.cursor() as cursor:
             cursor.execute(zapytanie, parametry)
             produkty = [{'id': row[0], 'marka': row[1], 'model': row[2], 'kategoria': row[3]} for row in cursor.fetchall()]
+    
+     # Compute the best price for each product
+    for produkt in produkty:
+        produkt_id = produkt['id']
+        produkt['najlepsza_cena'] = showLowestPrice(produkt_id)  # Add best price to each product
+
 
     return render(request, 'searchPage.html', {'query': haslo, 'produkty': produkty})
 
@@ -422,7 +428,7 @@ def showHistoriaCen(produkt_id):
         #wykres na obraz
         buf = io.BytesIO()
         plt.tight_layout()  # Adjust layout to prevent clipping
-        plt.savefig(buf, format='png', dpi=120)  # Higher resolution
+        plt.savefig(buf, format='png', dpi=130)  # Higher resolution
         buf.seek(0)
         image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
         buf.close()
