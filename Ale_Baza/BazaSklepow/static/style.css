@@ -2,8 +2,6 @@
     box-sizing: border-box;
 }
 
-
-
 .filtry input[type="text"],
 .filtry input[type="number"] {
     background-color: #ffffff; /* Bright white */
@@ -53,7 +51,6 @@
     transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 4px 6px var(--box_shadow);
 }
-
 .category-item:hover {
     background-color: var(--category_hover); 
     color: var(--tekst_ciemny); 
@@ -66,6 +63,7 @@
 }
 
 .lista_produktow ul {
+    margin: 20px 0;
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
     gap: 20px; 
@@ -118,3 +116,4 @@
     font-weight: bold; 
     color: var(--hover_highlight);
 }
+

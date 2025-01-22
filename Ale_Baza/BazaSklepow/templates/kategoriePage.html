@@ -25,7 +25,7 @@
 
                     <label for="typ_wyswietlacza">typ wyświetlacza:</label><br>
                     <select name="typ_wyswietlacza" id="typ_wyswietlacza">
-                        <option value="">-- Wybierz --</option>
+                        <option value="">Nie wybrano</option>
                         {% for typ in typy_wyswietlacza %}
                             <option value="{{ typ }}" {% if filters.typ_wyswietlacza == typ %}selected{% endif %}>
                                 {{ typ }}
@@ -79,7 +79,7 @@
 
                 <label for="proporcje_ekranu">Proporcje ekranu:</label><br>
                 <select name="proporcje_ekranu" id="proporcje_ekranu">
-                    <option value="">-- Wybierz --</option>
+                    <option value="">Nie wybrano</option>
                     {% for typ in proporcje_ekranu %}
                         <option value="{{ typ }}" {% if filters.proporcje_ekranu == typ %}selected{% endif %}>
                             {{ typ }}
@@ -94,7 +94,7 @@
 
                 <label for="typ_wyswietlacza">typ_wyswietlacza:</label><br>
                 <select name="typ_wyswietlacza" id="typ_wyswietlacza">
-                    <option value="">-- Wybierz --</option>
+                    <option value="">Nie wybrano</option>
                     {% for typ in typy_wyswietlacza %}
                         <option value="{{ typ }}" {% if filters.typ_wyswietlacza == typ %}selected{% endif %}>
                             {{ typ }}
@@ -159,7 +159,7 @@
 
                 <label for="rodzaj_gniazda">rodzaj_gniazda:</label><br>
                 <select name="rodzaj_gniazda" id="rodzaj_gniazda">
-                    <option value="">-- Wybierz --</option>
+                    <option value="">Nie wybrano</option>
                     {% for typ in rodzaj_gniazda %}
                         <option value="{{ typ }}" {% if filters.rodzaj_gniazda == typ %}selected{% endif %}>
                             {{ typ }}
@@ -245,7 +245,7 @@
                 <!-- rodzaj gniazda -->
                 <label for="rodzaj_gniazda">rodzaj_gniazda:</label><br>
                 <select name="rodzaj_gniazda" id="rodzaj_gniazda">
-                    <option value="">-- Wybierz --</option>
+                    <option value="">Nie wybrano</option>
                     {% for typ in rodzaj_gniazda %}
                         <option value="{{ typ }}" {% if filters.rodzaj_gniazda == typ %}selected{% endif %}>
                             {{ typ }}
