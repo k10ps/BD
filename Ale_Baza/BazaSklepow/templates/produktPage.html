@@ -64,14 +64,17 @@
     </form>
 
     {% if opinie %}
-        <ul>
+        <div class="opinion-list">
             {% for opinia in opinie %}
-                <li>
-                    <strong>{{ opinia.data|date:"Y-m-d H:i" }}</strong>
-                    <br>{{ opinia.opinia }}<br>
-                </li>
+                <div class="opinion-box">
+                    <div class="opinion-header">
+                        <span class="opinion-author">Anonim</span>
+                        <span class="opinion-date">{{ opinia.data|date:"Y-m-d H:i" }}</span>
+                    </div>
+                    <p class="opinion-text">{{ opinia.opinia }}</p>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
     {% else %}
         <p>Brak opinii dla tego produktu.</p>
     {% endif %}
