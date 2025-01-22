@@ -1,0 +1,37 @@
+select {
+    width: 190px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid var(--tekst_jasny);
+    border-radius: 8px;
+    background-color: var(--tlo_okna_wpisywania_i_przyciskow);
+    color: var(--tekst_ciemny);
+    appearance: none;
+    background: url('data:image/svg+xml;base64,...') no-repeat right 10px center;
+    background-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+select:hover {
+    border-color: var(--tlo_okna_wpisywania_i_przyciskow);
+    background-color: var(--tlo_okna_wpisywania_i_przyciskow);
+    color: var(--tekst_ciemny);
+}
+
+select:focus {
+    border-color: var(--tekst_ciemny);
+    box-shadow: 0 0 5px var(--box_shadow);
+    outline: none;
+}
+
+select option {
+    padding: 10px;
+    background-color: var(--tlo);
+    color: var(--tekst_jasny);
+}
+
+select option:hover {
+    background-color: var(--tlo_okna_wpisywania_i_przyciskow);
+    color: var(--tlo);
+}
