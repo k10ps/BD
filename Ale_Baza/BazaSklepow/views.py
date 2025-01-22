@@ -105,6 +105,8 @@ def showKategoria(request, kategoria):
             query += " AND t.proporcje_ekranu = %s"
             query_params.append(filters['proporcje_ekranu'])
 
+            
+
 
     #KOMPUTER
     if kategoria.lower() == 'komputer':
@@ -183,6 +185,7 @@ def showKategoria(request, kategoria):
     with connection.cursor() as cursor:
         cursor.execute(query, query_params)
         produkty = cursor.fetchall()  #zbieranie wynikow
+        print(cursor.mogrify(query, query_params))
     
     
     produkty_list = []
