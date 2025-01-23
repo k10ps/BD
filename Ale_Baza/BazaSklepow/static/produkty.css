@@ -1,13 +1,13 @@
-/* Container for Produkt Details and Lowest Price */
+
 .product-header {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
-    gap: 20px; /* Space between the two containers */
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
     margin: 20px 0;
-    align-items: stretch; /* Ensure both columns stretch to the same height */
+    align-items: stretch; 
 }
 
-/* Left: Produkt Details */
+/*LEFT PRODUKT NAZWA itp*/
 .product-title-container {
     background-color: #ffffff;
     padding: 20px;
@@ -17,7 +17,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 100%; /* Ensure it stretches to match the price container */
+    height: 100%; 
 }
 
 .product-title-container h1 {
@@ -26,7 +26,7 @@
     text-align: left;
 }
 
-/* Right: Lowest Price */
+/*CENA */
 .lowest-price-container {
     background-color: #f2e9ff;
     padding: 20px;
@@ -63,17 +63,17 @@
     color: #5245c1;
 }
 
-/* Specyfikacja and Historia Cen Section */
+
 .product-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    grid-template-columns: 1fr 1fr; 
     gap: 20px;
     margin: 20px 0;
 }
 
 
 
-/* Specyfikacja (Left Side) */
+/*SPECYFIAKCJA */
 
 .specifications {
     background-color: #ffffff;
@@ -84,16 +84,16 @@
 
 .specifications h2 {
     margin-bottom: 15px;
-    font-size: 1.8rem; /* Larger heading font size */
+    font-size: 1.8rem; 
 }
 
 .specyfikacja-list {
-    font-size: 1.2rem; /* Larger font size for details */
+    font-size: 1.2rem; 
 }
 
 .specyfikacja-item {
-    padding: 10px 0; /* Space between items */
-    border-bottom: 1px solid #ddd; /* Underline each item */
+    padding: 10px 0; 
+    border-bottom: 1px solid #ddd; 
 }
 
 

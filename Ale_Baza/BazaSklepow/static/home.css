@@ -1,33 +1,33 @@
 
 body {
-    background-color: #ffffff; /* White background */
-    font-family: 'Arial', sans-serif; /* Clean sans-serif font */
+    background-color: #ffffff; 
+    font-family: 'Arial', sans-serif; 
     margin: 0;
     padding: 0;
-    color: #333; /* Dark gray for text */
+    color: #333; 
 }
 
-/* Container for the Title */
+
 .boxing_title_container {
-    margin: 30px auto; /* Centered on the page */
-    max-width: 1200px; /* Limit width for large screens */
+    margin: 30px auto; 
+    max-width: 1200px; 
     padding: 20px;
     text-align: center;
 }
 
 .boxing_title h1 {
-    font-size: 2rem; /* Large title */
+    font-size: 2rem; 
     font-weight: bold;
-    color: #333; /* Dark gray */
+    color: #333; 
     margin-bottom: 20px;
 }
 
-/* Categories Container */
+/*pojemniki na kategorie*/
 .categories {
     display: flex;
-    flex-wrap: wrap; /* Allow categories to wrap if they overflow */
-    gap: 20px; /* Spacing between categories */
-    justify-content: center; /* Center the items */
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
     margin: 20px 0;
 }
 
@@ -44,32 +44,32 @@ body {
     text-align: center; 
     text-decoration: none; 
     color: #ffffff;
-    background-color: #6c63ff; /* Vibrant blue background */
-    border-radius: 8px; /* Rounded corners */
-    padding: 15px 30px; /* Spacing inside the button */
+    background-color: #6c63ff; 
+    border-radius: 8px; 
+    padding: 15px 30px; 
     transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .category-item:hover {
-    transform: scale(1.05); /* Slight zoom-in */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
-    background-color: #5245c1; /* Darker blue on hover */
+    transform: scale(1.05); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); 
+    background-color: #5245c1;
 }
 
-/* Mobile Responsiveness */
+
 @media (max-width: 768px) {
     .categories {
-        gap: 15px; /* Smaller spacing on mobile */
+        gap: 15px; 
     }
 
     .category-item {
-        padding: 10px 20px; /* Reduce padding for smaller screens */
-        font-size: 2rem; /* Adjust font size */
+        padding: 10px 20px; 
+        font-size: 2rem;
     }
 
     .boxing_title h1 {
-        font-size: 2rem; /* Smaller title on mobile */
+        font-size: 2rem; 
     }
 }

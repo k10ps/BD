@@ -40,14 +40,14 @@
     color: #0f0f0f;
 }
 
-/* Opinion Text */
+
 .opinion-text {
     font-size: 1.2rem;
     color: #111111;
     line-height: 1.5;
 }
 
-/* Add Opinion Form Styling */
+
 .opinions textarea {
     font-size: 1.3rem;
     width: 100%;

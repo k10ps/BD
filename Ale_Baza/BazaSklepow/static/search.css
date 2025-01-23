@@ -1,62 +1,61 @@
-/* Container for search results */
+/*wyszukiwanie*/
 .search-results {
-    display: grid; /* Use a grid layout */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 20px; /* Space between product cards */
-    margin-top: 20px; /* Space between heading and results */
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 20px; 
+    margin-top: 20px; 
 }
 
-/* Styling individual product cards */
+
 .product-card {
-    background-color: #ffffff; /* White background */
-    border: 1px solid #ddd; /* Light border for definition */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    padding: 15px; /* Inner padding */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    padding: 15px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover effect for product cards */
+
 .product-card:hover {
-    transform: translateY(-5px); /* Slight upward movement */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
 }
 
-/* Styling for the product link */
+
 .product-card a {
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Use inherited color */
+    text-decoration: none; 
+    color: inherit; 
 }
 
-/* Styling for product info */
+
 .product-info {
-    text-align: center; /* Center-align product details */
+    text-align: center; 
 }
 
 .product-name {
-    font-size: 1.2rem; /* Larger font size for product name */
-    font-weight: bold; /* Bold font for emphasis */
-    color: #333; /* Darker color for readability */
-    margin-bottom: 10px; /* Space below product name */
+    font-size: 1.2rem; 
+    font-weight: bold; 
+    color: #333; 
+    margin-bottom: 10px; 
 }
 
 .product-category {
-    font-size: 1rem; /* Slightly smaller font for category */
-    color: #555; /* Subtle gray color for category */
+    font-size: 1rem; 
+    color: #555; 
 }
 
-/* Styling for the search count */
+
 .search-count {
-    font-size: 1.2rem; /* Adjust font size */
-    color: #333; /* Darker color for better readability */
-    margin: 10px 0 20px; /* Space above and below the count text */
-    font-weight: bold; /* Emphasize the count */
+    font-size: 1.2rem; 
+    color: #333; 
+    margin: 10px 0 20px; 
+    font-weight: bold; 
 }
 
-/* Styling for the product price */
 .product-price {
-    font-size: 1.1rem; /* Slightly larger font for emphasis */
-    color: rgb(204, 40, 40); /* Red color for the price */
-    font-weight: bold; /* Bold text for visibility */
-    margin-top: 10px; /* Space above the price */
+    font-size: 1.1rem; 
+    color: rgb(204, 40, 40); 
+    font-weight: bold; 
+    margin-top: 10px; 
 }

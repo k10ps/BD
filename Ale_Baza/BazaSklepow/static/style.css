@@ -3,58 +3,58 @@
 }
 
 .strona-container {
-    display: flex; /* Create a flex container */
-    gap: 20px; /* Space between the filter and right sections */
-    align-items: stretch; /* Make both children have the same height */
-    padding: 20px; /* Padding around the container */
+    display: flex; 
+    gap: 20px; 
+    align-items: stretch; 
+    padding: 20px; 
 }
 
 .filtry-container {
-    width: 30%; /* Fixed width for the filter section */
-    background-color: #ffffff; /* White background for consistency */
-    border: 1px solid var(--tekst_jasny); /* Light border */
-    border-radius: 10px; /* Rounded corners */
-    padding: 20px; /* Inner padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 30%; 
+    background-color: #ffffff; 
+    border: 1px solid var(--tekst_jasny); 
+    border-radius: 10px;
+    padding: 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .filtry {
-    background-color: #ffffff; /* White background */
-    border: 1px solid var(--tekst_jasny); /* Light border */
-    border-radius: 10px; /* Rounded edges */
-    padding: 20px; /* Space inside the container */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    color: var(--tekst_ciemny); /* Dark text for contrast */
+    background-color: #ffffff; 
+    border: 1px solid var(--tekst_jasny);
+    border-radius: 10px; 
+    padding: 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    color: var(--tekst_ciemny);
 }
 
 .filtry-header {
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Vertically align the text and button */
-    justify-content: space-between; /* Add space between the heading and the button */
-    gap: 10px; /* Optional: Adjust spacing between the heading and the button */
-    margin-bottom: 20px; /* Add space below the header */
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 10px; 
+    margin-bottom: 20px;
 }
 
 .filtry-header button {
-    background-color: var(--hover_highlight); /* Accent color */
-    color: #ffffff; /* White text */
-    padding: 40px 60px; /* Increase padding for a larger button */
-    font-size: 1.2rem; /* Larger font size */
-    border: none; /* Remove border */
-    border-radius: 8px; /* Slightly rounder corners */
-    cursor: pointer; /* Pointer cursor */
+    background-color: var(--hover_highlight); 
+    color: #ffffff; 
+    padding: 40px 60px; 
+    font-size: 1.2rem; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 
 .filtry-header button:hover {
-    background-color: var(--tekst_ciemny); /* Darker color on hover */
-    transform: scale(1.05); /* Slight scale effect */
+    background-color: var(--tekst_ciemny); 
+    transform: scale(1.05); 
 }
 
 .filtry input[type="text"],
 .filtry input[type="number"] {
-    background-color: #ffffff; /* Bright white */
+    background-color: #ffffff; 
     color: var(--tekst_ciemny); 
     border: 1px solid var(--tekst_jasny); 
     padding: 10px; 
@@ -88,18 +88,18 @@
 
 
 .prawa_czesc_strony {
-    flex-grow: 1; /* Right section takes the remaining width */
-    display: flex; /* Allows content inside to stretch vertically */
-    flex-direction: column; /* Stack the content vertically */
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column; 
 }
 
 .prawa_czesc_strony .content-container {
-    background-color: #ffffff; /* White background */
-    border: 1px solid var(--tekst_jasny); /* Light border */
-    border-radius: 10px; /* Rounded edges */
-    padding: 20px; /* Inner padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    height: 100%; /* Ensure it stretches to match the filter section */
+    background-color: #ffffff; 
+    border: 1px solid var(--tekst_jasny); 
+    border-radius: 10px; 
+    padding: 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%; 
    
 }
 
@@ -108,8 +108,8 @@
     padding: 0;
     list-style-type: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Display products in three columns */
-    gap: 20px; /* Space between products */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
 }
 
 .produkt-item {
@@ -138,53 +138,53 @@
 .produkt-marka, .produkt-model {
     font-size: 1.3rem; 
     color: var(--tekst_ciemny); 
-    display: inline-block; /* Display marka and model inline */
+    display: inline-block; 
    
     margin: 0;
 }
 
 .produkt-marka::after {
-    content: " "; /* Separator between brand and model */
+    content: " "; 
     margin-right: 5px;
-    color: var(--tekst_jasny); /* Optional for styling */
+    color: var(--tekst_jasny); 
 }
 
 .produkt-cena {
     font-size: 1.3rem; 
     font-weight: bold; 
-    color: rgb(204, 40, 40); /* Set price to red */
-    margin-top: 30px; /* Add spacing above the price */
-    display: block; /* Ensure the price is on a new line */
+    color: rgb(204, 40, 40); 
+    margin-top: 30px; 
+    display: block; 
 }
 
 .category-item,
 .produkt-info {
-    text-decoration: none; /* No underline on hover or text */
+    text-decoration: none; 
 }
 
 
-/* Styling for the heading */
+
 .prawa_czesc_strony h1 {
-    font-size: 2.5rem; /* Make the heading larger */
-    font-weight: bold; /* Bold font for emphasis */
-    color: #333333; /* Darker color for readability */
-    margin-bottom: 15px; /* Space below the heading */
-    text-align: left; /* Align the heading to the left */
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    color: #333333; 
+    margin-bottom: 15px; 
+    text-align: left; 
 }
 
 /* DLA SORTOWANIE DES ASC */
 .prawa_czesc_strony div {
-    margin-top: 10px; /* Space above the links */
-    font-size: 1.2rem; /* Slightly larger text size for links */
+    margin-top: 10px; 
+    font-size: 1.2rem; 
 }
 
 .prawa_czesc_strony a {
-    color: #3a5fdc; /* Blue color for links */
-    text-decoration: none; /* Remove underline */
-    font-weight: normal; /* Normal font weight by default */
-    padding: 5px 10px; /* Add some padding for better clickability */
-    border-radius: 5px; /* Rounded edges for links */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+    color: #3a5fdc; 
+    text-decoration: none; 
+    font-weight: normal; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 
@@ -192,7 +192,7 @@
 .prawa_czesc_strony a[style="font-weight: bold;"] {
     font-weight: bold;
     background-color: #6c63ff;
-    color: #ffffff; /* White text */
+    color: #ffffff;
     border: 1px solid #6c63ff;
     padding: 5px 12px; 
 }

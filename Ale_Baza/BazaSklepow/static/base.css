@@ -4,33 +4,33 @@ main {
 }
 
 .black-bar {
-    background-color: #1c1b1b; /* Black background */
-    color: #ffffff; /* White text for contrast */
-    width: 100%; /* Full width of the page */
-    padding: 10px 20px; /* Padding for spacing */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
-    position: sticky; /* Stick to the top while scrolling */
+    background-color: #1c1b1b; 
+    color: #ffffff; 
+    width: 100%; 
+    padding: 10px 20px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    position: sticky; 
     top: 0;
-    z-index: 1000; /* Ensure it's on top of other elements */
+    z-index: 1000; 
 }
 
 .bar-content {
-    display: flex; /* Flexbox for alignment */
-    justify-content: space-between; /* Spread out title and search bar */
-    align-items: center; /* Center vertically */
-    max-width: 1200px; /* Optional: Limit content width */
-    margin: 0 auto; /* Center the content horizontally */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto; 
 }
 
 .bar-content h1 {
-    font-size: 3rem; /* Adjust font size for the title */
-    margin: 0; /* Remove default margin */
-    color: #ffffff; /* Ensure white text */
+    font-size: 3rem; 
+    margin: 0; 
+    color: #ffffff; 
 }
 
 .bar-content a {
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Use inherited text color */
+    text-decoration: none; 
+    color: inherit; 
 }
 
 body {
@@ -44,57 +44,57 @@ body {
 
 :root {
     --tlo: #ffffff;
-    --tekst_ciemny: #000000; /* Dark gray */
-    --tekst_jasny: #252121; /* Light gray */
-    --tlo_okna_wpisywania_i_przyciskow: #6c63ff; /* Vibrant blue */
-    --hover_highlight: #cdae00; /* Golden yellow */
-    --category_bg: #ffffff; /* Coral */
-    --category_hover: #000000; /* Lighter coral */
+    --tekst_ciemny: #000000; 
+    --tekst_jasny: #252121; 
+    --tlo_okna_wpisywania_i_przyciskow: #6c63ff; 
+    --hover_highlight: #cdae00; 
+    --category_bg: #ffffff; 
+    --category_hover: #000000; 
     --box_shadow: rgba(0, 0, 0, 0.2);
 }
 
 
-/* Search bar container */
+/*pas wysuzkiwania*/
 .search-bar {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0; /* Spacing around the search bar */
+    margin: 20px 0; 
 }
 
-/* Input field styling */
+
 .search-bar input[type="text"] {
-    width: 600px; /* Make input wider */
-    height: 50px; /* Increase height */
-    padding: 10px 15px; /* Add padding inside the input */
-    font-size: 18px; /* Larger text size */
-    border: 2px solid #ccc; /* Border styling */
-    border-radius: 8px; /* Rounded corners */
-    transition: border-color 0.3s ease-in-out; /* Smooth transition for hover */
+    width: 600px; 
+    height: 50px; 
+    padding: 10px 15px; 
+    font-size: 18px; 
+    border: 2px solid #ccc; 
+    border-radius: 8px; 
+    transition: border-color 0.3s ease-in-out; 
 }
 
-/* Input hover and focus effects */
+
 .search-bar input[type="text"]:hover,
 .search-bar input[type="text"]:focus {
-    border-color: #6c63ff; /* Change border color on hover/focus */
-    outline: none; /* Remove default outline */
+    border-color: #6c63ff; 
+    outline: none;
 }
 
-/* Button styling */
+
 .search-bar button {
-    height: 50px; /* Match input height */
-    padding: 0 20px; /* Horizontal padding for larger button */
-    margin-left: 10px; /* Space between input and button */
-    font-size: 18px; /* Larger text size */
-    background-color: #6c63ff; /* Button background color */
-    color: #fff; /* Button text color */
-    border: none; /* Remove default border */
-    border-radius: 8px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease-in-out; /* Smooth transition for hover */
+    height: 50px;
+    padding: 0 20px; 
+    margin-left: 10px; 
+    font-size: 18px; 
+    background-color: #6c63ff;
+    color: #fff; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease-in-out; 
 }
 
-/* Button hover effect */
+
 .search-bar button:hover {
-    background-color: #5245c1; /* Darker shade on hover */
+    background-color: #5245c1; 
 }
